@@ -50,6 +50,12 @@
             --shadow-gold: 0 4px 30px rgba(201, 168, 76, 0.2);
             --shadow-gold-lg: 0 8px 48px rgba(201, 168, 76, 0.3);
             --shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+            --z-sticky: 998;
+            --z-mobile-cta: 999;
+            --z-nav: 1000;
+            --z-modal-backdrop: 1100;
+            --z-modal: 1101;
         }
 
         *, *::before, *::after {
@@ -62,6 +68,7 @@
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            scroll-padding-top: 80px; /* Fallback for native browser fragment navigation */
         }
 
         body {
@@ -211,7 +218,7 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: var(--z-nav);
             padding: 18px 0;
             transition: all 0.4s ease;
             background: transparent;
@@ -421,10 +428,24 @@
         .hero__content {
             position: relative;
             z-index: 2;
-            padding: 160px 0 100px;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
+            padding: 160px 0 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px 48px;
+            align-items: center;
+        }
+
+        .hero__text-col {
+            text-align: left;
+            min-width: 0;
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .hero__content > .hero-calc {
+            min-width: 0;
+            grid-column: 2;
+            grid-row: 1;
         }
 
         .hero__badge {
@@ -446,7 +467,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(56px, 9vw, 110px);
+            font-size: clamp(48px, 6vw, 90px);
             color: var(--gold-200);
             line-height: 1.0;
             margin-bottom: 12px;
@@ -466,8 +487,8 @@
         .hero__subtitle {
             font-size: clamp(16px, 2vw, 19px);
             color: var(--text-muted);
-            max-width: 580px;
-            margin: 0 auto;
+            max-width: 520px;
+            margin: 0;
             line-height: 1.7;
             margin-bottom: 44px;
             opacity: 0;
@@ -477,7 +498,7 @@
         .hero__ctas {
             display: flex;
             gap: 16px;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
             opacity: 0;
             animation: fadeInUp 0.8s 0.9s forwards;
@@ -566,23 +587,23 @@
             font-size: 13px;
             color: var(--text-dim);
             opacity: 0;
-            animation: fadeInUp 0.8s 1s forwards;
+            animation: fadeInUp 0.8s 1.05s forwards;
         }
 
         /* Social proof strip */
         .hero__social-proof {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 14px;
-            margin-top: 48px;
-            padding: 20px 32px;
+            margin-top: 32px;
+            padding: 16px 24px;
             background: rgba(30, 26, 18, 0.8);
             border: 1px solid rgba(201, 168, 76, 0.12);
             border-radius: 100px;
             backdrop-filter: blur(12px);
             opacity: 0;
-            animation: fadeInUp 0.8s 1.1s forwards;
+            animation: fadeInUp 0.8s 1.15s forwards;
         }
 
         .hero__avatars {
@@ -619,12 +640,13 @@
         .trust-bar {
             position: relative;
             z-index: 2;
-            margin-top: 64px;
+            margin-top: 40px;
             padding: 32px 0;
             border-top: 1px solid rgba(201, 168, 76, 0.1);
             border-bottom: 1px solid rgba(201, 168, 76, 0.1);
             opacity: 0;
-            animation: fadeInUp 0.8s 1.2s forwards;
+            animation: fadeInUp 0.8s 1.25s forwards;
+            grid-column: 1 / -1;
         }
 
         .trust-bar__grid {
@@ -1994,7 +2016,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            z-index: 999;
+            z-index: var(--z-mobile-cta);
             padding: 12px 16px;
             background: rgba(13, 10, 6, 0.95);
             backdrop-filter: blur(16px);
@@ -2038,9 +2060,661 @@
         }
 
         /* ========================================
+           LEAD FORM
+           ======================================== */
+        .lead-form {
+            background: var(--bg-card);
+            border: 1px solid rgba(201, 168, 76, 0.20);
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 48px;
+        }
+
+        .lead-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .lead-form__trust-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .lead-form__trust-bar svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .lead-form__headline {
+            font-family: var(--font-display);
+            font-size: 26px;
+            color: var(--text-white);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .lead-form__sub {
+            font-size: 15px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 56px;
+            padding: 16px 20px;
+            background: rgba(42, 36, 24, 0.6);
+            border: 1.5px solid rgba(201, 168, 76, 0.14);
+            border-radius: var(--radius-md);
+            color: var(--text-white);
+            font-family: var(--font-body);
+            font-size: 15px;
+            transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: none;
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .form-group select {
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            padding-right: 48px;
+        }
+
+        .form-group select option {
+            background: var(--bg-card);
+            color: var(--text-white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: rgba(201, 168, 76, 0.55);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.10);
+            background: rgba(42, 36, 24, 0.9);
+        }
+
+        .form-group__error {
+            display: none;
+            font-size: 12px;
+            color: var(--red-accent);
+            margin-top: 6px;
+        }
+
+        .form-group--error input,
+        .form-group--error select {
+            border-color: rgba(239, 68, 68, 0.50);
+        }
+
+        .form-group--error .form-group__error {
+            display: block;
+        }
+
+        .lead-form__consent {
+            margin-top: 20px;
+            margin-bottom: 24px;
+        }
+
+        .lead-form__consent label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .lead-form__consent input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 1.5px solid rgba(201, 168, 76, 0.25);
+            border-radius: 5px;
+            background: transparent;
+            cursor: pointer;
+            accent-color: var(--gold-500);
+            margin-top: 2px;
+        }
+
+        .lead-form__consent a {
+            color: var(--gold-400);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .lead-form__submit {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-400) 100%);
+            color: var(--bg-darkest);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 17px;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            box-shadow: var(--shadow-gold);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lead-form__submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold-lg);
+        }
+
+        .lead-form__submit:disabled {
+            opacity: 0.7;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .lead-form__legal {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-align: center;
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+
+        .lead-form__success {
+            display: none;
+            text-align: center;
+            padding: 32px 0;
+        }
+
+        .lead-form__success .success-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(74, 222, 128, 0.12);
+            border: 1px solid rgba(74, 222, 128, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .lead-form__success .success-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--green-accent);
+        }
+
+        .lead-form__success h3 {
+            font-family: var(--font-display);
+            font-size: 26px;
+            color: var(--text-white);
+            margin-bottom: 8px;
+        }
+
+        .lead-form__success p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .form-trust-strip {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .form-trust-strip span {
+            font-size: 12px;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-trust-strip span::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold-500);
+            opacity: 0.7;
+        }
+
+        .hp-field {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+        }
+
+        button.mobile-cta__btn {
+            border: none;
+            background: inherit;
+            font: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ========================================
+           STICKY BAR + MODAL
+           ======================================== */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-sticky);
+            background: rgba(13, 10, 6, 0.90);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(201, 168, 76, 0.12);
+            padding: 14px 0;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .sticky-bar.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-bar__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sticky-bar__text {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .sticky-bar__actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .form-modal {
+            position: fixed;
+            inset: 0;
+            z-index: var(--z-modal-backdrop);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .form-modal__backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(13, 10, 6, 0.85);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+        }
+
+        .form-modal__panel {
+            position: relative;
+            z-index: var(--z-modal);
+            max-width: 520px;
+            width: calc(100% - 48px);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            transform: scale(0.94);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .form-modal.open .form-modal__panel {
+            transform: scale(1);
+        }
+
+        .form-modal__close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(245, 240, 224, 0.06);
+            border: 1px solid rgba(245, 240, 224, 0.08);
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .form-modal__close:hover {
+            background: rgba(245, 240, 224, 0.10);
+            color: var(--text-light);
+        }
+
+        .form-modal__heading {
+            font-family: var(--font-display);
+            font-size: 26px;
+            color: var(--text-white);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        /* ========================================
+           HERO CALCULATOR
+           ======================================== */
+        .hero-calc {
+            background: rgba(20, 17, 10, 0.85);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            border-radius: var(--radius-xl);
+            padding: 0;
+            max-width: 100%;
+            width: 100%;
+            opacity: 0;
+            animation: fadeInUp 0.8s 0.95s forwards;
+            overflow: hidden;
+        }
+
+        .hero-calc__header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            align-items: end;
+            padding: 28px 32px 0;
+        }
+
+        .hero-calc__amount-group {
+            text-align: left;
+        }
+
+        .hero-calc__amount-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 4px;
+        }
+
+        .hero-calc__amount {
+            font-family: var(--font-display);
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hero-calc__earnings-group {
+            text-align: right;
+        }
+
+        .hero-calc__earnings-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gold-500);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 2px;
+        }
+
+        .hero-calc__earnings {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--gold-200);
+            font-weight: 600;
+            line-height: 1;
+            text-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
+        }
+
+        .hero-calc__chart-area {
+            position: relative;
+            height: 200px;
+            margin: 20px 0 0;
+            overflow: hidden;
+        }
+
+        .hero-calc__chart-area svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .hero-calc__chart-line {
+            fill: none;
+            stroke: var(--gold-400);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 6px rgba(212, 184, 92, 0.4));
+            transition: d 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-calc__chart-fill {
+            transition: d 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-calc__chart-dot {
+            fill: var(--gold-300);
+            filter: drop-shadow(0 0 4px rgba(226, 204, 122, 0.6));
+            transition: cx 0.5s cubic-bezier(0.16, 1, 0.3, 1), cy 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-calc__chart-dot-ring {
+            fill: none;
+            stroke: rgba(226, 204, 122, 0.3);
+            stroke-width: 1;
+            transition: cx 0.5s cubic-bezier(0.16, 1, 0.3, 1), cy 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-calc__chart-grid-line {
+            stroke: rgba(201, 168, 76, 0.08);
+            stroke-width: 1;
+            stroke-dasharray: 3 6;
+        }
+
+        .hero-calc__chart-label {
+            fill: rgba(245, 240, 224, 0.4);
+            font-size: 11px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-calc__chart-label-y {
+            fill: rgba(201, 168, 76, 0.5);
+            font-size: 11px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-calc__payouts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(201, 168, 76, 0.06);
+            border-top: 1px solid rgba(201, 168, 76, 0.08);
+        }
+
+        .hero-calc__payout {
+            background: rgba(20, 17, 10, 0.9);
+            padding: 14px 16px;
+            text-align: center;
+        }
+
+        .hero-calc__payout-value {
+            font-family: var(--font-display);
+            font-size: 18px;
+            color: var(--text-white);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .hero-calc__payout-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .hero-calc__controls {
+            padding: 20px 32px 24px;
+            background: rgba(15, 12, 8, 0.5);
+        }
+
+        .hero-calc__slider-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .hero-calc__slider-row .calc-slider {
+            flex: 1;
+        }
+
+        .hero-calc__slider-value {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold-300);
+            min-width: 100px;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .hero-calc__range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: -8px;
+            margin-bottom: 14px;
+            padding: 0 2px;
+        }
+
+        .hero-calc__pills {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .hero-calc__pill {
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: var(--font-body);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            background: rgba(201, 168, 76, 0.04);
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-calc__pill.active {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(212, 184, 92, 0.12));
+            border-color: rgba(201, 168, 76, 0.5);
+            color: var(--gold-200);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-calc__pill:hover:not(.active) {
+            border-color: rgba(201, 168, 76, 0.25);
+            color: var(--text-muted);
+            background: rgba(201, 168, 76, 0.06);
+        }
+
+        /* ========================================
+           CONTACT FORM SECTION
+           ======================================== */
+        .contact-section__heading {
+            font-family: var(--font-display);
+            font-size: 36px;
+            color: var(--text-white);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .contact-section__social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .contact-section__avatars {
+            display: flex;
+        }
+
+        .contact-section__avatars .hero__avatar {
+            margin-left: -8px;
+        }
+
+        .contact-section__avatars .hero__avatar:first-child {
+            margin-left: 0;
+        }
+
+        /* ========================================
            RESPONSIVE
            ======================================== */
         @media (max-width: 1024px) {
+            .hero__content {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px 32px;
+                padding: 140px 0 80px;
+            }
+
+            .hero__earnings { font-size: 28px; }
+
             .benefits__grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -2064,6 +2738,8 @@
             .hero__coin--1 { width: 90px; height: 90px; }
             .hero__coin--2 { width: 60px; height: 60px; }
             .hero__money--1 { width: 130px; }
+
+            .sticky-bar { padding: 10px 0; }
         }
 
         @media (max-width: 768px) {
@@ -2081,6 +2757,33 @@
 
             .hero__content {
                 padding: 130px 0 60px;
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .hero__text-col {
+                text-align: center;
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .hero__content > .hero-calc {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .hero__subtitle {
+                margin: 0 auto;
+            }
+
+            .hero__ctas {
+                justify-content: center;
+            }
+
+            .hero__social-proof {
+                display: flex;
+                justify-content: center;
+                margin: 24px auto 0;
             }
 
             .hero h1 {
@@ -2172,12 +2875,29 @@
                 flex-direction: column;
                 gap: 10px;
                 border-radius: var(--radius-lg);
+                display: flex;
+            }
+
+            .hero__micro {
+                text-align: center;
             }
 
             .feature-strip__inner {
                 flex-direction: column;
                 gap: 20px;
             }
+
+            .lead-form { padding: 28px; max-width: 100%; }
+            .hero-calc { max-width: 100%; }
+            .hero-calc__earnings { font-size: 28px; }
+            .hero-calc__header { padding: 20px 24px 0; }
+            .hero-calc__controls { padding: 16px 24px 20px; }
+            .hero-calc__chart-area { height: 170px; }
+            .hero-calc__payout-value { font-size: 15px; }
+            .sticky-bar { display: none !important; }
+            .form-modal__panel { width: calc(100% - 32px); padding: 32px; }
+            .form-trust-strip { gap: 16px; }
+            .contact-section__heading { font-size: 28px; }
         }
 
         @media (max-width: 480px) {
@@ -2189,14 +2909,17 @@
                 font-size: 40px;
             }
 
-            .final-cta__buttons {
-                flex-direction: column;
-            }
-
-            .final-cta__buttons .btn {
-                width: 100%;
-                justify-content: center;
-            }
+            .lead-form { padding: 24px; border-radius: var(--radius-lg); }
+            .form-modal__panel { padding: 24px; border-radius: var(--radius-lg); max-height: 100vh; }
+            .hero-calc__header { grid-template-columns: 1fr; gap: 8px; padding: 16px 20px 0; }
+            .hero-calc__earnings-group { text-align: left; }
+            .hero-calc__earnings { font-size: 24px; }
+            .hero-calc__chart-area { height: 140px; }
+            .hero-calc__controls { padding: 12px 20px 16px; }
+            .hero-calc__payouts { grid-template-columns: repeat(2, 1fr); }
+            .hero-calc__payout { padding: 10px 8px; }
+            .hero-calc__payout-value { font-size: 13px; }
+            .hero-calc__payout-label { font-size: 10px; }
 
             .case-study__data {
                 grid-template-columns: 1fr;
@@ -2225,7 +2948,7 @@
                     <li><a href="#kalkulacka">Kalkulačka</a></li>
                     <li><a href="#bezpecnost">Bezpečnost</a></li>
                     <li><a href="#faq">Časté otázky</a></li>
-                    <li><a href="#kalkulacka" class="nav__cta">Spočítejte si výnos <span class="btn__arrow">&rarr;</span></a></li>
+                    <li><a href="#kontakt-form-section" class="nav__cta">Domluvit konzultaci <span class="btn__arrow">&rarr;</span></a></li>
                 </ul>
                 <button class="nav__mobile-toggle" id="mobileToggle" aria-label="Menu">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2337,42 +3060,139 @@
             </svg>
         </div>
 
-        <div class="container">
+        <div class="container container--wide">
             <div class="hero__content">
-                <div class="hero__badge">
-                    <span class="badge badge--gold">Nemovitostní investice od 500&nbsp;tis.&nbsp;Kč</span>
-                </div>
+                <!-- Left column: Text content -->
+                <div class="hero__text-col">
+                    <div class="hero__badge">
+                        <span class="badge badge--gold">Nemovitostní investice od 500&nbsp;tis.&nbsp;Kč</span>
+                    </div>
 
-                <h1>
-                    Milionová<br><span class="hero__title-line2">Investice</span>
-                </h1>
+                    <h1>
+                        Milionová<br><span class="hero__title-line2">Investice</span>
+                    </h1>
 
-                <p class="hero__subtitle">
-                    Z&nbsp;10&nbsp;milionů v&nbsp;bance máte 350&nbsp;tisíc ročně.
-                    U&nbsp;nás cílíme na milion. Každé čtvrtletí 250&nbsp;tisíc na&nbsp;účet
-                    &mdash; zajištěno reálnou nemovitostí. A&nbsp;Vy se o&nbsp;nic nestaráte.
-                </p>
+                    <p class="hero__subtitle">
+                        Z&nbsp;10&nbsp;milionů v&nbsp;bance máte 350&nbsp;tisíc ročně.
+                        U&nbsp;nás cílíme na milion. Každé čtvrtletí 250&nbsp;tisíc na&nbsp;účet
+                        &mdash; zajištěno reálnou nemovitostí. A&nbsp;Vy se o&nbsp;nic nestaráte.
+                    </p>
 
-                <div class="hero__ctas">
-                    <a href="#kalkulacka" class="btn btn--primary">
-                        Spočítejte si výnos
-                        <span class="btn__arrow">&rarr;</span>
-                    </a>
-                    <div class="hero__roi">
-                        <span class="hero__roi-dot"></span>
-                        Průměrný cílový výnos 10&nbsp;% ročně
+                    <div class="hero__ctas">
+                        <a href="#kalkulacka" class="btn btn--primary">
+                            Spočítejte si výnos
+                            <span class="btn__arrow">&rarr;</span>
+                        </a>
+                        <div class="hero__roi">
+                            <span class="hero__roi-dot"></span>
+                            Průměrný cílový výnos 10&nbsp;% ročně
+                        </div>
+                    </div>
+
+                    <p class="hero__micro">Kalkulace zdarma, bez registrace. Začít můžete už od 500&nbsp;tis.&nbsp;Kč.</p>
+
+                    <!-- Social proof with avatars -->
+                    <div class="hero__social-proof">
+                        <div class="hero__avatars">
+                            <div class="hero__avatar">MK</div>
+                            <div class="hero__avatar">JP</div>
+                            <div class="hero__avatar">TR</div>
+                        </div>
+                        <span class="hero__social-text">Přes 237+ investorů nám svěřilo svůj kapitál</span>
                     </div>
                 </div>
-                <p class="hero__micro">Kalkulace zdarma, bez registrace. Začít můžete už od 500&nbsp;tis.&nbsp;Kč.</p>
 
-                <!-- Social proof with avatars -->
-                <div class="hero__social-proof">
-                    <div class="hero__avatars">
-                        <div class="hero__avatar">MK</div>
-                        <div class="hero__avatar">JP</div>
-                        <div class="hero__avatar">TR</div>
+                <!-- Right column: Investment Calculator -->
+                <div class="hero-calc">
+                    <!-- Header: Investment amount + Total earnings -->
+                    <div class="hero-calc__header">
+                        <div class="hero-calc__amount-group">
+                            <div class="hero-calc__amount-label">Vaše investice</div>
+                            <div class="hero-calc__amount" id="heroCalcDisplay">5 000 000 Kč</div>
+                        </div>
+                        <div class="hero-calc__earnings-group">
+                            <div class="hero-calc__earnings-label">Celkový výnos</div>
+                            <div class="hero-calc__earnings" id="heroCalcResult">1 000 000 Kč</div>
+                        </div>
                     </div>
-                    <span class="hero__social-text">Přes 237+ investorů nám svěřilo svůj kapitál</span>
+
+                    <!-- SVG Growth Chart -->
+                    <div class="hero-calc__chart-area">
+                        <svg id="heroChart" viewBox="0 0 680 200" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="rgba(201, 168, 76, 0.25)"/>
+                                    <stop offset="70%" stop-color="rgba(201, 168, 76, 0.05)"/>
+                                    <stop offset="100%" stop-color="rgba(201, 168, 76, 0)"/>
+                                </linearGradient>
+                                <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#A68523"/>
+                                    <stop offset="50%" stop-color="#D4B85C"/>
+                                    <stop offset="100%" stop-color="#E8D48B"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Grid lines -->
+                            <line class="hero-calc__chart-grid-line" x1="0" y1="40" x2="680" y2="40"/>
+                            <line class="hero-calc__chart-grid-line" x1="0" y1="80" x2="680" y2="80"/>
+                            <line class="hero-calc__chart-grid-line" x1="0" y1="120" x2="680" y2="120"/>
+                            <!-- Axes -->
+                            <line id="heroChartBaseLine" stroke="rgba(201, 168, 76, 0.15)" stroke-width="1" x1="70" x2="660" y1="168" y2="168"/>
+                            <line id="heroChartYAxis" stroke="rgba(201, 168, 76, 0.1)" stroke-width="1" x1="70" x2="70" y1="20" y2="168"/>
+                            <!-- Area fill -->
+                            <path id="heroChartFill" class="hero-calc__chart-fill" fill="url(#chartGradient)" d="M70,168 L70,168 L660,168 Z"/>
+                            <!-- Line -->
+                            <path id="heroChartLine" class="hero-calc__chart-line" stroke="url(#lineGradient)" d="M70,168 L660,168"/>
+                            <!-- Quarter dots -->
+                            <g id="heroChartDots"></g>
+                            <!-- End dot (largest, with glow ring) -->
+                            <circle id="heroChartEndRing" class="hero-calc__chart-dot-ring" cx="660" cy="168" r="10"/>
+                            <circle id="heroChartEndDot" class="hero-calc__chart-dot" cx="660" cy="168" r="5"/>
+                            <!-- Chart title (Y-axis context) -->
+                            <text class="hero-calc__chart-label" id="heroChartTitle" x="70" y="12" text-anchor="start" style="font-size: 10px; fill: rgba(201,168,76,0.35); text-transform: uppercase; letter-spacing: 1.5px;">Kumulativní výnos</text>
+                            <!-- Y-axis labels -->
+                            <text class="hero-calc__chart-label-y" id="heroChartLabelTop" x="6" y="24" text-anchor="start"></text>
+                            <text class="hero-calc__chart-label-y" id="heroChartLabelMid" x="6" y="95" text-anchor="start"></text>
+                            <!-- X-axis time labels -->
+                            <g id="heroChartXLabels"></g>
+                        </svg>
+                    </div>
+
+                    <!-- Payout breakdown -->
+                    <div class="hero-calc__payouts">
+                        <div class="hero-calc__payout">
+                            <div class="hero-calc__payout-value" id="heroPayoutMonthly">42 000 Kč</div>
+                            <div class="hero-calc__payout-label">měsíčně</div>
+                        </div>
+                        <div class="hero-calc__payout">
+                            <div class="hero-calc__payout-value" id="heroPayoutQuarter">125 000 Kč</div>
+                            <div class="hero-calc__payout-label">čtvrtletně</div>
+                        </div>
+                        <div class="hero-calc__payout">
+                            <div class="hero-calc__payout-value" id="heroPayoutYear">500 000 Kč</div>
+                            <div class="hero-calc__payout-label">ročně</div>
+                        </div>
+                        <div class="hero-calc__payout">
+                            <div class="hero-calc__payout-value" id="heroPayoutTotal">1 000 000 Kč</div>
+                            <div class="hero-calc__payout-label">celkem za <span id="heroPayoutPeriod">2 roky</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Controls: slider + pills -->
+                    <div class="hero-calc__controls">
+                        <div class="hero-calc__slider-row">
+                            <input type="range" class="calc-slider" id="heroCalcSlider" min="500000" max="50000000" value="5000000" step="500000">
+                            <span class="hero-calc__slider-value" id="heroSliderLabel">5 mil. Kč</span>
+                        </div>
+                        <div class="hero-calc__range-labels">
+                            <span>500 tis.</span>
+                            <span>50 mil.</span>
+                        </div>
+                        <div class="hero-calc__pills">
+                            <button type="button" class="hero-calc__pill" data-years="1">1 rok</button>
+                            <button type="button" class="hero-calc__pill active" data-years="2">2 roky</button>
+                            <button type="button" class="hero-calc__pill" data-years="3">3 roky</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="trust-bar">
@@ -2754,11 +3574,41 @@
                 </div>
 
                 <div class="calc-cta">
-                    <a href="#kontakt" class="btn btn--primary">
-                        Líbí se mi to &mdash; chci vědět víc
+                    <a href="#kontakt-form-section" class="btn btn--primary" id="calcCTA">
+                        Rezervovat bezplatnou konzultaci
                         <span class="btn__arrow">&rarr;</span>
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT FORM (PRIMARY)
+         ============================================ -->
+    <section class="section section--alt" id="kontakt-form-section">
+        <div class="container container--narrow">
+            <div class="reveal" style="text-align: center;">
+                <span class="section-label">Další krok</span>
+                <h2 class="contact-section__heading">Připraveni udělat první krok?</h2>
+            </div>
+
+            <div class="contact-section__social reveal">
+                <div class="contact-section__avatars">
+                    <div class="hero__avatar">MK</div>
+                    <div class="hero__avatar">JP</div>
+                    <div class="hero__avatar">TR</div>
+                </div>
+                <span>Připojte se k 237+ investorům, kteří si řekli totéž</span>
+            </div>
+
+            <div id="primary-form-mount"></div>
+
+            <div class="form-trust-strip" style="margin-top: 32px;">
+                <span>8+ let na trhu</span>
+                <span>850 mil. Kč investováno</span>
+                <span>0 % ztráty jistiny</span>
+                <span>IČ: 06124186</span>
             </div>
         </div>
     </section>
@@ -2930,7 +3780,7 @@
             </div>
 
             <div class="reveal" style="text-align: center; margin-top: 48px;">
-                <a href="#kontakt" class="btn btn--primary">
+                <a href="#kontakt-form-section" class="btn btn--primary">
                     Mám otázku k&nbsp;bezpečnosti
                     <span class="btn__arrow">&rarr;</span>
                 </a>
@@ -3237,6 +4087,20 @@
                         <p>Ano, bez problémů. Investovat mohou jak fyzické, tak právnické osoby. Pro firmy platí jiné daňové podmínky (21&nbsp;% daň z&nbsp;příjmu PO), doporučujeme konzultaci s&nbsp;Vaším daňovým poradcem. Smluvní dokumentaci máme připravenou pro oba typy.</p>
                     </div>
                 </div>
+
+            </div>
+
+            <div class="reveal" style="text-align: center; margin-top: 48px;">
+                <p style="font-size: 17px; color: var(--text-light); margin-bottom: 20px;">
+                    Zbývá Vám otázka, která tu není?
+                </p>
+                <a href="#kontakt-form-section" class="btn btn--primary">
+                    Zeptejte se nás přímo
+                    <span class="btn__arrow">&rarr;</span>
+                </a>
+                <p style="margin-top: 12px; font-size: 13px; color: var(--text-dim);">
+                    Odpovíme do 1 pracovního dne. Konzultace zdarma.
+                </p>
             </div>
         </div>
     </section>
@@ -3262,21 +4126,22 @@
                     <li><span class="bridge__check">&check;</span> 4&times; ročně peníze na účtu, automaticky</li>
                     <li><span class="bridge__check">&check;</span> Vy se o&nbsp;nic nestaráte &mdash; pasivní příjem</li>
                 </ul>
-                <div class="final-cta__buttons">
-                    <a href="#kalkulacka" class="btn btn--primary">
-                        Spočítejte si výnos
-                        <span class="btn__arrow">&rarr;</span>
-                    </a>
-                    <a href="#" class="btn btn--outline">
-                        Chci si promluvit s&nbsp;někým z&nbsp;týmu
-                    </a>
+                <div style="text-align: center; margin-bottom: 24px;">
+                    <span class="badge badge--gold">Nezávazná konzultace</span>
                 </div>
-                <p class="final-cta__phone">
+
+                <div id="secondary-form-mount"></div>
+
+                <p class="final-cta__phone" style="margin-top: 24px;">
                     Nebo rovnou zavolejte: <a href="tel:+420000000000">+420 XXX XXX XXX</a> &middot; Po&ndash;Pá 9:00&ndash;17:00
                 </p>
-                <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">
-                    Konzultace zdarma. Bez závazků. Bez háčků.
-                </p>
+
+                <div style="margin-top: 32px; padding: 20px; background: rgba(201,168,76,0.05); border-radius: var(--radius-md); border: 1px solid rgba(201,168,76,0.1); text-align: center;">
+                    <p style="font-size: 15px; color: var(--text-light); font-style: italic; margin-bottom: 8px;">
+                        &ldquo;Každou čtvrtletní výplatu jsem dostal včas.&rdquo;
+                    </p>
+                    <p style="font-size: 13px; color: var(--text-dim);">— M. K., investor od roku 2021</p>
+                </div>
 
                 <div class="final-cta__trust">
                     Movito Group s.r.o. &middot; IČ: 06124186 &middot; Praha 4 &ndash; Nusle
@@ -3346,9 +4211,9 @@
             <div class="footer__bottom">
                 <span>&copy; 2026 Movito Group s.r.o. Všechna práva vyhrazena.</span>
                 <span>
-                    <a href="#" style="color: rgba(245,240,224,0.15); text-decoration: none;">Zásady ochrany osobních údajů</a>
+                    <a href="/zasady-ochrany-osobnich-udaju" style="color: rgba(245,240,224,0.15); text-decoration: none;">Zásady ochrany osobních údajů</a>
                     &middot;
-                    <a href="#" style="color: rgba(245,240,224,0.15); text-decoration: none;">Podmínky užití</a>
+                    <a href="/podminky-uziti" style="color: rgba(245,240,224,0.15); text-decoration: none;">Podmínky užití</a>
                 </span>
             </div>
         </div>
@@ -3359,8 +4224,107 @@
          ============================================ -->
     <div class="mobile-cta">
         <div class="mobile-cta__inner">
-            <a href="#kalkulacka" class="mobile-cta__btn mobile-cta__btn--primary">Spočítejte si výnos</a>
+            <button type="button" id="mobileCTABtn" class="mobile-cta__btn mobile-cta__btn--primary">Domluvit konzultaci</button>
             <a href="tel:+420000000000" class="mobile-cta__btn mobile-cta__btn--phone">Zavolejte nám</a>
+        </div>
+    </div>
+
+    <!-- ============================================
+         FORM TEMPLATE
+         ============================================ -->
+    <template id="lead-form-template">
+        <div class="lead-form">
+            <div class="lead-form__trust-bar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--gold-500);"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>Vaše data jsou v bezpečí. Nesdílíme je s třetími stranami.</span>
+            </div>
+
+            <h3 class="lead-form__headline">Rezervujte si bezplatnou konzultaci</h3>
+            <p class="lead-form__sub">30 minut. Bez závazků. Zavoláme Vám do 1 pracovního dne.</p>
+
+            <form novalidate>
+                <div class="hp-field" aria-hidden="true">
+                    <label for="hp-website">Nechte prázdné</label>
+                    <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="lead-name">Vaše jméno</label>
+                    <input type="text" id="lead-name" name="name" placeholder="Např. Jan Novák" required maxlength="100">
+                    <span class="form-group__error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="lead-email">E-mail</label>
+                    <input type="email" id="lead-email" name="email" placeholder="vas@email.cz" required maxlength="254">
+                    <span class="form-group__error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="lead-phone">Telefon</label>
+                    <input type="tel" id="lead-phone" name="phone" placeholder="+420" required maxlength="20">
+                    <span class="form-group__error" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="lead-amount">Kolik plánujete investovat?</label>
+                    <select id="lead-amount" name="investment_amount">
+                        <option value="" disabled selected>Vyberte rozsah</option>
+                        <option value="500k-1m">500 tis. – 1 mil. Kč</option>
+                        <option value="1m-5m">1 – 5 mil. Kč</option>
+                        <option value="5m-20m">5 – 20 mil. Kč</option>
+                        <option value="20m+">20 mil. Kč a více</option>
+                        <option value="unknown">Zatím nevím</option>
+                    </select>
+                    <span class="form-group__error" role="alert"></span>
+                </div>
+
+                <div class="form-group lead-form__consent">
+                    <label>
+                        <input type="checkbox" name="consent" required>
+                        Souhlasím se <a href="/zasady-ochrany-osobnich-udaju" target="_blank" rel="noopener">zpracováním osobních údajů</a>
+                    </label>
+                    <span class="form-group__error" role="alert"></span>
+                </div>
+
+                <button type="submit" class="lead-form__submit">Chci konzultaci zdarma →</button>
+            </form>
+
+            <p class="lead-form__legal">Odpovíme do 24 hodin. Žádný prodejní tlak.</p>
+
+            <div class="lead-form__success" role="status" aria-live="polite">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3>Děkujeme!</h3>
+                <p>Ozveme se Vám do 1 pracovního dne.</p>
+                <a href="#duvera" class="btn btn--dark">Jak funguje Movito →</a>
+            </div>
+        </div>
+    </template>
+
+    <!-- ============================================
+         DESKTOP STICKY BAR
+         ============================================ -->
+    <div class="sticky-bar" id="stickyBar" aria-hidden="true">
+        <div class="sticky-bar__inner">
+            <p class="sticky-bar__text">Již 237+ investorů nám svěřilo kapitál.</p>
+            <div class="sticky-bar__actions">
+                <a href="#kalkulacka" class="btn btn--dark" style="padding: 10px 22px; font-size: 14px;">Kalkulátor</a>
+                <button type="button" class="btn btn--primary" id="stickyBarCTA" style="padding: 10px 22px; font-size: 14px;">Domluvit konzultaci</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         FORM MODAL
+         ============================================ -->
+    <div class="form-modal" id="formModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-heading">
+        <div class="form-modal__backdrop"></div>
+        <div class="form-modal__panel">
+            <button type="button" class="form-modal__close" aria-label="Zavřít">&times;</button>
+            <h2 class="form-modal__heading" id="modal-heading">Domluvit konzultaci</h2>
+            <div id="modal-form-mount"></div>
         </div>
     </div>
 
@@ -3369,10 +4333,26 @@
          ============================================ -->
     <script>
         // ========================================
+        // SHARED UTILITIES
+        // ========================================
+        function formatCurrency(value) {
+            return value.toLocaleString('cs-CZ').replace(/\s/g, ' ') + ' Kč';
+        }
+
+        function formatCurrencyShort(value) {
+            if (value >= 1000000) {
+                return (value / 1000000).toFixed(1).replace('.0', '') + ' mil. Kč';
+            }
+            return formatCurrency(value);
+        }
+
+        // ========================================
         // NAVIGATION SCROLL EFFECT
         // ========================================
         const nav = document.getElementById('nav');
         let lastScroll = 0;
+        const stickyBar = document.getElementById('stickyBar');
+        let stickyRafPending = false;
 
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
@@ -3382,7 +4362,24 @@
                 nav.classList.remove('scrolled');
             }
             lastScroll = currentScroll;
-        });
+
+            // Sticky bar visibility (merged)
+            if (stickyBar && !stickyRafPending) {
+                stickyRafPending = true;
+                requestAnimationFrame(() => {
+                    const heroEl = document.querySelector('.hero');
+                    const formSection = document.getElementById('kontakt-form-section');
+                    if (heroEl) {
+                        const heroBottom = heroEl.getBoundingClientRect().bottom;
+                        const formTop = formSection ? formSection.getBoundingClientRect().top : Infinity;
+                        const isVisible = heroBottom < 0 && formTop > window.innerHeight;
+                        stickyBar.classList.toggle('visible', isVisible);
+                        stickyBar.setAttribute('aria-hidden', !isVisible);
+                    }
+                    stickyRafPending = false;
+                });
+            }
+        }, { passive: true });
 
         // ========================================
         // SCROLL REVEAL ANIMATIONS
@@ -3463,17 +4460,7 @@
         let investmentAmount = 5000000;
         let investmentYears = 2;
         let reinvest = false;
-
-        function formatCurrency(value) {
-            return value.toLocaleString('cs-CZ').replace(/\s/g, ' ') + ' Kč';
-        }
-
-        function formatCurrencyShort(value) {
-            if (value >= 1000000) {
-                return (value / 1000000).toFixed(1).replace('.0', '') + ' mil. Kč';
-            }
-            return formatCurrency(value);
-        }
+        let calculatorInteracted = false;
 
         function updateCalculator() {
             const rate = 0.10;
@@ -3518,10 +4505,14 @@
             const percent = ((investmentAmount - 500000) / (50000000 - 500000)) * 100;
             investmentSlider.style.background =
                 `linear-gradient(to right, var(--gold-500) 0%, var(--gold-400) ${percent}%, rgba(201,168,76,0.1) ${percent}%, rgba(201,168,76,0.1) 100%)`;
+
+            // Update sticky bar summary
+            updateStickyBarSummary();
         }
 
         // Slider
         investmentSlider.addEventListener('input', (e) => {
+            calculatorInteracted = true;
             let val = parseInt(e.target.value);
             if (val > 5000000) {
                 val = Math.round(val / 1000000) * 1000000;
@@ -3533,6 +4524,7 @@
         // Duration buttons
         durationBtns.forEach(btn => {
             btn.addEventListener('click', () => {
+                calculatorInteracted = true;
                 durationBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 investmentYears = parseInt(btn.dataset.years);
@@ -3575,7 +4567,9 @@
         // ========================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                const target = document.querySelector(this.getAttribute('href'));
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                const target = document.querySelector(href);
                 if (target) {
                     e.preventDefault();
                     const offset = 80;
@@ -3587,6 +4581,573 @@
                 }
             });
         });
+
+        // ========================================
+        // LEAD FORM: CLONE TEMPLATE, VALIDATE, SUBMIT
+        // ========================================
+        const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // TODO: Configure before launch
+
+        // Clone template into mount points
+        const formTemplate = document.getElementById('lead-form-template');
+        const formMounts = [
+            { id: 'primary-form-mount', suffix: 'primary' },
+            { id: 'secondary-form-mount', suffix: 'secondary' },
+            { id: 'modal-form-mount', suffix: 'modal' }
+        ];
+
+        formMounts.forEach(({ id, suffix }) => {
+            const mount = document.getElementById(id);
+            if (mount && formTemplate) {
+                const clone = formTemplate.content.cloneNode(true);
+                clone.querySelectorAll('[id]').forEach(el => {
+                    const oldId = el.id;
+                    el.id = oldId + '-' + suffix;
+                    const label = clone.querySelector('label[for="' + oldId + '"]');
+                    if (label) label.setAttribute('for', el.id);
+                });
+                mount.appendChild(clone);
+            }
+        });
+
+        // Attach smooth scroll to newly cloned anchors
+        document.querySelectorAll('#primary-form-mount a[href^="#"], #secondary-form-mount a[href^="#"], #modal-form-mount a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Single validation + submission handler for all form instances
+        function validateAndSubmit(formEl, e) {
+            e.preventDefault();
+
+            const form = formEl;
+            const leadForm = form.closest('.lead-form');
+            if (!leadForm) return;
+
+            // Honeypot check
+            const hp = form.querySelector('.hp-field input');
+            if (hp && hp.value) {
+                // Bot detected — silently show success
+                form.style.display = 'none';
+                const success = leadForm.querySelector('.lead-form__success');
+                if (success) success.style.display = 'block';
+                return;
+            }
+
+            // Clear previous errors
+            form.querySelectorAll('.form-group--error').forEach(g => g.classList.remove('form-group--error'));
+            form.querySelectorAll('.form-group__error').forEach(errEl => { errEl.textContent = ''; errEl.style.display = 'none'; });
+
+            const errors = [];
+            const nameInput = form.querySelector('input[name="name"]');
+            const emailInput = form.querySelector('input[name="email"]');
+            const phoneInput = form.querySelector('input[name="phone"]');
+            const consentInput = form.querySelector('input[name="consent"]');
+
+            // Name validation
+            if (!nameInput || nameInput.value.trim().length < 2) {
+                errors.push({ input: nameInput, msg: 'Zadejte prosím své jméno (min. 2 znaky).' });
+            }
+
+            // Email validation
+            if (!emailInput || !/.+@.+\..+/.test(emailInput.value)) {
+                errors.push({ input: emailInput, msg: 'Zadejte prosím platný e-mail.' });
+            }
+
+            // Phone validation
+            if (phoneInput) {
+                const phone = phoneInput.value.replace(/[\s\-\(\)]/g, '');
+                if (!/^[+]?[0-9]{9,15}$/.test(phone)) {
+                    errors.push({ input: phoneInput, msg: 'Zadejte prosím platné telefonní číslo.' });
+                }
+            }
+
+            // GDPR consent
+            if (!consentInput || !consentInput.checked) {
+                errors.push({ input: consentInput, msg: 'Pro odeslání musíte souhlasit se zpracováním údajů.' });
+            }
+
+            if (errors.length > 0) {
+                errors.forEach(({ input, msg }) => {
+                    if (!input) return;
+                    const group = input.closest('.form-group') || input.closest('.lead-form__consent');
+                    if (group) {
+                        group.classList.add('form-group--error');
+                        const errorSpan = group.querySelector('.form-group__error');
+                        if (errorSpan) {
+                            errorSpan.textContent = msg;
+                            errorSpan.style.display = 'block';
+                        }
+                    }
+                });
+
+                // Focus first errored field
+                if (errors[0].input) errors[0].input.focus();
+
+                // Add live clearing on input
+                errors.forEach(({ input }) => {
+                    if (!input) return;
+                    const handler = () => {
+                        const group = input.closest('.form-group') || input.closest('.lead-form__consent');
+                        if (group) {
+                            group.classList.remove('form-group--error');
+                            const errorSpan = group.querySelector('.form-group__error');
+                            if (errorSpan) { errorSpan.textContent = ''; errorSpan.style.display = 'none'; }
+                        }
+                        input.removeEventListener('input', handler);
+                        input.removeEventListener('change', handler);
+                    };
+                    input.addEventListener('input', handler);
+                    input.addEventListener('change', handler);
+                });
+
+                // Analytics: form error
+                if (window.dataLayer) {
+                    const mountEl = leadForm.closest('[id$="-form-mount"]') || leadForm.closest('#kontakt-form-section');
+                    window.dataLayer.push({
+                        event: 'form_error',
+                        form_location: mountEl ? mountEl.id : 'unknown',
+                        error_fields: errors.map(errItem => errItem.input ? errItem.input.name : 'consent')
+                    });
+                }
+
+                return;
+            }
+
+            // Valid — submit
+            const submitBtn = form.querySelector('.lead-form__submit');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Odesílám...';
+            }
+
+            const mountEl = leadForm.closest('[id$="-form-mount"]') || leadForm.closest('#kontakt-form-section');
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: phoneInput ? phoneInput.value.trim() : '',
+                investment_amount: (form.querySelector('select[name="investment_amount"]') || {}).value || '',
+                consent_timestamp: new Date().toISOString(),
+                form_location: mountEl ? mountEl.id : 'unknown'
+            };
+
+            fetch(FORM_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success
+                    form.style.display = 'none';
+                    const success = leadForm.querySelector('.lead-form__success');
+                    if (success) {
+                        success.style.display = 'block';
+                        const h3 = success.querySelector('h3');
+                        if (h3) h3.textContent = 'Děkujeme, ' + formData.name + '!';
+                    }
+
+                    // Analytics: form submit
+                    if (window.dataLayer) {
+                        window.dataLayer.push({
+                            event: 'form_submit',
+                            form_location: mountEl ? mountEl.id : 'unknown',
+                            investment_range: formData.investment_amount
+                        });
+                    }
+                } else {
+                    throw new Error('Server error');
+                }
+            })
+            .catch(() => {
+                // Network/server error
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Chci konzultaci zdarma →';
+                }
+                let errorMsg = leadForm.querySelector('.lead-form__network-error');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('p');
+                    errorMsg.className = 'lead-form__network-error';
+                    errorMsg.style.cssText = 'color: var(--red-accent); font-size: 14px; text-align: center; margin-top: 12px;';
+                    form.appendChild(errorMsg);
+                }
+                errorMsg.textContent = 'Nepodařilo se odeslat. Zavolejte nám: +420 XXX XXX XXX';
+            });
+        }
+
+        // Attach submit handlers to all cloned forms
+        document.querySelectorAll('.lead-form form').forEach(form => {
+            form.addEventListener('submit', e => validateAndSubmit(form, e));
+        });
+
+        // ========================================
+        // HERO INVESTMENT GROWTH CALCULATOR
+        // ========================================
+        const heroSlider = document.getElementById('heroCalcSlider');
+        const heroResult = document.getElementById('heroCalcResult');
+        const heroDisplay = document.getElementById('heroCalcDisplay');
+        const heroSliderLabel = document.getElementById('heroSliderLabel');
+        const heroPayoutMonthly = document.getElementById('heroPayoutMonthly');
+        const heroPayoutQuarter = document.getElementById('heroPayoutQuarter');
+        const heroPayoutYear = document.getElementById('heroPayoutYear');
+        const heroPayoutTotal = document.getElementById('heroPayoutTotal');
+        const heroPayoutPeriod = document.getElementById('heroPayoutPeriod');
+        const heroChartLine = document.getElementById('heroChartLine');
+        const heroChartFill = document.getElementById('heroChartFill');
+        const heroChartDots = document.getElementById('heroChartDots');
+        const heroChartEndDot = document.getElementById('heroChartEndDot');
+        const heroChartEndRing = document.getElementById('heroChartEndRing');
+        const heroChartLabelTop = document.getElementById('heroChartLabelTop');
+        const heroChartLabelMid = document.getElementById('heroChartLabelMid');
+        const heroPills = document.querySelectorAll('.hero-calc__pill');
+        let heroDuration = 2;
+
+        function updateHeroCalc() {
+            if (!heroSlider) return;
+            const amount = parseInt(heroSlider.value);
+            const rate = 0.10;
+            const quarters = heroDuration * 4;
+            const quarterlyPayout = Math.round(amount * rate / 4);
+            const annualPayout = Math.round(amount * rate);
+            const totalReturn = Math.round(annualPayout * heroDuration);
+
+            // Update text displays
+            if (heroDisplay) heroDisplay.textContent = formatCurrency(amount);
+            if (heroResult) heroResult.textContent = formatCurrency(totalReturn);
+            if (heroSliderLabel) heroSliderLabel.textContent = formatCurrencyShort(amount);
+            const monthlyPayout = Math.round(amount * rate / 12);
+            if (heroPayoutMonthly) heroPayoutMonthly.textContent = formatCurrency(monthlyPayout);
+            if (heroPayoutQuarter) heroPayoutQuarter.textContent = formatCurrency(quarterlyPayout);
+            if (heroPayoutYear) heroPayoutYear.textContent = formatCurrency(annualPayout);
+            if (heroPayoutTotal) heroPayoutTotal.textContent = formatCurrency(totalReturn);
+            if (heroPayoutPeriod) heroPayoutPeriod.textContent = heroDuration + ' ' + (heroDuration === 1 ? 'rok' : heroDuration <= 4 ? 'roky' : 'let');
+
+            // Update slider gradient
+            const percent = ((amount - 500000) / (50000000 - 500000)) * 100;
+            heroSlider.style.background =
+                'linear-gradient(to right, var(--gold-500) 0%, var(--gold-400) ' + percent + '%, rgba(201,168,76,0.1) ' + percent + '%, rgba(201,168,76,0.1) 100%)';
+
+            // Draw the growth chart
+            drawHeroChart(amount, heroDuration);
+        }
+
+        function drawHeroChart(amount, years) {
+            if (!heroChartLine || !heroChartFill) return;
+
+            const w = 680;
+            const h = 200;
+            const padTop = 20;
+            const padBottom = 32;
+            const padLeft = 70;
+            const padRight = 20;
+            const chartW = w - padLeft - padRight;
+            const chartH = h - padTop - padBottom;
+            const quarters = years * 4;
+            const rate = 0.10;
+            const qRate = rate / 4;
+
+            // Calculate cumulative earnings per quarter
+            const points = [];
+            for (let q = 0; q <= quarters; q++) {
+                const cumEarnings = amount * qRate * q;
+                points.push(cumEarnings);
+            }
+
+            const currentMax = points[points.length - 1] || 1;
+
+            // Smart Y-axis: snap to nice round number ~1.4x the current max
+            // So the curve fills about 70% of the chart — visually prominent
+            const niceSteps = [50000, 100000, 250000, 500000, 1000000, 2000000, 3000000, 5000000, 7500000, 10000000, 15000000, 20000000];
+            let yAxisMax = niceSteps[niceSteps.length - 1];
+            for (let i = 0; i < niceSteps.length; i++) {
+                if (niceSteps[i] >= currentMax * 1.35) {
+                    yAxisMax = niceSteps[i];
+                    break;
+                }
+            }
+
+            // Map to SVG coordinates
+            const coords = points.map((val, i) => {
+                const x = padLeft + (i / quarters) * chartW;
+                const y = h - padBottom - ((val / yAxisMax) * chartH);
+                return { x, y };
+            });
+
+            // Build smooth curve path
+            let linePath = 'M' + coords[0].x + ',' + coords[0].y;
+            for (let i = 1; i < coords.length; i++) {
+                const prev = coords[i - 1];
+                const curr = coords[i];
+                const cp1x = prev.x + (curr.x - prev.x) * 0.4;
+                const cp2x = prev.x + (curr.x - prev.x) * 0.6;
+                linePath += ' C' + cp1x + ',' + prev.y + ' ' + cp2x + ',' + curr.y + ' ' + curr.x + ',' + curr.y;
+            }
+
+            // Fill path
+            const lastX = coords[coords.length - 1].x;
+            const fillPath = linePath + ' L' + lastX + ',' + (h - padBottom) + ' L' + padLeft + ',' + (h - padBottom) + ' Z';
+
+            heroChartLine.setAttribute('d', linePath);
+            heroChartFill.setAttribute('d', fillPath);
+
+            // End dot
+            const lastCoord = coords[coords.length - 1];
+            if (heroChartEndDot) {
+                heroChartEndDot.setAttribute('cx', lastCoord.x);
+                heroChartEndDot.setAttribute('cy', lastCoord.y);
+            }
+            if (heroChartEndRing) {
+                heroChartEndRing.setAttribute('cx', lastCoord.x);
+                heroChartEndRing.setAttribute('cy', lastCoord.y);
+            }
+
+            // Quarter dots
+            if (heroChartDots) {
+                heroChartDots.innerHTML = '';
+                for (let i = 1; i < coords.length - 1; i++) {
+                    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    dot.setAttribute('cx', coords[i].x);
+                    dot.setAttribute('cy', coords[i].y);
+                    dot.setAttribute('r', '2.5');
+                    dot.setAttribute('fill', 'rgba(212, 184, 92, 0.5)');
+                    heroChartDots.appendChild(dot);
+                }
+            }
+
+            // Y-axis labels (based on smart yAxisMax)
+            if (heroChartLabelTop) {
+                heroChartLabelTop.textContent = formatCurrencyShort(yAxisMax);
+            }
+            if (heroChartLabelMid) {
+                heroChartLabelMid.textContent = formatCurrencyShort(Math.round(yAxisMax * 0.5));
+            }
+
+            // Update grid lines to match padded area
+            const gridLines = document.querySelectorAll('.hero-calc__chart-grid-line');
+            const gridYPositions = [0.25, 0.5, 0.75];
+            gridLines.forEach((line, idx) => {
+                if (idx < gridYPositions.length) {
+                    const gy = h - padBottom - (gridYPositions[idx] * chartH);
+                    line.setAttribute('y1', gy);
+                    line.setAttribute('y2', gy);
+                    line.setAttribute('x1', padLeft);
+                    line.setAttribute('x2', w - padRight);
+                }
+            });
+
+            // X-axis time labels
+            const xLabelsGroup = document.getElementById('heroChartXLabels');
+            if (xLabelsGroup) {
+                xLabelsGroup.innerHTML = '';
+                const baseY = h - 8;
+                for (let q = 0; q <= quarters; q++) {
+                    const x = padLeft + (q / quarters) * chartW;
+                    // Only show meaningful labels: start, each year, and final
+                    let text = '';
+                    if (q === 0) {
+                        text = 'Dnes';
+                    } else if (q % 4 === 0) {
+                        text = q / 4 + '. rok';
+                    } else if (q === quarters && q % 4 !== 0) {
+                        text = quarters + 'Q';
+                    }
+                    if (!text) continue;
+
+                    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    label.setAttribute('x', x);
+                    label.setAttribute('y', baseY);
+                    label.setAttribute('text-anchor', q === 0 ? 'start' : q === quarters ? 'end' : 'middle');
+                    label.setAttribute('class', 'hero-calc__chart-label');
+                    label.textContent = text;
+                    xLabelsGroup.appendChild(label);
+
+                    // Add tick mark
+                    const tick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    tick.setAttribute('x1', x);
+                    tick.setAttribute('x2', x);
+                    tick.setAttribute('y1', h - padBottom);
+                    tick.setAttribute('y2', h - padBottom + 5);
+                    tick.setAttribute('stroke', 'rgba(201, 168, 76, 0.15)');
+                    tick.setAttribute('stroke-width', '1');
+                    xLabelsGroup.appendChild(tick);
+                }
+            }
+
+            // Y-axis label positions — align right-edge of text to just left of chart area
+            if (heroChartLabelTop) {
+                heroChartLabelTop.setAttribute('y', h - padBottom - chartH + 4);
+                heroChartLabelTop.setAttribute('x', padLeft - 8);
+                heroChartLabelTop.setAttribute('text-anchor', 'end');
+            }
+            if (heroChartLabelMid) {
+                heroChartLabelMid.setAttribute('y', h - padBottom - (chartH * 0.5) + 4);
+                heroChartLabelMid.setAttribute('x', padLeft - 8);
+                heroChartLabelMid.setAttribute('text-anchor', 'end');
+            }
+
+            // Axis lines
+            const baseLine = document.getElementById('heroChartBaseLine');
+            if (baseLine) {
+                baseLine.setAttribute('x1', padLeft);
+                baseLine.setAttribute('x2', w - padRight);
+                baseLine.setAttribute('y1', h - padBottom);
+                baseLine.setAttribute('y2', h - padBottom);
+            }
+            const yAxisLine = document.getElementById('heroChartYAxis');
+            if (yAxisLine) {
+                yAxisLine.setAttribute('x1', padLeft);
+                yAxisLine.setAttribute('x2', padLeft);
+                yAxisLine.setAttribute('y1', padTop);
+                yAxisLine.setAttribute('y2', h - padBottom);
+            }
+        }
+
+        if (heroSlider) {
+            heroSlider.addEventListener('input', updateHeroCalc);
+            updateHeroCalc();
+        }
+
+        heroPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                heroPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                heroDuration = parseInt(pill.dataset.years) || 2;
+                updateHeroCalc();
+            });
+        });
+
+        // ========================================
+        // CALCULATOR-FORM BRIDGE
+        // ========================================
+        function getCalcSnapshot() {
+            return { amount: investmentAmount, years: investmentYears };
+        }
+
+        function prefillForm(mountId) {
+            const mount = document.getElementById(mountId);
+            if (!mount) return;
+            const select = mount.querySelector('select[name="investment_amount"]');
+            if (!select) return;
+            const amount = investmentAmount;
+            if (amount < 1000000) select.value = '500k-1m';
+            else if (amount < 5000000) select.value = '1m-5m';
+            else if (amount < 20000000) select.value = '5m-20m';
+            else select.value = '20m+';
+        }
+
+        function updateStickyBarSummary() {
+            if (!calculatorInteracted) return;
+            const textEl = document.querySelector('.sticky-bar__text');
+            if (textEl) {
+                textEl.textContent = 'Investice ' + formatCurrencyShort(investmentAmount) + ' na ' + investmentYears + ' ' + (investmentYears === 1 ? 'rok' : 'roky');
+            }
+        }
+
+        // Prefill form when calc CTA is clicked
+        const calcCTA = document.getElementById('calcCTA');
+        if (calcCTA) {
+            calcCTA.addEventListener('click', () => {
+                prefillForm('primary-form-mount');
+                // Analytics
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'calculator_to_form',
+                        investment_amount: investmentAmount,
+                        investment_years: investmentYears
+                    });
+                }
+            });
+        }
+
+        // ========================================
+        // FORM MODAL
+        // ========================================
+        const formModal = document.getElementById('formModal');
+        const modalBackdrop = formModal ? formModal.querySelector('.form-modal__backdrop') : null;
+        const modalClose = formModal ? formModal.querySelector('.form-modal__close') : null;
+        let lastFocusedElement = null;
+
+        function openModal() {
+            if (!formModal) return;
+            lastFocusedElement = document.activeElement;
+            formModal.classList.add('open');
+            formModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+
+            // Close mobile nav if open
+            if (nav && nav.classList.contains('open')) nav.classList.remove('open');
+
+            // Focus first input
+            setTimeout(() => {
+                const firstInput = formModal.querySelector('input:not([tabindex="-1"]), select, button:not(.form-modal__close)');
+                if (firstInput) firstInput.focus();
+            }, 100);
+        }
+
+        function closeModal() {
+            if (!formModal) return;
+            formModal.classList.remove('open');
+            formModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
+
+            // Analytics
+            if (window.dataLayer) window.dataLayer.push({ event: 'modal_close' });
+        }
+
+        // Close triggers
+        if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+        if (modalClose) modalClose.addEventListener('click', closeModal);
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && formModal && formModal.classList.contains('open')) closeModal();
+        });
+
+        // Focus trap
+        if (formModal) {
+            formModal.addEventListener('keydown', e => {
+                if (e.key !== 'Tab') return;
+                const focusable = formModal.querySelectorAll('input:not([tabindex="-1"]), select, button, a[href], [tabindex]:not([tabindex="-1"])');
+                if (focusable.length === 0) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            });
+        }
+
+        // Button handlers
+        const stickyBarCTA = document.getElementById('stickyBarCTA');
+        const mobileCTABtn = document.getElementById('mobileCTABtn');
+
+        if (stickyBarCTA) {
+            stickyBarCTA.addEventListener('click', () => {
+                prefillForm('modal-form-mount');
+                openModal();
+                if (window.dataLayer) window.dataLayer.push({ event: 'modal_open', trigger: 'sticky_bar' });
+            });
+        }
+
+        if (mobileCTABtn) {
+            mobileCTABtn.addEventListener('click', () => {
+                prefillForm('modal-form-mount');
+                openModal();
+                if (window.dataLayer) window.dataLayer.push({ event: 'modal_open', trigger: 'mobile_cta' });
+            });
+        }
     </script>
 
 </body>
