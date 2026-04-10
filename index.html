@@ -5220,7 +5220,7 @@
         // ========================================
         // LEAD FORM: CLONE TEMPLATE, VALIDATE, SUBMIT
         // ========================================
-        const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // TODO: Configure before launch
+        const FORM_ENDPOINT = '/.netlify/functions/contact';
 
         // Clone template into mount points
         const formTemplate = document.getElementById('lead-form-template');
@@ -5364,13 +5364,16 @@
             }
 
             const mountEl = leadForm.closest('[id$="-form-mount"]') || leadForm.closest('#kontakt-form-section');
+            const hpInput = form.querySelector('.hp-field input');
             const formData = {
                 name: nameInput.value.trim(),
                 email: emailInput.value.trim(),
                 phone: phoneInput ? phoneInput.value.trim() : '',
                 investment_amount: (form.querySelector('select[name="investment_amount"]') || {}).value || '',
+                consent: true,
                 consent_timestamp: new Date().toISOString(),
-                form_location: mountEl ? mountEl.id : 'unknown'
+                form_location: mountEl ? mountEl.id : 'unknown',
+                website: hpInput ? hpInput.value : ''
             };
 
             fetch(FORM_ENDPOINT, {
@@ -5378,7 +5381,7 @@
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify(formData)
             })
-            .then(response => {
+            .then(async response => {
                 if (response.ok) {
                     // Success
                     form.style.display = 'none';
@@ -5398,10 +5401,18 @@
                         });
                     }
                 } else {
-                    throw new Error('Server error');
+                    // Read server response body to surface Czech error message (non-fatal if parse fails)
+                    let serverMessage = '';
+                    try {
+                        const body = await response.json();
+                        if (body && typeof body.message === 'string') serverMessage = body.message;
+                    } catch (_) { /* ignore — fall back below */ }
+                    const err = new Error(serverMessage || 'Server error');
+                    err.serverMessage = serverMessage;
+                    throw err;
                 }
             })
-            .catch(() => {
+            .catch(err => {
                 // Network/server error
                 if (submitBtn) {
                     submitBtn.disabled = false;
@@ -5414,7 +5425,10 @@
                     errorMsg.style.cssText = 'color: var(--red-accent); font-size: 14px; text-align: center; margin-top: 12px;';
                     form.appendChild(errorMsg);
                 }
-                errorMsg.textContent = 'Nepodařilo se odeslat. Zavolejte nám: +420 608 38 38 38';
+                // Prefer server Czech message when available; fall back to hardcoded recovery prompt
+                errorMsg.textContent = (err && err.serverMessage)
+                    ? err.serverMessage
+                    : 'Nepodařilo se odeslat. Zavolejte nám: +420 608 38 38 38';
             });
         }
 
