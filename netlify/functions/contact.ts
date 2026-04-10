@@ -25,6 +25,14 @@ const SUCCESS_BODY = { success: true, message: 'Zpráva odeslána.' } as const;
 // Handler
 // ----------------------------------------------------------
 
+/** Sanitise a string for safe logging: redact emails, strip control chars, truncate. */
+function sanitizeLogValue(s: string): string {
+  return s
+    .replace(/[\w.+-]+@[\w.-]+/g, '[redacted-email]')
+    .replace(/[\x00-\x1F\x7F]/g, ' ')
+    .slice(0, 200);
+}
+
 /**
  * Netlify Function entry point for the Milionová Investice contact form.
  *
@@ -183,14 +191,45 @@ export default async function handler(request: Request): Promise<Response> {
     ]);
 
     // ── Step 10 — Result handling ──────────────────────────
+    //
+    // Resend SDK v4 resolves on API errors with { data: null, error: {...} }
+    // instead of rejecting. We must check BOTH failure modes:
+    //   (a) rejected  — network/connection failure (promise rejected)
+    //   (b) fulfilled — API error (promise resolved with .error !== null)
+    //
+    // Returns a { name, message } pair for logging, or null on success.
+
+    type SendError = { name: string; message: string };
+
+    function extractSendError(
+      result: PromiseSettledResult<Awaited<ReturnType<typeof resend.emails.send>>>,
+    ): SendError | null {
+      // (a) Network-level failure — promise rejected.
+      if (result.status === 'rejected') {
+        const reason: unknown = result.reason;
+        return {
+          name:    reason instanceof Error ? reason.name    : 'NetworkError',
+          message: reason instanceof Error ? reason.message : 'Promise rejected with non-Error value',
+        };
+      }
+      // (b) API-level failure — promise fulfilled but SDK signalled an error.
+      const { error } = result.value;
+      if (error) {
+        return { name: error.name, message: error.message };
+      }
+      // Success requires a Resend message ID. Anything else is treated as a failure.
+      if (!result.value.data?.id) {
+        return { name: 'UnknownError', message: 'Resend returned neither data nor error' };
+      }
+      return null;
+    }
+
+    const notifError = extractSendError(notifRes);
+    const confError  = extractSendError(confRes);
+
     // Notification failure is fatal — the team must receive every lead.
-    if (notifRes.status === 'rejected') {
-      const reason = notifRes.reason;
-      console.error(
-        '[contact] notification failed',
-        reason instanceof Error ? reason.name    : 'Unknown',
-        reason instanceof Error ? reason.message : '',
-      );
+    if (notifError !== null) {
+      console.error('[contact] notification failed', notifError.name, sanitizeLogValue(notifError.message));
       return errorResponse(
         'EMAIL_SEND_FAILED',
         'Odeslání e-mailu selhalo. Zkuste to prosím znovu, nebo nám zavolejte.',
@@ -199,13 +238,8 @@ export default async function handler(request: Request): Promise<Response> {
     }
 
     // Confirmation failure is non-fatal — lead is captured; user still gets 200.
-    if (confRes.status === 'rejected') {
-      const reason = confRes.reason;
-      console.error(
-        '[contact] confirmation failed',
-        reason instanceof Error ? reason.name    : 'Unknown',
-        reason instanceof Error ? reason.message : '',
-      );
+    if (confError !== null) {
+      console.error('[contact] confirmation failed', confError.name, sanitizeLogValue(confError.message));
     }
 
     return jsonResponse(SUCCESS_BODY, 200);
@@ -214,7 +248,7 @@ export default async function handler(request: Request): Promise<Response> {
     console.error(
       '[contact] uncaught',
       err instanceof Error ? err.name    : 'Unknown',
-      err instanceof Error ? err.message : '',
+      err instanceof Error ? sanitizeLogValue(err.message) : '',
     );
     return errorResponse('INTERNAL_ERROR', 'Neočekávaná chyba. Zkuste to prosím znovu.', 500);
   }

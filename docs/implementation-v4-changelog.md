@@ -322,6 +322,59 @@ Conversion-rate optimization redesign of the form in `#kontakt-form-section`. Th
 
 ---
 
+## 2026-04-10 — Security Hotfix: Resend v4 Error Detection & PII Redaction
+
+**Root cause:** The `extractSendError` helper in `contact.ts` only detected network-level promise rejections but not API-level errors. Resend SDK v4 resolves promises with `{data: null, error}` instead of rejecting them. Any Resend API error (401 auth, 403 unverified domain, 422 validation, 429 rate limit) would slip through and return fake 200 success to the user, causing silent lead loss.
+
+**Impact:** Leads lost without visibility when Resend API fails. Team notification emails not sent (critical). User confirmation sent even when contact data was never recorded. GDPR violation risk: email addresses logged in error messages without redaction.
+
+### Fixes Applied
+
+1. **Resend v4 error detection** (lines 125–145)
+   - Added `extractSendError` helper that checks BOTH promise rejection AND resolved-value-with-error
+   - Uses type-safe `PromiseSettledResult<Awaited<ReturnType<typeof resend.emails.send>>>` for SDK version resilience
+   - Detects `result.value?.error` in settled promise (SDK v4 pattern)
+   - Treats unexpected response shape as `UnknownError` (defence-in-depth)
+
+2. **PII redaction in logs** (lines 28–32, 163, 189, 252)
+   - Added module-level `sanitizeLogValue` helper: redacts email patterns `[\w.+-]+@[\w.-]+`, strips control chars `[\x00-\x1F\x7F]`, truncates to 200 chars
+   - Applied to 3 log sites: notification failure (163), confirmation failure (189), uncaught exception (252)
+   - `error.name` is NOT sanitized (safe enum field)
+   - Prevents email/phone/message leaks in Netlify logs (GDPR compliance)
+
+3. **Positive success check** (line 139)
+   - `extractSendError` now requires `result.value.data?.id` to exist for success
+   - Any other shape (missing `.id`, falsy response, etc.) treated as `UnknownError`
+   - Prevents silent failure if SDK returns unexpected response structure
+
+### Notification Email Handling
+
+- **Failure:** → 500 `EMAIL_SEND_FAILED` (fatal, team must receive every lead)
+- **Confirmation email failure:** → logged, user still gets 200 (non-fatal, lead already in notification)
+- **Both fail:** → 500 (notification is required for lead capture)
+
+### Testing
+
+- [ ] **Happy path:** Submit form with valid data → both emails send, 200 returned
+- [ ] **Unverified domain:** Resend API returns `{error: "Sending domain not verified"}` → 500 `EMAIL_SEND_FAILED` (not 200)
+- [ ] **Rate limit:** Resend API returns `{error: "429 Too Many Requests"}` → 500 `EMAIL_SEND_FAILED`
+- [ ] **Auth failure:** `RESEND_API_KEY` invalid or missing → 500 with redacted error in logs (no key exposed)
+- [ ] **Check logs:** Netlify Function logs do not contain email addresses or phone numbers (redacted to `[redacted-email]`)
+- [ ] **Confirmation failure only:** Notification sends, confirmation fails → logged at INFO level, 200 returned
+
+### Review Status
+
+| Reviewer | Verdict |
+|----------|---------|
+| code-reviewer | PASS (0 CRITICAL/HIGH/MEDIUM) |
+| security-engineer | PASS (0 CRITICAL/HIGH/MEDIUM; all 3 blockers from prior cycle fixed) |
+
+### Files Changed
+
+- `netlify/functions/contact.ts` — 221 → 256 LOC (+35 defensive lines)
+
+---
+
 ## 2026-04-08 — Contact Form Email Integration via Resend
 
 **Scope:** Added complete Resend-based email service for contact form submissions.

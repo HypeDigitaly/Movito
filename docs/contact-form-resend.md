@@ -929,6 +929,23 @@ If errors don't appear, check browser console for fetch errors or JavaScript exc
 
 ## Changelog
 
+### 2026-04-10 — Security Hotfix: Resend v4 Error Detection & PII Redaction in Logs
+
+**Bug:** `contact.ts` detected network-level promise rejections but missed Resend SDK v4's API-error pattern (`{data: null, error}`). Any Resend API failure (unverified domain, rate limit, auth failure, validation error) resolved the promise and fell through the error check, returning fake 200 success to the user while no emails were sent. Silent lead loss + GDPR risk from unredacted email logging.
+
+**Fixes:**
+1. **Resend v4 error detection** — `extractSendError` now checks both promise rejection AND `result.value?.error` in settled promise. Requires `result.value.data?.id` to exist for success (defence-in-depth positive check).
+2. **PII redaction** — New `sanitizeLogValue` helper redacts email patterns, strips control chars (log-injection defense), truncates to 200 chars. Applied to all 3 log sites: notification failure, confirmation failure, uncaught exception.
+3. **Fatal vs. non-fatal** — Notification email failure → 500 `EMAIL_SEND_FAILED` (team must receive every lead). Confirmation failure → logged at INFO, user still gets 200 (lead captured in notification).
+
+**Impact:** No more silent lead loss from Resend API errors. Logs compliant with GDPR (no PII exposure). Handles SDK version mismatches gracefully.
+
+**Verification:** Submit form with valid data → 200. Try after domain verification error in Resend console → 500 with redacted logs.
+
+**Files changed:** `netlify/functions/contact.ts` (221 → 256 LOC)
+
+---
+
 ### 2026-04-08 — Contact form email sending via Resend
 
 Added complete contact form email integration powered by Resend. Previously, the form submitted to Formspree (third-party service). Now, a Netlify Function validates submissions server-side and sends two emails: (1) a Czech confirmation to the user, (2) a detailed notification to the Movito team. Includes origin validation, honeypot anti-spam, full input validation with aggregated error reporting, and brand-compliant HTML email templates. Production-ready with security hardening (XSS escaping, CRLF injection prevention, GDPR consent enforcement, origin/referer check).
