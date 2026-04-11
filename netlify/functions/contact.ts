@@ -54,7 +54,9 @@ export default async function handler(request: Request): Promise<Response> {
   const senderAddr        = process.env['CONTACT_SENDER_EMAIL'];
   const notificationAddr  = process.env['CONTACT_NOTIFICATION_EMAIL'];
   const siteUrl           = process.env['SITE_URL'] ?? '';
-  const isDev             = process.env['NETLIFY_DEV'] === 'true' || process.env['CONTEXT'] === 'dev' || process.env['CONTEXT'] === 'deploy-preview';
+  const context         = process.env['CONTEXT'];
+  const isLocalDev      = process.env['NETLIFY_DEV'] === 'true' || context === 'dev';
+  const isDeployPreview = context === 'deploy-preview';
 
   try {
     // ── Step 0 — Env var guard ─────────────────────────────
@@ -100,7 +102,21 @@ export default async function handler(request: Request): Promise<Response> {
     // `parsed` is narrowed to `object` (non-null) past this point.
 
     // ── Step 5 — Origin / Referer check ───────────────────
-    if (!isDev) {
+    if (isLocalDev) {
+      // Skip origin check entirely on local dev.
+    } else if (isDeployPreview) {
+      // On deploy-preview, accept only requests originating from a .netlify.app
+      // URL or from DEPLOY_PRIME_URL (set automatically by Netlify on preview builds).
+      const deployPrimeUrl = process.env['DEPLOY_PRIME_URL'] ?? '';
+      const origin = request.headers.get('origin') ?? request.headers.get('referer') ?? '';
+      const originOk =
+        /\.netlify\.app(\/|$)/i.test(origin) ||
+        (deployPrimeUrl.length > 0 && origin.startsWith(deployPrimeUrl));
+      if (!originOk) {
+        return errorResponse('FORBIDDEN', 'Požadavek byl zamítnut.', 403);
+      }
+    } else {
+      // Production: strict origin check against SITE_URL.
       if (!siteUrl) {
         console.error('[contact] missing SITE_URL in production');
         return errorResponse('INTERNAL_ERROR', 'Neočekávaná chyba. Zkuste to prosím znovu.', 500);

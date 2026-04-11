@@ -200,8 +200,8 @@ export function contactNotificationEmail(data: {
     <!-- Detail table -->
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px 0;">
       ${fieldRow('Jm\xe9no', safeName, true)}
-      ${fieldRow('E-mail', `<a href="mailto:${encodeURIComponent(data.email)}" style="color:${COLOR_GOLD};text-decoration:none;">${safeEmail}</a>`)}
-      ${fieldRow('Telefon', `<a href="tel:${encodeURIComponent(data.phone)}" style="color:${COLOR_GOLD};text-decoration:none;">${safePhone}</a>`)}
+      ${fieldRow('E-mail', `<a href="mailto:${safeEmail}" style="color:${COLOR_GOLD};text-decoration:none;">${safeEmail}</a>`)}
+      ${fieldRow('Telefon', `<a href="tel:${safePhone}" style="color:${COLOR_GOLD};text-decoration:none;">${safePhone}</a>`)}
       ${fieldRow('Zvolen\xfd rozsah', investmentLabel(data.investment_amount))}
       ${fieldRow('P\u016fvod formul\xe1\u0159e', formLocationLabel(data.form_location))}
       ${fieldRow('Kategorie', categoryLabel(data.category ?? ''))}
@@ -214,7 +214,7 @@ export function contactNotificationEmail(data: {
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 16px 0;">
       <tr>
         <td style="border-radius:10px;background-color:${COLOR_GOLD};">
-          <a href="mailto:${encodeURIComponent(data.email)}?subject=Re%3A%20Va%C5%A1e%20zpr%C3%A1va" style="display:inline-block;padding:14px 28px;font-family:${FONT_BODY};font-size:15px;font-weight:600;color:${COLOR_BG_CARD};text-decoration:none;border-radius:10px;">
+          <a href="mailto:${safeEmail}?subject=Re%3A%20Va%C5%A1e%20zpr%C3%A1va" style="display:inline-block;padding:14px 28px;font-family:${FONT_BODY};font-size:15px;font-weight:600;color:${COLOR_BG_CARD};text-decoration:none;border-radius:10px;">
             Odpov\u011bd\u011bt ${safeName}
           </a>
         </td>
