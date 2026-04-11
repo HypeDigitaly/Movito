@@ -3742,6 +3742,9 @@
       line-height: 1.55;
       color: var(--text-muted, #58574F);
     }
+    #kontakt-form-section {
+      scroll-margin-top: calc(80px + var(--strip-h, 40px) + 20px);
+    }
     </style>
 </head>
 <body>
@@ -4080,7 +4083,7 @@
                             Začít investovat
                             <span class="btn__arrow">&rarr;</span>
                         </a>
-                        <button type="button" class="btn btn--secondary" data-cta="hero-financing" onclick="document.querySelector('#contact-form-section')?.scrollIntoView({behavior:'smooth'})">Získat nabídku financování</button>
+                        <button type="button" class="btn btn--secondary" data-cta="hero-financing" data-open-contact-form onclick="document.querySelector('#contact-form-section')?.scrollIntoView({behavior:'smooth'})">Získat nabídku financování</button>
                         <div class="hero__roi">
                             <span class="hero__roi-dot"></span>
                             Průměrný cílový výnos 10&nbsp;% ročně
@@ -6423,6 +6426,120 @@
                 if (window.dataLayer) window.dataLayer.push({ event: 'cta_click', trigger: 'mobile_cta' });
             });
         }
+
+        /* ========== Category Tab Widget ========== */
+        (function () {
+          var tablist = document.querySelector('ul[role="tablist"].inv-tabs');
+          if (!tablist) return;
+
+          var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+          var panels = tabs.map(function (tab) {
+            var id = tab.getAttribute('aria-controls');
+            return id ? document.getElementById(id) : null;
+          });
+
+          function selectTab(idx, userInitiated) {
+            if (idx < 0 || idx >= tabs.length) return;
+            tabs.forEach(function (tab, i) {
+              var active = i === idx;
+              tab.setAttribute('aria-selected', active ? 'true' : 'false');
+              tab.setAttribute('tabindex', active ? '0' : '-1');
+              if (active) {
+                tab.classList.add('is-active');
+              } else {
+                tab.classList.remove('is-active');
+              }
+            });
+            panels.forEach(function (panel, i) {
+              if (!panel) return;
+              if (i === idx) {
+                panel.removeAttribute('hidden');
+              } else {
+                panel.setAttribute('hidden', '');
+              }
+            });
+            if (userInitiated && typeof window !== 'undefined' && window.dataLayer) {
+              try {
+                var cat = tabs[idx].getAttribute('data-category-id') || '';
+                window.dataLayer.push({ event: 'tab_select', category: cat });
+              } catch (err) { /* non-fatal */ }
+            }
+          }
+
+          tablist.addEventListener('click', function (e) {
+            var tab = e.target.closest('[role="tab"]');
+            if (!tab) return;
+            var idx = tabs.indexOf(tab);
+            if (idx >= 0) {
+              selectTab(idx, true);
+              tab.focus();
+            }
+          });
+
+          tablist.addEventListener('keydown', function (e) {
+            var currentIdx = tabs.indexOf(document.activeElement);
+            if (currentIdx === -1) return;
+            var nextIdx = currentIdx;
+            var handled = true;
+            switch (e.key) {
+              case 'ArrowRight':
+                nextIdx = (currentIdx + 1) % tabs.length;
+                break;
+              case 'ArrowLeft':
+                nextIdx = (currentIdx - 1 + tabs.length) % tabs.length;
+                break;
+              case 'Home':
+                nextIdx = 0;
+                break;
+              case 'End':
+                nextIdx = tabs.length - 1;
+                break;
+              case 'Enter':
+              case ' ':
+              case 'Spacebar':
+                selectTab(currentIdx, true);
+                return;
+              default:
+                handled = false;
+            }
+            if (handled) {
+              e.preventDefault();
+              selectTab(nextIdx, true);
+              tabs[nextIdx].focus();
+            }
+          });
+
+          /* ========== Panel CTA -> Contact Form ========== */
+          /* When a panel CTA is clicked, scroll to the contact form and populate
+             its hidden category field from the active tab's data-category-id.    */
+          document.addEventListener('click', function (e) {
+            var btn = e.target.closest('[data-open-contact-form]');
+            if (!btn) return;
+            e.preventDefault();
+            var activeTab = tablist.querySelector('[role="tab"][aria-selected="true"]');
+            var cat = activeTab ? activeTab.getAttribute('data-category-id') : '';
+            // Populate a hidden category input on the main contact form, if present
+            var mainCategoryInput = document.querySelector('#kontakt-form-section input[name="category"], #kontakt form input[name="category"]');
+            if (mainCategoryInput) {
+              mainCategoryInput.value = cat;
+            }
+            // GA event for CTA click with category
+            if (window.dataLayer) {
+              try {
+                window.dataLayer.push({ event: 'cta_click', category: cat, cta_location: 'category-panel' });
+              } catch (err) { /* non-fatal */ }
+            }
+            // Reuse existing scrollToForm if available, otherwise scroll to #kontakt-form-section
+            if (typeof scrollToForm === 'function') {
+              scrollToForm();
+            } else {
+              var target = document.getElementById('kontakt-form-section') || document.getElementById('kontakt');
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          });
+        }());
     </script>
 
 </body>
