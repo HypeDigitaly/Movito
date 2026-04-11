@@ -111,8 +111,13 @@ export function contactConfirmationEmail(data: {
     </p>
 
     <!-- No-reply notice -->
-    <p style="margin:0 0 32px 0;font-family:${FONT_BODY};font-size:13px;line-height:1.6;color:${COLOR_MUTED};font-style:italic;">
+    <p style="margin:0 0 16px 0;font-family:${FONT_BODY};font-size:13px;line-height:1.6;color:${COLOR_MUTED};font-style:italic;">
       Na tento e-mail prosím neodpovídej, je automatický.
+    </p>
+
+    <!-- Priority contact -->
+    <p style="margin:0 0 32px 0;font-family:${FONT_BODY};font-size:14px;line-height:1.7;color:${COLOR_TEXT};">
+      Potřebuješ se nám ozvat dřív? Napiš nám prioritně na <a href="mailto:info@milionovainvestice.cz" style="color:${COLOR_GOLD};text-decoration:none;font-weight:600;">info@milionovainvestice.cz</a> a ozveme se rychleji.
     </p>
 
     <!-- Divider -->
