@@ -3473,6 +3473,227 @@
             display: block;
           }
         }
+
+    /* ========== Category Selector Section ========== */
+    .categories {
+      padding: 64px 0;
+      background: var(--bg-darkest, #FAFAF7);
+    }
+    .categories__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .categories__heading {
+      text-align: center;
+      margin: 0 0 8px 0;
+      font-family: var(--font-display, 'Playfair Display', serif);
+      font-size: clamp(28px, 4vw, 40px);
+    }
+    .categories__subheading {
+      text-align: center;
+      color: var(--text-muted, #58574F);
+      margin: 0 0 40px 0;
+      font-size: 17px;
+    }
+
+    /* Tab strip */
+    .inv-tabs {
+      display: flex;
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .inv-tabs > li {
+      flex: 1 0 180px;
+      min-width: 160px;
+      scroll-snap-align: start;
+    }
+    .inv-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 20px 12px;
+      background: var(--bg-card, #FFFFFF);
+      border: 2px solid var(--bg-medium, #ECEAE3);
+      border-radius: 12px;
+      color: var(--text-light, #3D3C36);
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .inv-tab:hover {
+      border-color: var(--gold-300, #BF961F);
+      transform: translateY(-2px);
+    }
+    .inv-tab:focus-visible {
+      outline: 2px solid var(--gold-interactive, #6B5009);
+      outline-offset: 2px;
+    }
+    .inv-tab[aria-selected="true"],
+    .inv-tab.is-active {
+      border-color: var(--gold-500, #96730F);
+      background: var(--cream, #FAF5E8);
+      color: var(--gold-600, #7A5E0A);
+    }
+    .inv-tab__icon {
+      width: 32px;
+      height: 32px;
+      color: var(--gold-500, #96730F);
+    }
+    .inv-tab__label {
+      font-size: 14px;
+      line-height: 1.2;
+      text-align: center;
+    }
+    .inv-tab__yield {
+      font-size: 12px;
+      color: var(--text-muted, #58574F);
+      font-weight: 500;
+    }
+    @media (min-width: 900px) {
+      .inv-tabs > li { flex: 1 1 0; }
+    }
+
+    /* Panels */
+    .inv-panel[hidden] { display: none !important; }
+    .inv-panel {
+      background: var(--bg-card, #FFFFFF);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .inv-panel { transition: opacity 0.2s ease; }
+    }
+    .inv-panel__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    @media (min-width: 900px) {
+      .inv-panel__grid {
+        grid-template-columns: 1fr 320px;
+      }
+      .inv-panel__sidebar {
+        position: sticky;
+        top: calc(80px + var(--strip-h, 40px) + 20px);
+        align-self: start;
+      }
+    }
+    .inv-panel__content h3.inv-panel__section-heading {
+      font-family: var(--font-display, 'Playfair Display', serif);
+      font-size: 22px;
+      margin: 32px 0 12px 0;
+      color: var(--text-white, #1C1B17);
+    }
+    .inv-panel__content h3.inv-panel__section-heading:first-child {
+      margin-top: 0;
+    }
+    .inv-panel__content p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text-light, #3D3C36);
+      margin: 0 0 12px 0;
+      max-width: 68ch;
+    }
+    .inv-panel__yield {
+      font-size: 24px;
+      color: var(--gold-600, #7A5E0A);
+    }
+    .inv-panel__risk-note {
+      font-size: 15px;
+      color: var(--text-muted, #58574F);
+      font-style: italic;
+    }
+    .inv-panel__examples,
+    .inv-panel__risks {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-light, #3D3C36);
+      padding-left: 20px;
+    }
+    .inv-panel__examples li,
+    .inv-panel__risks li {
+      margin-bottom: 8px;
+    }
+
+    /* Sidebar */
+    .inv-panel__sidebar {
+      background: var(--bg-darkest, #FAFAF7);
+      border: 1px solid var(--bg-medium, #ECEAE3);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .inv-panel__facts {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .inv-panel__fact {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-left: 12px;
+      border-left: 3px solid var(--gold-400, #A98215);
+    }
+    .inv-panel__fact .label {
+      font-size: 12px;
+      color: var(--text-muted, #58574F);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .inv-panel__fact .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-white, #1C1B17);
+    }
+    .inv-panel__investor-notice {
+      font-size: 13px;
+      color: var(--text-muted, #58574F);
+      line-height: 1.5;
+      margin: 16px 0;
+      padding: 12px;
+      background: var(--cream, #FAF5E8);
+      border-radius: 6px;
+    }
+    .inv-panel__form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .inv-panel__cta-primary,
+    .inv-panel__cta-secondary {
+      width: 100%;
+    }
+
+    /* MiCA warning callout */
+    .legal-warning--mica {
+      background: #FFF8E1;
+      border-left: 4px solid #E6A817;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #5C4708;
+      border-radius: 4px;
+    }
+    .legal-warning--mica strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
     </style>
 </head>
 <body>
@@ -3946,6 +4167,355 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- ============================================
+         INVESTMENT CATEGORIES SELECTOR (C5)
+         ============================================ -->
+    <section id="investment-categories" class="categories" aria-labelledby="categories-heading">
+      <div class="categories__container">
+        <h2 id="categories-heading" class="categories__heading">Vyberte si svoji kategorii</h2>
+        <p class="categories__subheading">Každá kategorie má svůj profil rizika, zajištění a cílový výnos. Klikněte pro detail.</p>
+
+        <ul role="tablist" aria-label="Investiční kategorie" class="inv-tabs">
+          <li role="presentation">
+            <button role="tab" id="tab-podily" data-category-id="podily"
+                    aria-controls="panel-podily" aria-selected="false" tabindex="-1"
+                    class="inv-tab">
+              <svg aria-hidden="true" width="24" height="24" class="inv-tab__icon"><use href="#icon-podily"/></svg>
+              <span class="inv-tab__label">Podíly ve firmách</span>
+              <span class="inv-tab__yield">9–15 %</span>
+            </button>
+          </li>
+          <li role="presentation">
+            <button role="tab" id="tab-nemovitosti" data-category-id="nemovitosti"
+                    aria-controls="panel-nemovitosti" aria-selected="true" tabindex="0"
+                    class="inv-tab is-active">
+              <svg aria-hidden="true" width="24" height="24" class="inv-tab__icon"><use href="#deco-house"/></svg>
+              <span class="inv-tab__label">Nemovitosti</span>
+              <span class="inv-tab__yield">8–12 %</span>
+            </button>
+          </li>
+          <li role="presentation">
+            <button role="tab" id="tab-baterie" data-category-id="baterie"
+                    aria-controls="panel-baterie" aria-selected="false" tabindex="-1"
+                    class="inv-tab">
+              <svg aria-hidden="true" width="24" height="24" class="inv-tab__icon"><use href="#icon-baterie"/></svg>
+              <span class="inv-tab__label">Bateriová úložiště</span>
+              <span class="inv-tab__yield">7–11 %</span>
+            </button>
+          </li>
+          <li role="presentation">
+            <button role="tab" id="tab-kovy" data-category-id="kovy"
+                    aria-controls="panel-kovy" aria-selected="false" tabindex="-1"
+                    class="inv-tab">
+              <svg aria-hidden="true" width="24" height="24" class="inv-tab__icon"><use href="#icon-kovy"/></svg>
+              <span class="inv-tab__label">Drahé kovy</span>
+              <span class="inv-tab__yield">3–6 %</span>
+            </button>
+          </li>
+          <li role="presentation">
+            <button role="tab" id="tab-krypto" data-category-id="krypto"
+                    aria-controls="panel-krypto" aria-selected="false" tabindex="-1"
+                    class="inv-tab">
+              <svg aria-hidden="true" width="24" height="24" class="inv-tab__icon"><use href="#icon-krypto"/></svg>
+              <span class="inv-tab__label">Krypto</span>
+              <span class="inv-tab__yield">6–18 %</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- ── PANEL: Podíly ve firmách ── -->
+        <div role="tabpanel" id="panel-podily" aria-labelledby="tab-podily" class="inv-panel" hidden>
+          <div class="inv-panel__grid">
+            <div class="inv-panel__content">
+
+              <h3 class="inv-panel__section-heading">Co to je</h3>
+              <p>Podílové vlastnictví představuje koupi stanoveného procentního podílu ve vybrané společnosti bez nutnosti kupovat celou firmu. Jedná se o právo na podíl na zisku, majetku a rozhodování. Investujete do etablovaných malých a středních podniků v ČR a EU a zisky přijímají formou dividend, zpravidla čtvrtletně.</p>
+
+              <h3 class="inv-panel__section-heading">Jak to funguje</h3>
+              <p>Movito vyhodnotí firmu (finanční analýza, tržní pozice, růstový potenciál) a zajistí právní strukturování — nákup podílu v s.r.o. nebo a.s. skrze ZISIF-registrovaný fond nebo přímou formou. Výnosy se generují z provozního zisku ve formě dividend; exit probíhá prodejem podílu fondu nebo jinému subjektu. Celý cyklus Movito spravuje, vy sledujete čtvrtletní reporty.</p>
+
+              <h3 class="inv-panel__section-heading">Zajištění</h3>
+              <p>Zástavní právo k podílu ve prospěch Movito zabraňuje prodeji bez vašeho souhlasu. Financování nepřekračuje 50–60 % ocenění firmy (LTV 40–60 %), nezávislé ocenění zajišťuje certifikovaná firma. Portfolio zahrnuje 3–5 podílů současně pro rozložení rizika.</p>
+
+              <h3 class="inv-panel__section-heading">Očekávaný výnos</h3>
+              <p class="inv-panel__yield"><strong>9–15 %</strong> p.a. cílově</p>
+              <p class="inv-panel__risk-note">Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.</p>
+
+              <h3 class="inv-panel__section-heading">Příklady projektů</h3>
+              <ul class="inv-panel__examples">
+                <li>Fitness center řetězec, Praha a okolí — 8 poboček, EBITDA 2,5 mil. Kč, horizont 5 let, cílový výnos 12 % p.a. z dividend a exit prémie.</li>
+                <li>IT konzultantská agentura, ČR/SK/PL — 35 zaměstnanců, příjmy 25 mil. EUR, horizont 7 let, cílový výnos 11 % p.a. ze stabilního cash flow.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Minimální vstup</h3>
+              <p>Minimální vstup: <strong>100 000 Kč</strong>. Můžete začít nižší částkou investicí do více kategorií současně.</p>
+
+              <h3 class="inv-panel__section-heading">Rizika</h3>
+              <ul class="inv-panel__risks">
+                <li>Výběr špatné firmy — due diligence snižuje, ale nevylučuje riziko manažerských selhání nebo tržních šoků.</li>
+                <li>Tržní riziko odvětví — technologická disruption nebo regulatorní zásahy mohou zasáhnout celé odvětví.</li>
+                <li>Illlikvidita — podíl se prodává se zpožděním; není možné jej kdykoliv prodat na sekundárním trhu.</li>
+                <li>Snížení dividend — pokud si firma ponechá zisk na rozvoj, výplata se sníží.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Právní rámec</h3>
+              <p>Podílové vlastnictví spadá pod zákon č. 240/2013 Sb. (ZISIF), § 272–273. Struktura je realizována přes ZISIF-registrovaný fond nebo přímý podíl. Veškeré smlouvy se řídí zákonem č. 89/2012 Sb. (Občanský zákoník). Dividendy jsou zdaňovány dle zákona o daních z příjmů dle vaší právní pozice.</p>
+
+            </div>
+            <aside class="inv-panel__sidebar" aria-label="Klíčové parametry a kontakt">
+              <div class="inv-panel__facts">
+                <div class="inv-panel__fact"><span class="label">Cílový výnos</span><span class="value">9–15 % p.a.</span></div>
+                <div class="inv-panel__fact"><span class="label">Minimum</span><span class="value">100 000 Kč</span></div>
+                <div class="inv-panel__fact"><span class="label">Horizont</span><span class="value">5–10 let</span></div>
+                <div class="inv-panel__fact"><span class="label">Zajištění</span><span class="value">Zástavní právo + smlouva</span></div>
+              </div>
+              <p class="inv-panel__investor-notice">Movito nabízí investice kvalifikovaným investorům dle §272 ZISIF. Detaily projdete během osobního onboardingu.</p>
+              <form class="inv-panel__form" action="/.netlify/functions/contact" method="POST">
+                <input type="hidden" name="category" value="podily">
+                <input type="hidden" name="form_location" value="category-panel-podily">
+                <button type="button" class="btn btn--primary inv-panel__cta-primary" data-open-contact-form>Začít investovat</button>
+                <button type="button" class="btn btn--secondary inv-panel__cta-secondary" data-open-contact-form>Získat nabídku financování</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ── PANEL: Nemovitosti (default — no hidden) ── -->
+        <div role="tabpanel" id="panel-nemovitosti" aria-labelledby="tab-nemovitosti" class="inv-panel">
+          <div class="inv-panel__grid">
+            <div class="inv-panel__content">
+
+              <h3 class="inv-panel__section-heading">Co to je</h3>
+              <p>Nemovitost je fyzický majetek (bytový dům, komerční prostor, pozemek) financovaný krátkodobým investičním půjčením na 12–36 měsíců. Výnos pochází z rozdílu mezi nákupní a prodejní cenou a z pronájmu v průběhu držby. Na rozdíl od dlouhodobého vlastnictví Movito zajišťuje konkrétní exit v předem dohodnutém horizontu.</p>
+
+              <h3 class="inv-panel__section-heading">Jak to funguje</h3>
+              <p>Movito identifikuje nemovitost s potenciálem (podhodnocená cena, renovace, location arbitrage), obstarává financování skrze speciální účelovou společnost (SPV) a provádí nákup, renovaci a pronájem. Následuje prodej s přidanou hodnotou nebo refinancování. Vy obdržíte podíl na zisku čtvrtletně; Movito řídí projektový tým, nájemníky a prodej.</p>
+
+              <h3 class="inv-panel__section-heading">Zajištění</h3>
+              <p>Zástavní právo k nemovitosti s LTV 50–70 % — úvěr nepřekročí 70 % nezávisle oceňované hodnoty. Certifikovaný znalec oceňuje na začátku i konci projektu. Nemovitost je pojištěna (pojišťovna s ratingem A+) a izolována skrze SPV pro ochranu před pohledávkami třetích stran.</p>
+
+              <h3 class="inv-panel__section-heading">Očekávaný výnos</h3>
+              <p class="inv-panel__yield"><strong>8–12 %</strong> p.a. cílově</p>
+              <p class="inv-panel__risk-note">Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.</p>
+
+              <h3 class="inv-panel__section-heading">Příklady projektů</h3>
+              <ul class="inv-panel__examples">
+                <li>Bytový dům Praha 7, Holešovice — 50 bytů, pronájem 300+ Kč/m², horizont 18 měsíců, cílový výnos 10 % p.a. z pronájmu a exit prémie.</li>
+                <li>Kancelářské prostory Brno centrum — 2 000 m², anchor tenant s 5letou smlouvou, horizont 12 měsíců, cílový výnos 9 % p.a.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Minimální vstup</h3>
+              <p>Minimální vstup: <strong>100 000 Kč</strong>. Můžete začít nižší částkou investicí do více kategorií současně.</p>
+
+              <h3 class="inv-panel__section-heading">Rizika</h3>
+              <ul class="inv-panel__risks">
+                <li>Stavební zpoždění — prodloužení projektu zvyšuje úroky a operační náklady.</li>
+                <li>Tržní pokles ceny — pokud ceny klesnou pod ocenění projektu, exit může být se ztrátou.</li>
+                <li>Refinanční riziko — vyšší sazby nebo omezená dostupnost úvěrů zdražují nové financování.</li>
+                <li>Nájemní riziko — odchod anchor tenanta snižuje cash flow a vyžaduje náhradu.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Právní rámec</h3>
+              <p>Zajištění je registrováno na Katastrálním úřadě jako zástavní právo (§ 3216 OZ). SPV se řídí zákonem č. 240/2013 Sb. (ZISIF) nebo přímým vlastnictvím a.s./s.r.o. Úvěrová smlouva podléhá dohledu ČNB dle zákona č. 21/1992 Sb. Daň z pronájmu a kapitálového zisku je regulována zákonem o daních z příjmů.</p>
+
+            </div>
+            <aside class="inv-panel__sidebar" aria-label="Klíčové parametry a kontakt">
+              <div class="inv-panel__facts">
+                <div class="inv-panel__fact"><span class="label">Cílový výnos</span><span class="value">8–12 % p.a.</span></div>
+                <div class="inv-panel__fact"><span class="label">Minimum</span><span class="value">100 000 Kč</span></div>
+                <div class="inv-panel__fact"><span class="label">Horizont</span><span class="value">1–3 roky</span></div>
+                <div class="inv-panel__fact"><span class="label">Zajištění</span><span class="value">LTV 50–70 % na nemovitost</span></div>
+              </div>
+              <p class="inv-panel__investor-notice">Movito nabízí investice kvalifikovaným investorům dle §272 ZISIF. Detaily projdete během osobního onboardingu.</p>
+              <form class="inv-panel__form" action="/.netlify/functions/contact" method="POST">
+                <input type="hidden" name="category" value="nemovitosti">
+                <input type="hidden" name="form_location" value="category-panel-nemovitosti">
+                <button type="button" class="btn btn--primary inv-panel__cta-primary" data-open-contact-form>Začít investovat</button>
+                <button type="button" class="btn btn--secondary inv-panel__cta-secondary" data-open-contact-form>Získat nabídku financování</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ── PANEL: Bateriová úložiště ── -->
+        <div role="tabpanel" id="panel-baterie" aria-labelledby="tab-baterie" class="inv-panel" hidden>
+          <div class="inv-panel__grid">
+            <div class="inv-panel__content">
+
+              <h3 class="inv-panel__section-heading">Co to je</h3>
+              <p>Bateriové úložiště (BESS) je infrastrukturní projekt — fyzická instalace 1–10 MWh připojená k elektrizační síti. Generuje výnos z prodeje elektřiny (cenová arbitráž), služeb síti (frequency response) a kapacitního trhu ČEPS. Jde o dlouhodobý asset s 10–20letou životností řazený do kategorie zelené infrastruktury podporované EU.</p>
+
+              <h3 class="inv-panel__section-heading">Jak to funguje</h3>
+              <p>Movito identifikuje lokalitu, zajistí pozemek, objedná BESS hardware (Fluence, Tesla, LG) a realizuje instalaci s grid connection. Uzavřeme dlouhodobou smlouvu PPA s ČEZ nebo lokálním operátorem (10–15 let, fixed price). Provoz zajišťuje 24/7 SCADA systém; Movito řídí O&amp;M a pojištění. Vy sledujete čtvrtletní výkazy a přijímáte podíl na čistém cash flow.</p>
+
+              <h3 class="inv-panel__section-heading">Zajištění</h3>
+              <p>Bateriový systém je pojištěn na plnou hodnotu (Allianz, AIG) včetně vad výroby. Dlouhodobá PPA smlouva garantuje 80–90 % revenue na 10–15 let. SPV struktura izoluje ostatní věřitele a certifikovaný operátor zajišťuje 24/7 technický management.</p>
+
+              <h3 class="inv-panel__section-heading">Očekávaný výnos</h3>
+              <p class="inv-panel__yield"><strong>7–11 %</strong> p.a. cílově</p>
+              <p class="inv-panel__risk-note">Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.</p>
+
+              <h3 class="inv-panel__section-heading">Příklady projektů</h3>
+              <ul class="inv-panel__examples">
+                <li>5 MWh baterie Kladno — Fluence lithium-ion, PPA s ČEZ na 12 let za 1 200 Kč/MWh, čistý CF 5,2 mil. Kč ročně, cílový výnos 9 % p.a.</li>
+                <li>2 MWh behind-the-meter systém, průmyslový areál — peak shaving, backup power a energetická arbitráž, cílový výnos 8 % p.a., horizont 15 let.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Minimální vstup</h3>
+              <p>Minimální vstup: <strong>100 000 Kč</strong>. Můžete začít nižší částkou investicí do více kategorií současně.</p>
+
+              <h3 class="inv-panel__section-heading">Rizika</h3>
+              <ul class="inv-panel__risks">
+                <li>Technologická degradace baterií — kapacita klesá (typicky na 80 % po 10 letech), což snižuje výnos z arbitráže.</li>
+                <li>Regulatorní změny ERÚ/ČEPS — změny podmínek kapacitního trhu nebo poplatků za připojení.</li>
+                <li>Riziko PPA partnera — bankrot nebo výpadek smluvního partnera narušuje garantovaný cash flow.</li>
+                <li>Stranded asset risk — lokální přesycenost sítě OZE může snížit potřebu bateriového výkonu.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Právní rámec</h3>
+              <p>BESS projekty spadají pod zákon č. 458/2000 Sb. (energetický zákon) a jsou regulovány ERÚ. Připojení vyžaduje smlouvu s ČEPS nebo lokálním distributorem. SPV struktura se řídí ZISIF (zákon č. 240/2013 Sb.). Dlouhodobé PPA smlouvy jsou pod zákonem č. 89/2012 Sb. (ObčZ).</p>
+
+            </div>
+            <aside class="inv-panel__sidebar" aria-label="Klíčové parametry a kontakt">
+              <div class="inv-panel__facts">
+                <div class="inv-panel__fact"><span class="label">Cílový výnos</span><span class="value">7–11 % p.a.</span></div>
+                <div class="inv-panel__fact"><span class="label">Minimum</span><span class="value">100 000 Kč</span></div>
+                <div class="inv-panel__fact"><span class="label">Horizont</span><span class="value">10–15 let</span></div>
+                <div class="inv-panel__fact"><span class="label">Zajištění</span><span class="value">SPV + PPA 10–15 let</span></div>
+              </div>
+              <p class="inv-panel__investor-notice">Movito nabízí investice kvalifikovaným investorům dle §272 ZISIF. Detaily projdete během osobního onboardingu.</p>
+              <form class="inv-panel__form" action="/.netlify/functions/contact" method="POST">
+                <input type="hidden" name="category" value="baterie">
+                <input type="hidden" name="form_location" value="category-panel-baterie">
+                <button type="button" class="btn btn--primary inv-panel__cta-primary" data-open-contact-form>Začít investovat</button>
+                <button type="button" class="btn btn--secondary inv-panel__cta-secondary" data-open-contact-form>Získat nabídku financování</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ── PANEL: Drahé kovy ── -->
+        <div role="tabpanel" id="panel-kovy" aria-labelledby="tab-kovy" class="inv-panel" hidden>
+          <div class="inv-panel__grid">
+            <div class="inv-panel__content">
+
+              <h3 class="inv-panel__section-heading">Co to je</h3>
+              <p>Drahé kovy (zlato, stříbro, palladium, platina) jsou fyzické komodity sloužící jako dlouhodobá záloha hodnoty a hedging proti inflaci. Movito nabízí allocated custody — fyzické slitky nebo mince skladované na vaše jméno v mezinárodním depozitáři (Londýn, Curych, Praha). Výnos pochází z apreciace ceny, úroků z pronajímání a storage prémie.</p>
+
+              <h3 class="inv-panel__section-heading">Jak to funguje</h3>
+              <p>Movito sleduje tržní ceny (London Fixing, LBMA), objednává fyzické slitky nebo mince (ISO 1093 standard, Valcambi/Heraeus pro Au) a ukládá je na váš účet u kvalifikovaného depozitáře. Obdržíte depozitní certifikát s alokačním oznámením. Čtvrtletně jsou připisovány úroky z pronajímání (0,5–1 % p.a.). Exit je jednoduchý — prodej na LBMA trhu a vrácení výtěžku do 1–2 týdnů.</p>
+
+              <h3 class="inv-panel__section-heading">Zajištění</h3>
+              <p>Fyzické kovy jsou pojištěny na 100 % hodnoty (AIG, Cinclus) v depozitáři s pojistkou do 50–100 mil. USD. Nezávislý auditor čtvrtletně ověřuje existenci slitků. Váše kovy jsou segregovány od ostatních investorů (allocated account) a depozitní smlouva definuje vaše vlastnická práva.</p>
+
+              <h3 class="inv-panel__section-heading">Očekávaný výnos</h3>
+              <p class="inv-panel__yield"><strong>3–6 %</strong> p.a. cílově</p>
+              <p class="inv-panel__risk-note">Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.</p>
+
+              <h3 class="inv-panel__section-heading">Příklady projektů</h3>
+              <ul class="inv-panel__examples">
+                <li>1 000 oz zlata v ISO 1093 ingoty, Brink's London Vault — pojistka AIG, cílový výnos 4 % p.a. z apreciace a lending income, flexibilní exit.</li>
+                <li>Mix 500 oz Au + 5 000 oz Ag v certifikovaných mincích, český depozitář Praha — cílový výnos 5 % p.a., horizont 5–15 let.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Minimální vstup</h3>
+              <p>Minimální vstup: <strong>100 000 Kč</strong>. Můžete začít nižší částkou investicí do více kategorií současně.</p>
+
+              <h3 class="inv-panel__section-heading">Rizika</h3>
+              <ul class="inv-panel__risks">
+                <li>Cenová volatilita — zvláště stříbro kolísá 10–20 % ročně; krátké sezóny jsou běžné.</li>
+                <li>Měnové riziko (USD/EUR) — zlato je oceňováno v USD; oslabení dolaru snižuje cenu v EUR.</li>
+                <li>Geopolitické embargo — embargo na určité kovy by snížilo likviditu (precedent: ruské zlato 2022).</li>
+                <li>Daňové zacházení — zlato držené méně než 5 let podléhá 15% dani z kapitálových zisků.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Právní rámec</h3>
+              <p>Vlastnictví kovů se řídí zákonem č. 89/2012 Sb. (ObčZ, § 1759). Depozitní smlouva je regulována § 2350–2379 ObčZ. Import/export nad 20 000 EUR vyžaduje licenci MPO. Zlato držené 5+ let je osvobozeno od daně dle § 4(1)(j) zákona č. 586/1992 Sb.; jinak platí 15 % daň z příjmů.</p>
+
+            </div>
+            <aside class="inv-panel__sidebar" aria-label="Klíčové parametry a kontakt">
+              <div class="inv-panel__facts">
+                <div class="inv-panel__fact"><span class="label">Cílový výnos</span><span class="value">3–6 % p.a.</span></div>
+                <div class="inv-panel__fact"><span class="label">Minimum</span><span class="value">100 000 Kč</span></div>
+                <div class="inv-panel__fact"><span class="label">Horizont</span><span class="value">5–10 let</span></div>
+                <div class="inv-panel__fact"><span class="label">Zajištění</span><span class="value">Allocated custody + pojistka</span></div>
+              </div>
+              <p class="inv-panel__investor-notice">Movito nabízí investice kvalifikovaným investorům dle §272 ZISIF. Detaily projdete během osobního onboardingu.</p>
+              <form class="inv-panel__form" action="/.netlify/functions/contact" method="POST">
+                <input type="hidden" name="category" value="kovy">
+                <input type="hidden" name="form_location" value="category-panel-kovy">
+                <button type="button" class="btn btn--primary inv-panel__cta-primary" data-open-contact-form>Začít investovat</button>
+                <button type="button" class="btn btn--secondary inv-panel__cta-secondary" data-open-contact-form>Získat nabídku financování</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ── PANEL: Krypto ── -->
+        <div role="tabpanel" id="panel-krypto" aria-labelledby="tab-krypto" class="inv-panel" hidden>
+          <div class="inv-panel__grid">
+            <div class="inv-panel__content">
+
+              <!-- MiCA Art. 7 mandatory warning — MUST appear first -->
+              <aside class="legal-warning legal-warning--mica" aria-label="Upozornění MiCA">
+                <strong>UPOZORNĚNÍ MiCA:</strong> Kryptoaktiva mohou zcela nebo zčásti ztratit svou hodnotu, nejsou regulována jako tradiční finanční nástroje a nejsou kryta systémem pojištění vkladů.
+              </aside>
+
+              <h3 class="inv-panel__section-heading">Co to je</h3>
+              <p>Kryptoaktiva jsou digitální reprezentace hodnoty — typicky Bitcoin (BTC) a Ethereum (ETH) — chráněné kryptografií a zaznamenané v decentralizované síti. Movito neprovádí day-trading ani spekulaci, ale buduje dlouhodobý strategický portfolio s 5–10letým horizontem regulovaný dle EU MiCA (Nařízení 2023/1114). Výnos pochází z apreciace ceny, staking reward a lending income.</p>
+
+              <h3 class="inv-panel__section-heading">Jak to funguje</h3>
+              <p>Movito obstarává custody u kvalifikovaného CASP providera (Coinbase Custody, Kraken Institutional) s multi-signature architekturou — k pohybu prostředků jsou potřeba 2 ze 3 klíčů. Portfolio je pojištěno (Coincover, AIG, Lloyd's) na plnou hodnotu. Ethereum lze stakovat (~4–6 % p.a. reward). Exit probíhá do 24–48 hodin prodejem na OTC trhu nebo burze.</p>
+
+              <h3 class="inv-panel__section-heading">Zajištění</h3>
+              <p>Privátní klíče jsou uloženy v offline hardware zařízeních (cold storage). Multi-sig architektura vyžaduje 2/3 klíčů pro každou transakci. CASP custody je licencována pod MiCA (Čl. 80–88). Pojistka pokrývá 95 % hodnoty včetně hackingu a krádeže; veškeré transakce procházejí AML/KYC kontrolou.</p>
+
+              <h3 class="inv-panel__section-heading">Očekávaný výnos</h3>
+              <p class="inv-panel__yield"><strong>6–18 %</strong> p.a. cílově</p>
+              <p class="inv-panel__risk-note">Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích. Krypto je výrazně rizikovější kategorie — historické drawdowny přesahují −60 %.</p>
+
+              <h3 class="inv-panel__section-heading">Příklady projektů</h3>
+              <ul class="inv-panel__examples">
+                <li>BTC + ETH Portfolio 70/30, CASP Custody — long-term hold 5 let, čtvrtletní rebalancing, staking ETH, cílový výnos 8 % p.a. (konzervativní estimate).</li>
+                <li>Ethereum Staking Strategy — aktivní staking (~4–6 % reward) kombinovaný s DeFi lending (2–3 % p.a.), cílový výnos 12 % p.a. pro risk-tolerant investory.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Minimální vstup</h3>
+              <p>Minimální vstup: <strong>100 000 Kč</strong>. Můžete začít nižší částkou investicí do více kategorií současně.</p>
+
+              <h3 class="inv-panel__section-heading">Rizika</h3>
+              <ul class="inv-panel__risks">
+                <li>Extrémní volatilita ceny — drawdowny −40 až −65 % nejsou výjimečné (Bitcoin 2018, 2022).</li>
+                <li>Exchange/custody hacking — i při pojistce má krytí limity; systémový výpadek může pojistku vyčerpat (precedent: FTX 2022).</li>
+                <li>Regulatorní ban — EU nebo ČR mohou omezit holdings (precedent: Čína 2021).</li>
+                <li>Smart contract bugs a slashing — chyby v kódu nebo výpadek validátoru mohou způsobit částečnou ztrátu stakovaných prostředků.</li>
+              </ul>
+
+              <h3 class="inv-panel__section-heading">Právní rámec</h3>
+              <p>Kryptoaktiva jsou regulována Nařízením EU 2023/1114 (MiCA). CASP custody musí být licencována dle Čl. 80–88 MiCA. Movito plní AML/KYC povinnosti dle zákona č. 253/2008 Sb. a EU Směrnice 2015/849/EU. Staking rewards a kapitálové zisky jsou zdaňovány 15 % dle zákona č. 586/1992 Sb.</p>
+
+            </div>
+            <aside class="inv-panel__sidebar" aria-label="Klíčové parametry a kontakt">
+              <div class="inv-panel__facts">
+                <div class="inv-panel__fact"><span class="label">Cílový výnos</span><span class="value">6–18 % p.a.</span></div>
+                <div class="inv-panel__fact"><span class="label">Minimum</span><span class="value">100 000 Kč</span></div>
+                <div class="inv-panel__fact"><span class="label">Horizont</span><span class="value">3–7 let</span></div>
+                <div class="inv-panel__fact"><span class="label">Zajištění</span><span class="value">Cold custody CASP-licensed</span></div>
+              </div>
+              <p class="inv-panel__investor-notice">Movito nabízí investice kvalifikovaným investorům dle §272 ZISIF. Detaily projdete během osobního onboardingu.</p>
+              <form class="inv-panel__form" action="/.netlify/functions/contact" method="POST">
+                <input type="hidden" name="category" value="krypto">
+                <input type="hidden" name="form_location" value="category-panel-krypto">
+                <button type="button" class="btn btn--primary inv-panel__cta-primary" data-open-contact-form>Začít investovat</button>
+                <button type="button" class="btn btn--secondary inv-panel__cta-secondary" data-open-contact-form>Získat nabídku financování</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <!-- Marketing notice -->
