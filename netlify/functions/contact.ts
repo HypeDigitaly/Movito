@@ -107,12 +107,34 @@ export default async function handler(request: Request): Promise<Response> {
     } else if (isDeployPreview) {
       // On deploy-preview, accept only requests originating from a .netlify.app
       // URL or from DEPLOY_PRIME_URL (set automatically by Netlify on preview builds).
-      const deployPrimeUrl = process.env['DEPLOY_PRIME_URL'] ?? '';
+      // URL-parsed checks prevent regex bypass and startsWith subdomain-injection.
       const origin = request.headers.get('origin') ?? request.headers.get('referer') ?? '';
-      const originOk =
-        /\.netlify\.app(\/|$)/i.test(origin) ||
-        (deployPrimeUrl.length > 0 && origin.startsWith(deployPrimeUrl));
-      if (!originOk) {
+      let isAllowedOrigin = false;
+      if (origin) {
+        try {
+          const parsed = new URL(origin);
+          // Must be HTTPS (preview URLs are always HTTPS on Netlify)
+          if (parsed.protocol === 'https:') {
+            // Accept any *.netlify.app host (preview deploys) — hostname-anchored check
+            if (parsed.hostname.endsWith('.netlify.app')) {
+              isAllowedOrigin = true;
+            }
+            // Also accept an exact match against DEPLOY_PRIME_URL, compared by parsed origin
+            const deployPrimeUrl = process.env['DEPLOY_PRIME_URL'];
+            if (!isAllowedOrigin && deployPrimeUrl) {
+              try {
+                const expected = new URL(deployPrimeUrl);
+                if (parsed.origin === expected.origin) {
+                  isAllowedOrigin = true;
+                }
+              } catch { /* DEPLOY_PRIME_URL malformed — ignore */ }
+            }
+          }
+        } catch {
+          // Malformed origin header — treat as disallowed
+        }
+      }
+      if (!isAllowedOrigin) {
         return errorResponse('FORBIDDEN', 'Požadavek byl zamítnut.', 403);
       }
     } else {
