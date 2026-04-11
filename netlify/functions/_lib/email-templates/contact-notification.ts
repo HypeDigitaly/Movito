@@ -115,10 +115,26 @@ function investmentLabel(v: string): string {
   }
 }
 
+function categoryLabel(category: string): string {
+  switch (category) {
+    case 'podily':      return 'Pod\xedly ve firm\xe1ch';
+    case 'nemovitosti': return 'Nemovitosti';
+    case 'baterie':     return 'Bateriov\xe1 \xfalo\u017ei\u0161t\u011b';
+    case 'kovy':        return 'Drah\xe9 kovy';
+    case 'krypto':      return 'Krypto';
+    default:            return 'Neuvedena';
+  }
+}
+
 function formLocationLabel(v: string): string {
   switch (v) {
-    case 'primary-form-mount': return 'Hlavn\xed formul\xe1\u0159 (sekce Kontakt)';
-    case 'modal-form-mount':   return 'Mod\xe1ln\xed okno';
+    case 'primary-form-mount':         return 'Hlavn\xed formul\xe1\u0159 (sekce Kontakt)';
+    case 'modal-form-mount':           return 'Mod\xe1ln\xed okno';
+    case 'category-panel-podily':      return 'Detail kategorie: Pod\xedly ve firm\xe1ch';
+    case 'category-panel-nemovitosti': return 'Detail kategorie: Nemovitosti';
+    case 'category-panel-baterie':     return 'Detail kategorie: Bateriov\xe1 \xfalo\u017ei\u0161t\u011b';
+    case 'category-panel-kovy':        return 'Detail kategorie: Drah\xe9 kovy';
+    case 'category-panel-krypto':      return 'Detail kategorie: Krypto';
     default: return escapeHtml(v); // fallback: escape unknown values
   }
 }
@@ -147,6 +163,8 @@ export function contactNotificationEmail(data: {
   form_location: string;
   consent_timestamp: string;
   createdAt: string;
+  category?: string;
+  qualified_investor_ack?: boolean;
 }): { subject: string; html: string } {
   const safeName  = escapeHtml(data.name);
   const safeEmail = escapeHtml(data.email);
@@ -186,6 +204,8 @@ export function contactNotificationEmail(data: {
       ${fieldRow('Telefon', `<a href="tel:${encodeURIComponent(data.phone)}" style="color:${COLOR_GOLD};text-decoration:none;">${safePhone}</a>`)}
       ${fieldRow('Zvolen\xfd rozsah', investmentLabel(data.investment_amount))}
       ${fieldRow('P\u016fvod formul\xe1\u0159e', formLocationLabel(data.form_location))}
+      ${fieldRow('Kategorie', categoryLabel(data.category ?? ''))}
+      ${fieldRow('Kval. investor (potvrzeno)', data.qualified_investor_ack ? 'Ano' : 'Neuvedeno')}
       ${fieldRow('Datum odeslan\xed', formattedCreatedAt)}
       ${fieldRow('\u010casov\xe9 raz\xedtko souhlasu', consentRendered)}
     </table>

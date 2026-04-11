@@ -54,7 +54,7 @@ export default async function handler(request: Request): Promise<Response> {
   const senderAddr        = process.env['CONTACT_SENDER_EMAIL'];
   const notificationAddr  = process.env['CONTACT_NOTIFICATION_EMAIL'];
   const siteUrl           = process.env['SITE_URL'] ?? '';
-  const isDev             = process.env['NETLIFY_DEV'] === 'true' || process.env['CONTEXT'] === 'dev';
+  const isDev             = process.env['NETLIFY_DEV'] === 'true' || process.env['CONTEXT'] === 'dev' || process.env['CONTEXT'] === 'deploy-preview';
 
   try {
     // ── Step 0 — Env var guard ─────────────────────────────
@@ -162,12 +162,14 @@ export default async function handler(request: Request): Promise<Response> {
 
     const confirmation = contactConfirmationEmail({ name: data.name });
     const notification = contactNotificationEmail({
-      name:              data.name,
-      email:             data.email,
-      phone:             data.phone,
-      investment_amount: data.investment_amount,
-      form_location:     data.form_location,
-      consent_timestamp: data.consent_timestamp,
+      name:                   data.name,
+      email:                  data.email,
+      phone:                  data.phone,
+      investment_amount:      data.investment_amount,
+      form_location:          data.form_location,
+      consent_timestamp:      data.consent_timestamp,
+      category:               data.category,
+      qualified_investor_ack: data.qualified_investor_ack,
       createdAt,
     });
 
@@ -241,6 +243,11 @@ export default async function handler(request: Request): Promise<Response> {
     if (confError !== null) {
       console.error('[contact] confirmation failed', confError.name, sanitizeLogValue(confError.message));
     }
+
+    console.log('[contact] submission', {
+      form_location: sanitizeLogValue(validation.data.form_location),
+      category:      sanitizeLogValue(validation.data.category ?? ''),
+    });
 
     return jsonResponse(SUCCESS_BODY, 200);
 

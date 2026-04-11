@@ -91,7 +91,7 @@ export function contactConfirmationEmail(data: {
 }): { subject: string; html: string } {
   const safe = escapeHtml(data.name);
 
-  const subject   = `Tvoje zpráva dorazila, ${data.name}`;
+  const subject   = `Děkujeme za Váš zájem o Movito, ${data.name}`;
   const preheader = 'Ozveme se Vám do 1 pracovního dne.';
 
   const body = `
@@ -102,7 +102,7 @@ export function contactConfirmationEmail(data: {
 
     <!-- Intro paragraph -->
     <p style="margin:0 0 12px 0;font-family:${FONT_BODY};font-size:16px;line-height:1.75;color:${COLOR_TEXT};">
-      Tohle je automatická odpověď z webu Milionová Investice — jen abychom potvrdili, že tvoje zpráva dorazila v pořádku.
+      Toto je automatická odpověď z webu Milionová Investice — potvrzujeme, že Vaše zpráva dorazila v pořádku.
     </p>
 
     <!-- Promise paragraph -->
@@ -112,7 +112,7 @@ export function contactConfirmationEmail(data: {
 
     <!-- No-reply notice -->
     <p style="margin:0 0 16px 0;font-family:${FONT_BODY};font-size:13px;line-height:1.6;color:${COLOR_MUTED};font-style:italic;">
-      Na tento e-mail prosím neodpovídej, je automatický.
+      Na tento e-mail prosím neodpovídejte, je automatický.
     </p>
 
     <!-- Priority contact -->
@@ -135,9 +135,14 @@ export function contactConfirmationEmail(data: {
       Tým Milionová Investice
     </p>
 
+    <!-- Mandatory risk disclaimer -->
+    <p style="margin:0 0 20px 0;font-family:${FONT_BODY};font-size:12px;line-height:1.6;color:${COLOR_MUTED};">
+      <strong>Upozornění:</strong> Investice u Movito jsou určeny kvalifikovaným investorům dle § 272 zákona 240/2013 Sb. (ZISIF). Minimální investice je 100 000 Kč. Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích. Investice u Movito nejsou kryty systémem pojištění vkladů. Toto sdělení je marketingové a nepředstavuje investiční doporučení.
+    </p>
+
     <!-- Footer note -->
     <p style="margin:0;font-family:${FONT_BODY};font-size:11px;line-height:1.6;color:${COLOR_MUTED};">
-      Tento e-mail ti přišel, protože jsi vyplnil(a) formulář na milionovainvestice.cz. Je to automatická zpráva — ozveme se osobně.
+      Tento e-mail Vám přišel, protože jste vyplnili formulář na milionovainvestice.cz. Je to automatická zpráva — ozveme se osobně.
     </p>
   `;
 
