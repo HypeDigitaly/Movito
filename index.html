@@ -3442,6 +3442,37 @@
         .nav {
           top: var(--strip-h, 40px);
         }
+        .hero__risk-note {
+          font-size: 0.9em;
+          color: var(--text-muted, #58574F);
+          margin-top: 8px;
+        }
+        .btn--secondary {
+          display: inline-block;
+          padding: 14px 28px;
+          background: transparent;
+          color: var(--gold-600, #7A5E0A);
+          border: 2px solid var(--gold-500, #96730F);
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 16px;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          margin-left: 12px;
+        }
+        .btn--secondary:hover {
+          background: var(--gold-100, #FAF5E8);
+          border-color: var(--gold-interactive, #6B5009);
+          color: var(--gold-interactive, #6B5009);
+        }
+        @media (max-width: 600px) {
+          .btn--secondary {
+            margin-left: 0;
+            margin-top: 12px;
+            display: block;
+          }
+        }
     </style>
 </head>
 <body>
@@ -3764,20 +3795,23 @@
                     </div>
 
                     <h1>
-                        Milionová<br><span class="hero__title-line2">Investice</span>
+                        Vyberte si svoji<br><span class="hero__title-line2">milionovou investici</span>
                     </h1>
 
                     <p class="hero__subtitle">
-                        Z&nbsp;10&nbsp;milionů v&nbsp;bance máte 350&nbsp;tisíc ročně.
-                        U&nbsp;nás cílíme na milion. Každé čtvrtletí 250&nbsp;tisíc na&nbsp;účet
-                        &mdash; zajištěno reálnou nemovitostí. A&nbsp;Vy se o&nbsp;nic nestaráte.
+                        Investujte chytře od 100&nbsp;000&nbsp;Kč.
+                        Podílové vlastnictví, nemovitosti, bateriová úložiště, drahé kovy, krypto.
+                        Čtvrtletní výplaty. Osobní poradenství.
                     </p>
+
+                    <p class="hero__risk-note">Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.</p>
 
                     <div class="hero__ctas">
                         <a href="#kontakt-form-section" class="btn btn--primary">
-                            Chci více informací
+                            Začít investovat
                             <span class="btn__arrow">&rarr;</span>
                         </a>
+                        <button type="button" class="btn btn--secondary" data-cta="hero-financing" onclick="document.querySelector('#contact-form-section')?.scrollIntoView({behavior:'smooth'})">Získat nabídku financování</button>
                         <div class="hero__roi">
                             <span class="hero__roi-dot"></span>
                             Průměrný cílový výnos 10&nbsp;% ročně
