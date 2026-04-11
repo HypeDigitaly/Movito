@@ -2364,6 +2364,11 @@
             margin-top: 2px;
         }
 
+        .lead-form__consent input[type="checkbox"]:focus-visible {
+            outline: 2px solid var(--gold-interactive, #6B5009);
+            outline-offset: 2px;
+        }
+
         .lead-form__consent a {
             color: var(--gold-400);
             text-decoration: underline;
@@ -3441,6 +3446,9 @@
           }
           .marketing-notice-strip p {
             font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
         .nav {
