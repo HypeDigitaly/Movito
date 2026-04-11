@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milionová Investice — Vaše peníze si zaslouží víc než 4 % v bance | Movito Group</title>
-    <meta name="description" content="Chcete víc než spořák nabízí? Investice zajištěná nemovitostí s cílovým výnosem 8–12 % ročně. Čtvrtletní výplaty. Žádná správa. Od 500 tis. Kč.">
-    <meta property="og:title" content="Milionová Investice — Vaše peníze si zaslouží víc než 4 % v bance">
-    <meta property="og:description" content="Investice zajištěná nemovitostí s cílovým výnosem 8–12 % ročně. Čtvrtletní výplaty. Od 500 tis. Kč.">
+    <title>Movito — Vyberte si svoji milionovou investici</title>
+    <meta name="description" content="Movito — kurátorovaná nabídka 5 investičních kategorií: podíly, nemovitosti, bateriová úložiště, drahé kovy, krypto. Čtvrtletní výplaty. Od 100 000 Kč.">
+    <meta property="og:title" content="Movito — Vyberte si svoji milionovou investici">
+    <meta property="og:description" content="Movito — kurátorovaná nabídka 5 investičních kategorií: podíly, nemovitosti, bateriová úložiště, drahé kovy, krypto. Čtvrtletní výplaty. Od 100 000 Kč.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Milionová Investice">
-    <meta name="twitter:description" content="Investice zajištěná nemovitostí s cílovým výnosem 8–12 % ročně. Od 500 tis. Kč.">
+    <meta name="twitter:title" content="Movito — Vyberte si svoji milionovou investici">
+    <meta name="twitter:description" content="Movito — kurátorovaná nabídka 5 investičních kategorií: podíly, nemovitosti, bateriová úložiště, drahé kovy, krypto. Čtvrtletní výplaty. Od 100 000 Kč.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3415,6 +3415,33 @@
                 transition: none !important;
             }
         }
+
+        .marketing-notice-strip {
+          background: #F0EDE3;
+          border-bottom: 1px solid var(--cream-dark, #E6E1D3);
+          padding: 10px 24px;
+          text-align: center;
+          position: relative;
+          z-index: 999;
+          font-family: var(--font-body, 'DM Sans', sans-serif);
+        }
+        .marketing-notice-strip p {
+          margin: 0;
+          font-size: 12px;
+          line-height: 1.4;
+          color: var(--text-muted, #58574F);
+        }
+        @media (max-width: 600px) {
+          .marketing-notice-strip {
+            padding: 8px 16px;
+          }
+          .marketing-notice-strip p {
+            font-size: 11px;
+          }
+        }
+        .nav {
+          top: var(--strip-h, 40px);
+        }
     </style>
 </head>
 <body>
@@ -3649,6 +3676,10 @@
         </defs>
     </svg>
 
+    <header class="marketing-notice-strip" role="note" aria-label="Marketingové sdělení">
+      <p>MARKETINGOVÉ SDĚLENÍ — Toto sdělení má pouze informativní charakter a nepředstavuje investiční doporučení ani nabídku k uzavření smlouvy.</p>
+    </header>
+
     <!-- ============================================
          NAVIGATION
          ============================================ -->
@@ -3656,15 +3687,15 @@
         <div class="container container--wide">
             <div class="nav__inner">
                 <a href="#" class="nav__logo">
-                    <div class="nav__logo-mark">M</div>
+                    <div class="nav__logo-mark"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><use href="#logo-mark"/></svg></div>
                     <span class="nav__logo-text">Milionová Investice</span>
                 </a>
                 <div class="nav__contact">
-                    <a href="tel:+420608383838" aria-label="Zavolejte nám">
+                    <a href="tel:+420603865865" aria-label="Zavolejte nám">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                         </svg>
-                        <span>+420 608 38 38 38</span>
+                        <span>+420 603 865 865</span>
                     </a>
                     <a href="mailto:info@movito.cz" aria-label="Napište nám">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -3729,7 +3760,7 @@
                 <!-- Left column: Text content -->
                 <div class="hero__text-col">
                     <div class="hero__badge">
-                        <span class="badge badge--gold">Investice zajištěná nemovitostí — od 500&nbsp;tis.&nbsp;Kč</span>
+                        <span class="badge badge--gold">Diverzifikované investice od 100&nbsp;000&nbsp;Kč — kurátorovaná nabídka</span>
                     </div>
 
                     <h1>
@@ -4715,7 +4746,7 @@
                     </a>
                 </div>
                 <p class="final-cta__phone">
-                    Nebo rovnou zavolejte: <a href="tel:+420608383838">+420 608 38 38 38</a> &middot; Po&ndash;Pá 9:00&ndash;17:00
+                    Nebo rovnou zavolejte: <a href="tel:+420603865865">+420 603 865 865</a> &middot; Po&ndash;Pá 9:00&ndash;17:00
                 </p>
 
                 <div class="final-cta__trust">
@@ -4733,7 +4764,7 @@
             <div class="footer__grid">
                 <div class="footer__brand">
                     <a href="#" class="nav__logo">
-                        <div class="nav__logo-mark">M</div>
+                        <div class="nav__logo-mark"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><use href="#logo-mark"/></svg></div>
                         <span class="nav__logo-text">Milionová Investice</span>
                     </a>
                     <p>
@@ -4754,7 +4785,7 @@
                 <div>
                     <div class="footer__links-title">Kontakt</div>
                     <ul class="footer__links-list">
-                        <li><a href="tel:+420608383838">+420 608 38 38 38</a></li>
+                        <li><a href="tel:+420603865865">+420 603 865 865</a></li>
                         <li><a href="mailto:info@movito.cz">info@movito.cz</a></li>
                         <li>Enterprise Office Center<br>Pikrtova 1a, 140 00 Praha 4&ndash;Nusle</li>
                     </ul>
@@ -4810,7 +4841,7 @@
                 <span>Chci více informací</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
-            <a href="tel:+420608383838" class="mobile-cta__btn mobile-cta__btn--phone">
+            <a href="tel:+420603865865" class="mobile-cta__btn mobile-cta__btn--phone">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 <span>Zavolejte nám</span>
             </a>
@@ -5433,7 +5464,7 @@
                 // Prefer server Czech message when available; fall back to hardcoded recovery prompt
                 errorMsg.textContent = (err && err.serverMessage)
                     ? err.serverMessage
-                    : 'Nepodařilo se odeslat. Zavolejte nám: +420 608 38 38 38';
+                    : 'Nepodařilo se odeslat. Zavolejte nám: +420 603 865 865';
             });
         }
 
