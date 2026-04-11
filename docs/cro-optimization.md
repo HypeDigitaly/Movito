@@ -60,6 +60,7 @@ A complete lead capture system was integrated into the Czech investment landing 
 <input type="email" name="email" placeholder="vas@email.cz" required />
 <input type="tel" name="phone" placeholder="+420" required />
 <select name="investment_amount" required>
+  <option value="100k-500k">100 tis. – 500 tis. Kč</option>
   <option value="500k-1m">500 tis. – 1 mil. Kč</option>
   <option value="1m-5m">1 – 5 mil. Kč</option>
   <option value="5m-20m">5 – 20 mil. Kč</option>

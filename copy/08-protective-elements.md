@@ -14,27 +14,32 @@ Jak je Váš kapitál chráněn
 
 ---
 
-## Ochranný prvek 1: Nemovitostní zajištění
+## Ochranný prvek 1: Zajištění dle kategorie
 
 ```
 ┌─────────────────────────────────────────────────────┐
 │  OCHRANNÝ PRVEK #1                                   │
-│  Zajištění reálnou nemovitostí                       │
+│  Strukturované zajištění dle typu aktiva              │
 │                                                      │
-│  Každá investice je zajištěna konkrétní nemovitostí. │
-│  Nepůjčujeme víc než 70 % z konzervativně           │
-│  stanovené hodnoty nemovitosti.                      │
+│  Každá kategorie má svou ochranu:                   │
 │                                                      │
-│  Příklad:                                            │
-│  · Tržní hodnota nemovitosti:   13 000 000 Kč       │
-│  · Náš interní (risk) odhad:    10 000 000 Kč       │
-│  · Max. výše financování:        7 000 000 Kč       │
-│  · Bezpečnostní polštář:         6 000 000 Kč (46%) │
+│  • NEMOVITOSTI: LTV 50–70% s zástavním právem.      │
+│    Ocenění provádí nezávislý odhadce.                │
 │                                                      │
-│  I při výrazném poklesu ceny zůstává Vaše            │
-│  investice kryta hodnotou nemovitosti.               │
+│  • PODÍLY: Kupní smlouva + diverzifikace ve SPV.     │
+│    Zastavitelné práva dle právního posudku.          │
 │                                                      │
-│  Ocenění provádí nezávislý odhadce.                  │
+│  • BATERIE: SPV struktura + fyzická inspekce.        │
+│    Dlouhodobá smlouva (PPA) zajišťuje cash flow.     │
+│                                                      │
+│  • KOVY: Dedikovaná úschova (Brinks/třetí strana)    │
+│    + pojištění. Fyzická separace od majetku Movito.  │
+│                                                      │
+│  • KRYPTO: External custody (Bitstamp/Kraken) +      │
+│    pojištění. Cold storage s multi-sig protokolem.   │
+│                                                      │
+│  I při výrazných výkyvech zůstává Vaše investice    │
+│  alespoň částečně kryta hodnotou nebo estruturou.    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -119,11 +124,19 @@ Jak je Váš kapitál chráněn
 ```
 Vaše investice je chráněna na 4 úrovních:
 
-  ✓ Reálná nemovitost jako kolaterál (LTV max 70 %)
-  ✓ Oddělená právní struktura (SPV)
+  ✓ Asset-specifická zajištění (LTV, SPV, custody, pojištění)
+  ✓ Oddělená právní struktura (SPV) u všech kategorií
   ✓ Čtvrtletní transparentní reporting
   ✓ Důkladný výběrový proces každého projektu
 
 Žádná investice není bez rizika. Ale děláme maximum
 pro to, aby Vaše riziko bylo měřitelné a řízené.
+
+---
+
+## Právní poznámka — Pojištění vkladů
+
+```
+Investice u Movito NEJSOU kryty systémem pojištění vkladů.
+Bankovní vklady jsou kryty systémem pojištění vkladů do 100 000 EUR.
 ```

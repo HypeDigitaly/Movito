@@ -32,6 +32,10 @@ export interface ContactBody {
   form_location: unknown;
   /** Honeypot — must be checked and rejected by the handler BEFORE calling validateBody. */
   website: unknown;
+  /** Investment category the lead came from; populated by a hidden input in each category panel. */
+  category?: unknown;
+  /** Soft acknowledgment that the user is aware this is for qualified investors (ZISIF §272). */
+  qualified_investor_ack?: unknown;
 }
 
 /**
@@ -39,6 +43,15 @@ export interface ContactBody {
  * The empty string `''` represents "not answered / prefer not to say".
  */
 export const INVESTMENT_AMOUNTS = ['500k-1m', '1m-5m', '5m-20m', '20m+', 'unknown', ''] as const;
+
+/**
+ * Allowed values for the investment-category selector.
+ * The empty string `''` represents absent or unrecognised.
+ */
+export const ALLOWED_CATEGORIES = ['podily', 'nemovitosti', 'baterie', 'kovy', 'krypto', ''] as const;
+
+/** Literal union derived from `ALLOWED_CATEGORIES`. */
+export type InvestmentCategory = (typeof ALLOWED_CATEGORIES)[number];
 
 /** Literal union derived from `INVESTMENT_AMOUNTS`. */
 export type InvestmentAmount = (typeof INVESTMENT_AMOUNTS)[number];
@@ -57,6 +70,10 @@ export interface ValidatedContact {
   consent: true;
   consent_timestamp: string;
   form_location: string;
+  /** Investment category; empty string if absent or unrecognised. */
+  category: string;
+  /** Whether the user acknowledged the qualified-investor requirement (ZISIF §272). */
+  qualified_investor_ack: boolean;
 }
 
 // ----------------------------------------------------------
@@ -72,6 +89,11 @@ export interface ValidatedContact {
  */
 function isAmount(x: string): x is InvestmentAmount {
   return (INVESTMENT_AMOUNTS as readonly string[]).includes(x);
+}
+
+/** Type predicate that narrows `x: string` to `InvestmentCategory`. */
+function isCategory(x: string): x is InvestmentCategory {
+  return (ALLOWED_CATEGORIES as readonly string[]).includes(x);
 }
 
 // ----------------------------------------------------------
@@ -215,6 +237,26 @@ export function validateBody(
   }
 
   // ----------------------------------------------------------
+  // category (optional soft pass-through)
+  // If present and a recognised string, keep it; otherwise coerce to ''.
+  // Never causes a validation failure.
+  // ----------------------------------------------------------
+  let validatedCategory = '';
+  if (typeof raw.category === 'string') {
+    const trimmedCategory = raw.category.trim().slice(0, 100);
+    if (isCategory(trimmedCategory)) {
+      validatedCategory = trimmedCategory;
+    }
+  }
+
+  // ----------------------------------------------------------
+  // qualified_investor_ack (optional soft boolean)
+  // Only strictly === true is accepted; everything else → false.
+  // Never causes a validation failure.
+  // ----------------------------------------------------------
+  const validatedQualifiedInvestorAck: boolean = raw.qualified_investor_ack === true;
+
+  // ----------------------------------------------------------
   // Aggregate result
   // ----------------------------------------------------------
   if (Object.keys(fields).length > 0) {
@@ -231,6 +273,8 @@ export function validateBody(
       consent: true,
       consent_timestamp: validatedConsentTimestamp,
       form_location: validatedFormLocation,
+      category: validatedCategory,
+      qualified_investor_ack: validatedQualifiedInvestorAck,
     },
   };
 }

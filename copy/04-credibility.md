@@ -14,9 +14,9 @@ Proč nám investoři důvěřují
 
 ```
 ┌──────────────┬──────────────┬──────────────┬──────────────┐
-│   [X] let    │  [X] Kč      │  [X]         │  0 %         │
-│  na trhu     │  investováno │  investorů   │  ztráty      │
-│              │  celkem      │  aktivních   │  jistiny     │
+│   [X] let    │  [X] mil.Kč  │  [X]         │  0 %         │
+│  na trhu     │  na 5 kat.   │  investorů   │  ztráty      │
+│              │  investováno │  aktivních   │  jistiny     │
 └──────────────┴──────────────┴──────────────┴──────────────┘
 ```
 
@@ -25,10 +25,12 @@ Proč nám investoři důvěřují
 ## Tým (TEMPLATE — klient doplní)
 
 ```
-Za Movito stojí tým s [X] lety zkušeností v komerčních nemovitostech.
+Za Movito stojí tým s [X] lety zkušeností v alternativních investicích.
+Začali jsme v nemovitostních financích. Dnes stejně pečlivě vybíráme projekty
+ve všech pěti kategoriích: podíly, nemovitosti, baterie, kovy a krypto.
 
 [JMÉNO], [POZICE]
-[X] let v oblasti nemovitostních financí. Dříve [předchozí zkušenost].
+[X] let v oblasti nemovitostních financí a investičních platforem.
 Osobně investuje vlastní prostředky do stejných projektů jako naši investoři.
 
 [JMÉNO], [POZICE]
@@ -67,8 +69,8 @@ Sídlo: Praha 4 - Nusle
 ### Testimonial 1
 ```
 „Investuji s Movito [X] roky. Za celou dobu jsem obdržel každou
-čtvrtletní výplatu včas. Oceňuji, že přesně vím, která nemovitost
-zajišťuje moji investici."
+čtvrtletní výplatu včas. Oceňuji, že přesně vím, do kterého aktivum
+moje investice směřuje."
 
 — [Jméno / Iniciály], [profese], investor od [rok]
   Investovaná částka: [X] mil. Kč

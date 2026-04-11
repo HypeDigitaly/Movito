@@ -230,7 +230,7 @@ Content-Type: application/json
 {
   "name": "Václav Hejátko",
   "email": "vaclav@example.com",
-  "phone": "+420 608 38 38 38",
+  "phone": "+420 603 865 865",
   "investment_amount": "1m-5m",
   "consent": true,
   "consent_timestamp": "2026-04-08T14:32:00.000Z",
@@ -653,6 +653,7 @@ Used in notification email to humanize the `investment_amount` value:
 ```typescript
 function investmentLabel(v: string): string {
   switch (v) {
+    case '100k-500k': return '100 tis. – 500 tis. Kč';
     case '500k-1m':  return '500 tis. – 1 mil. Kč';
     case '1m-5m':    return '1 – 5 mil. Kč';
     case '5m-20m':   return '5 – 20 mil. Kč';

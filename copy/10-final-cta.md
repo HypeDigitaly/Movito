@@ -5,7 +5,7 @@
 ## Nadpis sekce
 
 ```
-Připraveni zjistit, co Vaše peníze mohou vydělat?
+Připraveni investovat do 5 kurátorovaných kategorií?
 ```
 
 ---
@@ -13,15 +13,15 @@ Připraveni zjistit, co Vaše peníze mohou vydělat?
 ## Závěrečný copy
 
 ```
-Pokud máte kapitál od 500 tis. Kč a hledáte:
+Pokud máte kapitál od 100 tis. Kč a hledáte:
 
   ✓  Výnos výrazně převyšující banku
-  ✓  Zajištění reálným majetkem
+  ✓  Diverzifikace bez operativní práce
   ✓  Pravidelné čtvrtletní příjmy
   ✓  Nulové starosti se správou
 
-...rádi Vám během 30minutové konzultace ukážeme,
-jak to celé funguje a kolik byste mohli vydělat.
+Vyberete si z 5 kurátorovaných kategorií. Začnete se 100 000 Kč.
+Čtvrtletně dostáváte výnos. Osobní poradce je vždy k dispozici.
 
 Konzultace je zdarma a nezávazná.
 Žádný prodejní tlak. Jen odpovědi na Vaše otázky.
@@ -33,16 +33,16 @@ Konzultace je zdarma a nezávazná.
 
 ### Primární CTA
 ```
-    [ Zobrazit kalkulaci výnosu → ]
+    [ Začít investovat → ]
 
-    Nezávazný výpočet na základě Vaší investiční částky.
+    Nezávazný výpočet + konzultace na základě Vaší zájmu.
 ```
 
 ### Sekundární CTA
 ```
-    [ Zarezervovat konzultaci → ]
+    [ Získat nabídku financování → ]
 
-    30 minut · osobně nebo online · zdarma
+    Pokud hledáte vlastní financování: [alt. kontakt / info]
 ```
 
 ### Telefon (pro starší demografii / preferenci)

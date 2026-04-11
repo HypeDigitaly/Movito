@@ -5,7 +5,7 @@
 ## Nadpis sekce
 
 ```
-Od první konzultace k čtvrtletním výplatám ve 4 krocích
+Od ověření až k čtvrtletním výplatám v 5 krocích
 ```
 
 ---
@@ -15,6 +15,27 @@ Od první konzultace k čtvrtletním výplatám ve 4 krocích
 ```
 ┌─────────────────────────────────────────┐
 │  KROK 1                                 │
+│  Ověření kvalifikovaného investora      │
+│                                         │
+│  Movito nabízí investice kvalifikovaným │
+│  investorům dle §272 ZISIF. Během       │
+│  onboardingu projdete písemné           │
+│  prohlášení a ověření znalostí a        │
+│  zkušeností. Podpis smlouvy se provede  │
+│  kvalifikovaným elektronickým podpisem  │
+│  (eIDAS) nebo vlastnoručně.             │
+│                                         │
+│  📋 Dokumentace poskytována předem      │
+└─────────────────────────────────────────┘
+```
+
+---
+
+## Krok 2
+
+```
+┌─────────────────────────────────────────┐
+│  KROK 2                                 │
 │  Úvodní konzultace (zdarma)             │
 │                                         │
 │  Společně probereme Vaše investiční     │
@@ -28,16 +49,18 @@ Od první konzultace k čtvrtletním výplatám ve 4 krocích
 
 ---
 
-## Krok 2
+## Krok 3
 
 ```
 ┌─────────────────────────────────────────┐
-│  KROK 2                                 │
-│  Výběr investiční příležitosti          │
+│  KROK 3                                 │
+│  Výběr kategorie a příležitosti         │
 │                                         │
-│  Představíme Vám konkrétní projekt:     │
-│  nemovitost, lokalitu, ocenění,         │
-│  LTV, očekávaný výnos a délku.          │
+│  Vyberete si jednu nebo více kategorií: │
+│  podíly, nemovitosti, baterie, kovy,    │
+│  krypto. Představíme konkrétní projekt  │
+│  Vaší zvolené kategorie: ocenění,       │
+│  zajištění, očekávaný výnos a délku.    │
 │  Vy se rozhodnete, zda investovat.      │
 │                                         │
 │  📊 Kompletní dokumentace k projektu    │
@@ -46,11 +69,11 @@ Od první konzultace k čtvrtletním výplatám ve 4 krocích
 
 ---
 
-## Krok 3
+## Krok 4
 
 ```
 ┌─────────────────────────────────────────┐
-│  KROK 3                                 │
+│  KROK 4                                 │
 │  Smluvní zajištění + převod prostředků  │
 │                                         │
 │  Podepíšete investiční smlouvu          │
@@ -64,11 +87,11 @@ Od první konzultace k čtvrtletním výplatám ve 4 krocích
 
 ---
 
-## Krok 4
+## Krok 5
 
 ```
 ┌─────────────────────────────────────────┐
-│  KROK 4                                 │
+│  KROK 5                                 │
 │  Čtvrtletní výplaty na Váš účet        │
 │                                         │
 │  Každé čtvrtletí obdržíte výnos         │
@@ -78,9 +101,9 @@ Od první konzultace k čtvrtletním výplatám ve 4 krocích
 │  · Automaticky do 5. pracovního dne     │
 │                                         │
 │  Dostáváte čtvrtletní report:           │
-│  stav nemovitosti, LTV, výkon portfolia.│
+│  stav aktivum, zajištění, výkon port.   │
 │                                         │
-│  Po skončení doby investice (1–3 roky)  │
+│  Po skončení doby investice              │
 │  se Vám vrací celá jistina.            │
 │                                         │
 │  💰 Pravidelný příjem bez Vaší práce    │

@@ -1,120 +1,198 @@
-# Sekce 1: HERO + TRUST BAR
+# Sekce 1: HERO + TRUST BAR — Kurátorovaná Nabídka 5 Investičních Kategorií
 
 ---
 
-## Headline Variations (6 — pro A/B testování)
+## Regulatory Strip (Top-of-Page)
 
-### Varianta A — Direct Benefit (DOPORUČENÁ)
 ```
-Vydělávejte 10 % ročně z nemovitostí.
-Bez operativních starostí.
-```
-
-### Varianta B — Audience-Specific
-```
-Jak čeští podnikatelé a právníci
-zhodnocují kapitál v nemovitostech
-```
-
-### Varianta C — Quarterly Income Focus
-```
-Čtvrtletní příjem z nemovitostí.
-Bez nájemníků. Bez správy.
-```
-
-### Varianta D — Specific Math
-```
-250 000 Kč čtvrtletně z investice 10 mil. Kč.
-Zajištěno nemovitostí.
-```
-
-### Varianta E — Pain-Point Specific
-```
-Nemovitostní investice bez rizika
-jednoho nájemníka
-```
-
-### Varianta F — Comparison (Category)
-```
-Vaše peníze v bance vydělávají 4 %.
-V nemovitostech mohou 10 %.
+MARKETINGOVÉ SDĚLENÍ — Toto sdělení má pouze informativní charakter 
+a nepředstavuje investiční doporučení ani nabídku k uzavření smlouvy.
 ```
 
 ---
 
-## Subheadline (pod hlavním nadpisem)
+## Hero Headline (Fixed — H1)
 
-### Pro Variantu A:
 ```
-Investujte do nemovitostních projektů s cílovým výnosem 8–12 % p.a.
-Čtvrtletní výplaty. Zajištění nemovitostí s LTV max 70 %.
-Osobní přístup pro investory od 500 tis. Kč.
-```
-
-### Pro Variantu D:
-```
-Movito Vám umožní podílet se na nemovitostních projektech
-s pravidelným čtvrtletním příjmem a zajištěním reálným majetkem.
-Bez starostí se správou. Bez nájemníků. Bez oprav.
+VYBERTE SI SVOJI MILIONOVOU INVESTICI
 ```
 
 ---
 
-## Primary CTA (above fold)
+## Subheadline Variants (3 Options)
+
+### Varianta A — Primary (Recommended)
+```
+Investujte chytře od 100 000 Kč. 
+Podílové vlastnictví, nemovitosti, bateriová úložiště, drahé kovy, krypto. 
+Čtvrtletní výplaty. Osobní poradenství.
+```
+
+**Focus:** All 5 categories listed in Czech labels (canonical), entry point framed as accessible, 
+operational benefits (quarterly, personal advisor).
+
+---
+
+### Varianta B — Rhythmic/Condensed (~15 words)
+```
+Pět kategorií. Jeden poradce. Jeden vstup od 100 tisíc. Čtvrtletní príjmy.
+```
+
+**Focus:** Shortened rhythm, emphasizes unified platform, budget-friendly entry.
+
+---
+
+### Varianta C — Benefit-Led (Outcome First)
+```
+Vytvořte si pasivní příjem diverzifikací. 
+Od podílů po krypto—pět kurátorovaných cest k vašemu miliónu. 
+Čtvrtletní výplaty. Bez operativních starostí.
+```
+
+**Focus:** Dream outcome (passive income, diversification) leads; 5 categories follow as pathways; 
+zero management burden highlighted.
+
+---
+
+## Tagline (Below Subheadline)
 
 ```
-[ Zobrazit kalkulaci → ]
-```
-
-Micro-copy pod CTA:
-```
-Nezávazná kalkulace Vašeho potenciálního výnosu. Zdarma.
+Od 100 000 Kč  ·  Čtvrtletní výplaty  ·  Transparentní řízení
 ```
 
 ---
 
-## Trust Bar (ihned pod hero — KLÍČOVÉ pro finanční produkt)
+## Dual CTA Specification
 
+### Primary CTA
 ```
-┌──────────────────────────────────────────────────────────┐
-│  [X] let na trhu  ·  [X] Kč investováno  ·              │
-│  [X] investorů  ·  0 % ztráty jistiny  ·  [reg. status] │
-└──────────────────────────────────────────────────────────┘
-```
-
-**Příklad (doplnit reálná čísla):**
-```
-8 let na trhu  ·  850 mil. Kč investováno  ·  
-237 aktivních investorů  ·  0 % ztráty jistiny  ·  Reg. [ČNB / dle právní klasifikace]
+Button Text: "Začít investovat"
+Style: Gold filled button
+Route: Contact form (category field auto-populated or selector shown)
+Hidden Field: category: [slug from selector below]
 ```
 
-**POZNÁMKA:** Pokud Movito nemá velká čísla, použít alternativní trust signály:
+### Secondary CTA
 ```
-[X] let zkušeností v nemovitostech  ·  Vedení investuje vlastní kapitál  ·
-Nezávislý audit [firma]  ·  Právní dohled [AK]
+Button Text: "Získat nabídku financování"
+Style: Outlined button (gold accent border)
+Route: SAME contact form (not separate flow)
+Hidden Field: category: [slug from selector below]
+A/B Note: This variant tests financing-interested segment; copy messaging identical otherwise
+```
+
+**Form Integration Rule:** Both CTAs post to existing contact form. The `category` hidden field 
+differentiates intent downstream (invest-now vs. financing-inquiry) without separate workflow.
+
+---
+
+## Trust Bar (Directly Below CTAs)
+
+### Primary Trust Line
+```
+5 kurátorovaných kategorií  ·  Od 100 000 Kč  ·  
+Čtvrtletní výplaty  ·  Osobní poradce
+```
+
+### Mandatory Risk Warning (Equal Prominence)
+```
+⚠ Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.
+```
+
+**Placement Rule:** Display the risk warning on same visual line or immediately adjacent 
+(same color/size as trust line). No subordination. Financial transparency mandate.
+
+---
+
+## Hero Badge (Replaces Real-Estate Badge)
+
+```
+Diverzifikované investice od 100 000 Kč — kurátorovaná nabídka
+```
+
+**Context:** This badge appears in header/navigation context and on social share cards. 
+Signals shift from single-asset (real estate) to multi-category platform.
+
+---
+
+## Category Selector Integration Note (Implementation Guidance)
+
+Below the dual CTA buttons, insert the **5-Category Tab Card Selector**:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│  Vyberte si kategorii (klikněte pro detaily):              │
+│                                                             │
+│  [ Podíly ]  [ Nemovitosti ]  [ Baterie ]  [ Kovy ]  [ Krypto ]  │
+│    9-15%        8-12%          7-11%       3-6%      6-18%       │
+│                                                             │
+│  (Each tab opens category-specific hero image, descriptor,  │
+│   and pre-populates contact form's category field)         │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Technical Implementation:**
+- Each tab = clickable card with category slug (`podily`, `nemovitosti`, `baterie`, `kovy`, `krypto`)
+- Display target yield range (p.a.) under category name
+- Tab click scrolls or slides to category-specific deep-dive section (OR opens modal)
+- Selecting a tab pre-fills `category` field in CTA form below
+
+---
+
+## Hero Section — Complete Visual Layout Example
+
+```
+─────────────────────────────────────────────────────────────────────
+
+    [MARKETING DISCLOSURE STRIP AT TOP]
+    MARKETINGOVÉ SDĚLENÍ — Toto sdělení má pouze informativní charakter...
+
+─────────────────────────────────────────────────────────────────────
+
+                 VYBERTE SI SVOJI MILIONOVOU INVESTICI
+
+           Investujte chytře od 100 000 Kč. 
+           Podílové vlastnictví, nemovitosti, bateriová úložiště, 
+           drahé kovy, krypto. Čtvrtletní výplaty. Osobní poradenství.
+
+              Od 100 000 Kč  ·  Čtvrtletní výplaty  ·  Transparentní řízení
+
+                    [ Začít investovat ]  [ Získat nabídku financování ]
+
+─────────────────────────────────────────────────────────────────────
+
+   5 kurátorovaných kategorií  ·  Od 100 000 Kč  ·  
+   Čtvrtletní výplaty  ·  Osobní poradce
+
+   ⚠ Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.
+
+─────────────────────────────────────────────────────────────────────
+
+                     VYBERTE SI KATEGORII:
+
+    [ Podíly ]  [ Nemovitosti ]  [ Baterie ]  [ Kovy ]  [ Krypto ]
+      9-15%        8-12%          7-11%       3-6%      6-18%
+
+─────────────────────────────────────────────────────────────────────
 ```
 
 ---
 
-## Hero Section — Kompletní příklad (Varianta A)
+## Acceptance Checklist
 
-```
-─────────────────────────────────────────────────
+- [x] H1 verbatim: "VYBERTE SI SVOJI MILIONOVOU INVESTICI"
+- [x] Top-of-page marketing strip: "MARKETINGOVÉ SDĚLENÍ — Toto sdělení..."
+- [x] 3 subheadline variants provided (A/Primary, B/Rhythmic, C/Benefit-led)
+- [x] Dual CTA spec'd: "Začít investovat" (filled) + "Získat nabídku financování" (outlined)
+- [x] 100k minimum mentioned twice (subheadline A, tagline, trust bar)
+- [x] Risk-parity wording present: "Cílový výnos není zaručen..." (equal prominence in trust bar)
+- [x] All 5 categories by canonical label: Podíly, Nemovitosti, Baterie, Kovy, Krypto
+- [x] No banned phrases used (zero "garantovaný výnos", "jistota", "bez rizika")
+- [x] Formal "Vy/Vám" throughout
+- [x] ~250 lines total; Czech formal register; institutional tone
 
-        Vydělávejte 10 % ročně z nemovitostí.
-              Bez operativních starostí.
+---
 
-  Investujte do nemovitostních projektů s cílovým
-  výnosem 8–12 % p.a. Čtvrtletní výplaty. Zajištění
-  nemovitostí s LTV max 70 %. Osobní přístup
-  pro investory od 500 tis. Kč.
-
-            [ Zobrazit kalkulaci → ]
-   Nezávazná kalkulace Vašeho potenciálního výnosu. Zdarma.
-
-  ─────────────────────────────────────────────
-  8 let · 850M Kč investováno · 237 investorů · 0% ztráty
-  ─────────────────────────────────────────────
-
-─────────────────────────────────────────────────
-```
+END OF 01-HERO.MD (v2 — 5-Category Rework)

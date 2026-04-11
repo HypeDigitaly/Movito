@@ -2,186 +2,68 @@
 
 ---
 
-## Nadpis sekce
-
-```
-Nejčastější otázky investorů
-```
+## Nejčastější otázky
 
 ---
 
-## Q1: Jaká je minimální investice?
+## Q1: Jak si vyberu mezi pěti kategoriemi, když jsem nováček v investování?
 
-```
-Minimální investice je 500 000 Kč. Typický investor začíná
-s částkou 500 tis. – 2 mil. Kč a po ověření modelu navyšuje.
-Maximální investice není omezena — pracujeme s investory
-do 100 mil. Kč.
-```
+Naší doporučenou cestou je osobní konzultace s Vaším investičním poradcem, který Vám pomůže identifikovat optimální kombinaci kategorií podle Vašeho rizikového profilu a finančních cílů. Pokud nemáte zkušenosti, obvykle doporučujeme začít s konzervativní diverzifikací: Nemovitosti (8–12 % cílový výnos, nižší volatilita) a Drahé kovy (3–6 % cílový výnos, dlouhodobý hedge) jako stabilní kotvy, následované postupnou alokací do Podílů ve firmách, Bateriových úložišť a Krypta. Tímto přístupem budujete know-how kategorie po kategorii bez přetížení. Naši HNWI klienti typicky diverzifikují mezi 3–4 kategoriemi najednou.
 
 ---
 
-## Q2: Jak jsou moje peníze zajištěny?
+## Q2: Mohu investovat do všech 5 kategorií najednou s 500 000 Kč?
 
-```
-Každá investice je zajištěna konkrétní nemovitostí.
-Výše financování nepřesahuje 70 % z konzervativně
-stanovené hodnoty nemovitosti (risk-assessed value,
-ne tržní maximum).
-
-Příklad: Pokud nemovitost oceníme interně na 10 mil. Kč,
-maximální financování je 7 mil. Kč. Tržní hodnota přitom
-může být 12–13 mil. Kč. To vytváří bezpečnostní polštář.
-
-Ocenění provádí nezávislý certifikovaný odhadce.
-```
+Ano, zcela bezpečně. Minimální investice je 100 000 Kč na kategorii, takže máte několik scénářů. Příklad: rozdělíte 500 000 Kč takto — 100 000 Kč do Podílů ve firmách, 100 000 Kč do Nemovitostí, 100 000 Kč do Bateriových úložišť, 100 000 Kč do Drahých kovů a 100 000 Kč do Krypta. Vaše čtvrtletní výplaty budou agregovány a převedeny na Váš účet jako jeden automatický transfer. Portfolio je tak od začátku diverzifikované.
 
 ---
 
-## Q3: Co se stane, když dlužník nesplatí?
+## Q3: Jak je Milionová Investice slučitelná se vstupem od 100 000 Kč?
 
-```
-V případě nesplácení Movito zahájí právní vymáhání.
-Nemovitost je zajištěna zástavním právem / převodem
-vlastnictví. V krajním případě dochází k realizaci
-zástavy — prodeji nemovitosti.
-
-Z výtěžku prodeje se nejprve uspokojí nároky investorů.
-Díky konzervativnímu LTV (max 70 %) je i při prodeji
-pod odhadní cenou vysoká pravděpodobnost plného
-uspokojení investorů.
-
-[Doplnit: „Za X let provozu jsme řešili Y případů
-defaultu. Ve všech případech investoři obdrželi
-jistinu zpět."]
-```
+„Milionová Investice" není minimální částka — je to aspirační cíl. Začínáte s 100 000 Kč v libovolné kategorii, dosahujete čtvrtletních výplat a reinvestujete je zpět do původní kategorie nebo do nové. Za 3–5 let běžné reinvestice a diverzifikace napříč kategoriemi budujete diverzifikované portfolio směrem k milionu. Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.
 
 ---
 
-## Q4: Jaký je reálný výnos po zdanění?
+## Q4: Jak přesně probíhají čtvrtletní výplaty?
 
-```
-Cílový výnos je 8–12 % p.a. (před zdaněním).
-
-Zdanění závisí na Vaší konkrétní situaci:
-  · Fyzická osoba: příjem z kapitálového majetku,
-    typicky 15 % srážková daň
-  · Právnická osoba: součást základu daně z příjmů (21 %)
-
-Příklad (fyzická osoba, 10 % cílový výnos):
-  Hrubý výnos:    10,0 % p.a.
-  Daň (15 %):     −1,5 %
-  Čistý výnos:    ~8,5 % p.a.
-
-⚠️ Daňové zacházení závisí na individuálních okolnostech
-a může se měnit. Doporučujeme konzultaci s daňovým poradcem.
-```
+Výplaty se uskutečňují čtyřikrát ročně — březen, červen, září a prosinec, vždy do 5. pracovního dne měsíce. Automatický bankovní transfer probíhá bez Vaší účasti. Výplata je vypočítána proporcionálně k Vaší investované částce a cílovému výnosu kategorie, ze které peníze pocházejí. Spolu s výplatou obdržíte čtvrtletní report s detailem: kde jsou Vaše aktiva uložena, jejich aktuální stav a rizikový profil. Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích.
 
 ---
 
-## Q5: Mohu investici předčasně ukončit?
+## Q5: Co se stane, když chci svou investici zrušit dříve, než vyprší termín?
 
-```
-Vaše investice má smluvní dobu 1–3 roky (dle zvoleného projektu).
-Jedná se o méně likvidní investici.
-
-Předčasné ukončení je možné dohodou s Movito.
-Podmínky (včetně případných nákladů) jsou definovány
-v investiční smlouvě.
-
-Doporučení: Investujte pouze prostředky, které nebudete
-potřebovat po dobu trvání investice.
-```
+Termín výstupu se liší dle kategorie. Nemovitosti obvykle vyžadují čekání na sekundárního kupce (4–12 měsíců). Drahé kovy lze likvidovat rychleji (2–4 týdny), Krypto ještě rychleji (v řádu dní). Podíly ve firmách mají nejdélejší dobu vázanosti (10–15 let), zatímco Bateriová úložiště se pohybují uprostřed (3–5 let). Předčasný výstup z méně likvidních kategorií může být spjat se slevou od tržní ceny. Doporučujeme investovat pouze prostředky, které nebudete potřebovat do plánovaného konce smluvního období.
 
 ---
 
-## Q6: Je to regulováno? Má Movito licenci ČNB?
+## Q6: Jaké jsou největší rizika u krypto? Není to jen hazard?
 
-```
-[DOPLNIT DLE PRÁVNÍHO STANOVISKA]
-
-Movito Group s.r.o. (IČ: 06124186) je [přesný regulatorní
-status — registrovaný/licencovaný/vyňatý].
-
-[Pokud licence existuje:]
-Registrace/licence č. [číslo] u České národní banky.
-
-[Pokud neexistuje licence:]
-Movito operuje v rámci [právní základ — např. výjimka
-pro kvalifikované investory, smlouvy o půjčce apod.].
-
-Právní dohled zajišťuje [advokátní kancelář].
-```
+Kryptoaktiva mohou zcela nebo zčásti ztratit svou hodnotu, nejsou regulována jako tradiční finanční nástroje a nejsou kryta systémem pojištění vkladů. Movito však zmírňuje tato rizika několika mechanismy: digitální aktiva jsou uložena u kvalifikovaného depozitáře (CASP-licencovaný pod MiCA), máme pojistné krytí pro uchovávané tokeny a konzervativně alokujeme pouze 10–15 % typického portfolia do Krypta jako diverzifikační komponentu. Krypto by v Movito nikdy nemělo být Vaší dominantní pozicí — je to dlouhodobý hedge a přístup k inovačnímu kapitálu.
 
 ---
 
-## Q7: Pro koho je tato investice vhodná?
+## Q7: Jak MiCA regulace ovlivňuje investice do krypta u Movito?
 
-```
-Investice do nemovitostních projektů přes Movito je vhodná
-pro investory, kteří:
-
-  ✓ Mají k dispozici min. 500 tis. Kč na 1–3 roky
-  ✓ Hledají vyšší výnos než u bankovních vkladů
-  ✓ Preferují zajištění reálným majetkem
-  ✓ Chtějí pravidelný čtvrtletní příjem
-  ✓ Nechtějí se starat o správu nemovitostí
-  ✓ Rozumí tomu, že vyšší výnos je spojen s vyšším rizikem
-
-Není vhodné pro investory, kteří:
-  ✗ Potřebují okamžitý přístup k prostředkům
-  ✗ Nemohou si dovolit žádnou ztrátu jistiny
-  ✗ Hledají pojištěné vklady s nulovou volatilitou
-```
+MiCA (Markets in Crypto Assets Regulation — Nařízení EU 2023/1114) se uplatňuje od prosince 2024 a stanovuje přísné požadavky na všechny poskytovatele kryptoasset služeb. Movito využívá depozitáře schválené jako CASP (Crypto Asset Service Provider) dle MiCA, což znamená regulované skladování a pojistné krytí. Všem klientům jsou povinně sdělena rizika krypta (viz výše), v souladu s MiCA Art. 7. Navíc splňujeme požadavky AML/KYC (zákon č. 253/2008 Sb.) — vaše identity budou ověřeny a příslušné orgány upozorněny na podezřelé transakce.
 
 ---
 
-## Q8: Jak se Movito liší od P2P platforem a nemovitostních fondů?
+## Q8: Musím být kvalifikovaný investor dle ZISIF §272?
 
-```
-P2P platformy:
-  · Typicky automatizované — algoritmus vybírá projekty za Vás
-  · Často vyšší LTV (až 80 %)
-  · Nízký minimální vstup (od 100–5 000 Kč)
-  · Masový přístup — tisíce investorů, žádný osobní kontakt
-
-Nemovitostní fondy:
-  · Nevíte přesně, které nemovitosti fond vlastní
-  · Poplatky (vstupní, správcovské) snižují výnos
-  · Diverzifikace, ale bez transparentnosti
-
-Movito:
-  · Osobní přístup — dedikovaný investiční asistent
-  · Vidíte konkrétní nemovitost zajišťující Vaši investici
-  · Konzervativnější LTV (50–70 %)
-  · Výběr projektů — Vy schvalujete, kam peníze jdou
-  · Vyšší minimální vstup (500 tis. Kč) — není to masový produkt
-```
+Movito nabízí investice kvalifikovaným investorům dle § 272(1)(h) zákona č. 240/2013 Sb. (ZISIF). Znamená to, že před uzavřením smlouvy budete muset prokázat patřičné znalosti a zkušenosti s investicemi. Naše webová aplikace Vám umožní vyplnit informativní prohlášení, ale skutečnou právní deklaraci o kvalifikaci zpracujeme během osobního onboardingu se Vaším poradcem. To zajistí, že skutečně rozumíte rizikům a že Vaší investice splňuje regulatorní požadavky.
 
 ---
 
-## Q9: Jak probíhá výplata výnosů?
+## Q9: Kde fyzicky jsou mé peníze? Co když Movito zbankrotuje?
 
-```
-Výnosy se vyplácejí čtvrtletně, vždy do 5. pracovního dne:
-  · Březen
-  · Červen
-  · Září
-  · Prosinec
-
-Výplata probíhá automatickým převodem na Váš bankovní účet.
-Spolu s výplatou obdržíte čtvrtletní report s přehledem
-o stavu Vašeho portfolia.
-```
+Fyzické umístění se liší dle kategorie a je součástí transparentnosti naší platformy. Nemovitosti existují fyzicky v katastru nemovitostí a jsou zajištěny zástavním právem jménem Vás. Drahé kovy jsou uloženy u certifikovaného externího depozitáře (např. Brinks). Bateriová úložiště je vlastněno prostřednictvím SPV (speciální účelové společnosti) se zápisem v obchodním rejstříku. Krypto je drženo u kvalifikovaného CASP depozitáře se samostatným pojistným krycím. Podíly ve firmách jsou zajištěny zástavním právem na akciích a smlouvou o pojistce. Crucially: SPV struktura izoluje Vaše konkrétní aktiva od Movito Group s.r.o. jako právnické osoby — i kdyby matka zbankrotovala, Vaše aktiva zůstanou v SPV vlastnictví.
 
 ---
 
-## Q10: Mohu investovat jako firma (právnická osoba)?
+## Q10: Jak zpracováváte moje osobní data? GDPR?
 
-```
-Ano. Investovat mohou jak fyzické, tak právnické osoby.
-Pro právnické osoby platí odlišné daňové podmínky
-(konzultujte s Vaším daňovým poradcem).
+Movito Group s.r.o. (IČO: 06124186) je správcem Vašich osobních údajů v souladu s GDPR (Nařízením EU 2016/679). Všechna data — jméno, adresa, bankovní informace, daňové údaje — jsou zpracovávána výhradně pro účely správy investice, plnění smlouvy a splnění právních povinností. Máte právo na přístup, opravu, výmaz nebo přenositelnost údajů. V případě jakýchkoliv otázek ohledně GDPR kontaktujte privacy@movito.cz. Údaje nejsou předávány třetím stranám bez Vašeho výslovného souhlasu, pokud to nevyžaduje zákon (např. finanční úřad, ČNB).
 
-Smluvní dokumentace je připravena pro oba typy investorů.
-```
+---
+
+END OF 09-FAQ.MD

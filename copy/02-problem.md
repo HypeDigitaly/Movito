@@ -5,93 +5,46 @@
 ## Nadpis sekce
 
 ```
-Kde dnes opravdu zhodnotíte svůj kapitál?
+Proč si HNWI investoři volí Movito místo DIY přístupu?
 ```
 
 ---
 
-## Problem Block 1: Bankovní vklady
+## Problem Card 1: Fragmentation
 
-```
-Spořicí účet Vám dnes nabídne 3–4 % ročně.
+### Dvanáct účtů. Čtvero brokerů. Jeden headache.
 
-Zní to bezpečně. Ale podívejte se na čísla:
+Máte akcie u jednoho brokera, nemovitostní fond u druhého, kryptoměny v peněžence, drahé kovy v trezoru, podíl ve startupě na papíru v trezoru u právníka. Každou platformu hlídáte jinak, hesla si zapisujete do tabulky, výkazy dostáváte v odlišných formátech. Když spočítáte, jaký je Váš celkový výnos, musíte manuálně agregovat data ze čtyř zdrojů. Když chcete vidět diverzifikaci a riziko, je to cross-asset selhání.
 
-  · Rok 2023: inflace 10,7 %, banka 5 % → reálná ztráta −5,7 %
-  · Rok 2024: inflace 2,8 %, banka 4 % → reálný zisk +1,2 %
-  · Rok 2025: inflace 2,4 %, banka 3,5 % → reálný zisk +1,1 %
-
-Z 10 mil. Kč na spořicím účtu Vám po odečtení inflace
-zbývá přírůstek asi 100 tis. Kč ročně.
-
-Je to dost?
-```
+Movito je jedinou platformou, kde spravujete 5 investičních kategorií, vidíte agregované výnosy a máte jednoho asistenta na telefonu. Jeden login. Jeden přehled. Jeden poradce.
 
 ---
 
-## Problem Block 2: Investiční nemovitosti (přímé vlastnictví)
+## Problem Card 2: Hidden Fees & Opacity
 
-```
-Koupíte byt za 5 mil. Kč v Praze. Pronajmete ho.
+### Slibují 10 %. Dosáhnete na 7 %.
 
-Realita za 12 měsíců:
+Vstupní poplatky, správní poplatky, poplatky za výstup, entry/exit spreads, fondy, jejichž výklady čtete v obtížně dostupných prospektech a nikdy zcela neporozumíte, kam přesně peníze jdou. Když si sečtete všechny náklady, které Vám nějaký čas trvá vypátrat, zjistíte, že čtvrtina Vašeho potenciálního výnosu zmizela v gebyrích, které Vám nikdo jasně neřekl dopředu.
 
-  · Hrubý nájemní výnos: 3–4 % (150–200 tis. Kč ročně)
-  · Minus: daň z příjmu, pojištění, údržba, fond oprav
-  · Minus: měsíc bez nájemníka = −15 tis. Kč
-  · Minus: neplánovaná oprava (kotel, okna) = −40–80 tis. Kč
-  · Minus: Váš čas na správu, komunikaci, řešení problémů
-
-Čistý výnos po nákladech: 1,5–2,5 % ročně.
-Z 10 mil. Kč: asi 150–250 tis. Kč.
-
-Plus desítky hodin Vašeho času, který nemá cenu.
-```
+U Movito vidíte všechny náklady dopředu, nemáme skryté poplatky a čtvrtletně Vám hlásíme přesnou částku, kterou Vám investice vydělala. Bez překvapení. Bez tabulkových her.
 
 ---
 
-## Problem Block 3: Fondy, ETF, akcie
+## Problem Card 3: Time Drain & Operational Hell
 
-```
-Akciové fondy nabízejí historicky 6–10 % ročně.
+### Vlastníte asset. Vlastník vlastní Vás.
 
-Ale:
-  · Rok 2022: S&P 500 −19 %. Český PX −15 %.
-  · Výnos není pravidelný — jeden rok +20 %, druhý −15 %.
-  · Nemáte žádnou kontrolu nad tím, kam přesně peníze jdou.
-  · Výplata výnosů: typicky 1× ročně, nebo vůbec (reinvestice).
+Vlastník bytu řeší nájemníky, opravy, pojištění, správu. Vlastník startup podílu se objevuje na shareholder meetings a podepisuje dokumenty. Vlastník krypto se kouká na GitHub, přemýšlí o market dumpech a nemůže spát. Vlastník nemovitostního projektu vede refinancování s bankou, řeší stavbyvedoucího a termíny. Za každou investici operativa, kterou v životě nechcete řešit.
 
-Pro podnikatele, kteří potřebují pravidelný cash flow
-a transparentnost, to často není řešení.
-```
-
----
-
-## Problem Block 4: Krypto
-
-```
-Kryptoměny přinesly některým lidem mimořádné výnosy.
-A jiným mimořádné ztráty.
-
-  · Bitcoin 2021→2022: −65 %
-  · Bitcoin 2023→2024: +155 %
-
-Pokud hledáte předvídatelný čtvrtletní příjem
-zajištěný reálným majetkem — krypto tuto roli neplní.
-```
+U Movito si vyberete investici jednou, pak čtvrtletně dostáváte report a výnos. Žádná operativa.
 
 ---
 
 ## Bridge (přechod k řešení)
 
 ```
-Hledáte investici, která kombinuje:
+Hledáte místo, kde si vyberete investici jednou a dál se o nic nestaráte?
 
-  ✓  Výnos výrazně převyšující banku
-  ✓  Zajištění reálným majetkem (ne daty na obrazovce)
-  ✓  Pravidelné čtvrtletní výplaty
-  ✓  Žádnou operativní správu z Vaší strany
-  ✓  Transparentnost — víte přesně, kde jsou Vaše peníze
-
+Pět kurátorovaných kategorií, jeden osobní poradce, čtvrtletní výplaty.
 Přesně to nabízí Movito.
 ```
