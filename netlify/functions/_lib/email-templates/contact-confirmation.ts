@@ -56,7 +56,7 @@ export function contactConfirmationEmail(data: {
 
     <!-- Priority contact -->
     <p style="margin:0 0 32px 0;font-family:${FONT_BODY};font-size:14px;line-height:1.7;color:${COLOR_TEXT};">
-      Potřebuješ se nám ozvat dřív? Napiš nám prioritně na <a href="mailto:info@milionovainvestice.cz" style="color:${COLOR_GOLD};text-decoration:none;font-weight:600;">info@milionovainvestice.cz</a> a ozveme se rychleji.
+      Potřebuješ se nám ozvat dřív? Napiš nám prioritně na <a href="mailto:info@milionova-investice.cz" style="color:${COLOR_GOLD};text-decoration:none;font-weight:600;">info@milionova-investice.cz</a> a ozveme se rychleji.
     </p>
 
     <!-- Divider -->

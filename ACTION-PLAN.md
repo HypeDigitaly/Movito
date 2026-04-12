@@ -135,7 +135,7 @@ Aktualizovat tez `og:description` a `twitter:description`.
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+420603865865",
-    "email": "info@milionovainvestice.cz",
+    "email": "info@milionova-investice.cz",
     "contactType": "customer service",
     "availableLanguage": "cs"
   },
