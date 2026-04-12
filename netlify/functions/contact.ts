@@ -195,19 +195,24 @@ export default async function handler(request: Request): Promise<Response> {
     const { data } = validation;
 
     // ── Step 8 — Build emails ──────────────────────────────
-    const createdAt   = new Date().toISOString();
-    const senderEmail = `Milionová Investice <${senderAddr}>`;
+    // Server-generated timestamp: canonical, tamper-proof record of when the
+    // server accepted and processed the consent.  The client-supplied value
+    // (consent_timestamp_client) is retained as supplementary information only.
+    const consent_timestamp = new Date().toISOString();
+    const createdAt         = consent_timestamp; // reuse the same instant
+    const senderEmail       = `Milionová Investice <${senderAddr}>`;
 
     const confirmation = contactConfirmationEmail({ name: data.name });
     const notification = contactNotificationEmail({
-      name:                   data.name,
-      email:                  data.email,
-      phone:                  data.phone,
-      investment_amount:      data.investment_amount,
-      form_location:          data.form_location,
-      consent_timestamp:      data.consent_timestamp,
-      category:               data.category,
-      qualified_investor_ack: data.qualified_investor_ack,
+      name:                     data.name,
+      email:                    data.email,
+      phone:                    data.phone,
+      investment_amount:        data.investment_amount,
+      form_location:            data.form_location,
+      consent_timestamp,                          // server-generated (authoritative)
+      consent_timestamp_client: data.consent_timestamp_client, // client-supplied (supplementary)
+      category:                 data.category,
+      qualified_investor_ack:   data.qualified_investor_ack,
       createdAt,
     });
 

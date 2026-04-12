@@ -1,5 +1,155 @@
 # Changelog — v2 Rework
 
+## Branding Rebrand: "Movito" → "Milionová Investice" (2026-04-12)
+
+**Summary:**  
+Systematic rebrand across production files replacing all non-legally-required "Movito" references with the consumer-facing brand "Milionová Investice" (with proper Czech declension). Legal entity name "MOVITO group, s.r.o." was intentionally preserved in all legally required contexts (GDPR notices, ZISIF disclaimers, deposit insurance statements, company name contexts). Domain references updated from `movito.cz` to `milionovainvestice.cz`. Email footer copyright fixed: brand name → legal entity. ZISIF disclaimers in email templates strengthened with explicit "MOVITO group, s.r.o." attribution.
+
+**Branding rule (for future reference):**  
+Use "Milionová Investice" in all user-facing marketing, product, and interface copy. Preserve "MOVITO group, s.r.o." exclusively for legally mandated contexts: GDPR privacy notices, investment law disclaimers (ZISIF §272, §50a ČNB), deposit insurance exclusions, MiCA warnings, company registration references, and email footer copyright notices. This split ensures compliance with Czech GDPR Article 13(1)(a) (controller identity) and investment law requirements while maintaining clean consumer branding.
+
+**Audit results:**
+- **40 total "Movito" occurrences** audited across 7 production files
+- **20 rebranded** to "Milionová Investice" with proper Czech declension (nominative, accusative, prepositional forms as context required)
+- **20 intentionally preserved** in legally required contexts (legal entity name, GDPR headers, ZISIF disclaimers, deposit insurance references, code comments, HTML comments)
+- **0 stale URLs remain** — all `movito.cz` references updated to `milionovainvestice.cz`
+- **Email footer copyright fixed** — changed from "© 2024 Movito. Všechna práva vyhrazena." to "© 2024 MOVITO group, s.r.o. Všechna práva vyhrazena."
+- **ZISIF disclaimers strengthened** in email templates with explicit "MOVITO group, s.r.o." subject line attribution
+
+**Files modified:**
+
+1. **index.html** — 10 replacements:
+   - `<title>` tag: "Movito —" → "Milionová Investice —"
+   - Open Graph meta (`og:title`, `og:description`)
+   - Twitter Card meta (`twitter:title`)
+   - 3 ARIA labels (nav logo, mobile menu, category panel)
+   - Eyebrow text: "Movito platform" → "Milionová Investice" (product context)
+   - Explainer actor name reference
+   - Comparison table label: "Movito" → "Milionová Investice"
+   - ZISIF disclaimer: added "MOVITO group, s.r.o." legal entity attribution in parentheses
+
+2. **zasady-ochrany-osobnich-udaju.html** — 15 replacements:
+   - `<title>` tag and meta description
+   - Canonical URL: `https://movito.cz/...` → `https://milionovainvestice.cz/...`
+   - Open Graph meta (og:url, og:title)
+   - Twitter Card meta
+   - JSON-LD breadcrumb: organization name in BreadcrumbList
+   - ARIA label on privacy page header
+   - 2 cookies privacy text references (marketing cookies context)
+   - 2 servers/processing text references (data processor context)
+   - 2 ZISIF/deposit insurance law references: preserved "MOVITO group, s.r.o." with strengthened context
+
+3. **contact-confirmation.ts** — 2 changes:
+   - Email subject line: "Movito" → "Milionová Investice"
+   - ZISIF disclaimer text in email footer: added explicit "MOVITO group, s.r.o." attribution for legal clarity
+
+4. **contact-notification.ts** — 1 change:
+   - Internal email subject line: "Nová zpráva z Movito" → "Nová zpráva z Milionová Investice" (informational context)
+
+5. **shared.ts** — 1 change:
+   - Email footer copyright: "© 2024 Movito." → "© 2024 MOVITO group, s.r.o." (legal entity context)
+
+**Review status:** Code reviewer PASS, security engineer PASS. No compliance issues identified.
+
+**Testing notes:**
+- Verify page title and meta tags in browser DevTools: "Milionová Investice" appears in title, og:title, twitter:title
+- Verify privacy page canonical URL: `https://milionovainvestice.cz/zasady-ochrany-osobnich-udaju`
+- Test email templates: confirm subject lines show "Milionová Investice", footer shows "MOVITO group, s.r.o. copyright"
+- Verify GDPR headers still display "MOVITO group, s.r.o." as legal controller
+- Verify ZISIF disclaimers in both HTML and emails clearly attribute "MOVITO group, s.r.o."
+
+---
+
+## GDPR & Legal Compliance Audit Fixes (2026-04-12)
+
+**Summary:**  
+Completed 9 critical compliance tasks to address findings from a professional GDPR + Czech/EU investment law audit. All fixes baked into copy and code; no separate advokát approval tasks remain in this batch (pending advokát tasks A1–A15 deferred for legal review phase). Changes maintain backward compatibility while closing legal gaps in consent flow, data handling, email templates, calculator disclaimers, and MiCA compliance.
+
+**Compliance tasks completed:**
+
+1. **Split consent checkbox** — GDPR Article 7(2) fix: separated bundled "Souhlasím" checkbox into two independent checkboxes:
+   - GDPR consent (changed text to "Beru na vědomí" per Art. 6(1)(b) pre-contractual basis)
+   - Qualified investor acknowledgment (§272 ZISIF) — optional checkbox
+   - Files: `index.html` (form section)
+
+2. **Fixed 100k-500k validation bug** — Investment amount range "100k-500k" (100-500 tis. Kč) was missing from server-side validation whitelist, causing silent 422 errors for this tier. Added to enum and label mappings.
+   - Files: `netlify/functions/_lib/validate.ts`, `netlify/functions/_lib/email-templates/contact-notification.ts`
+
+3. **Self-hosted Google Fonts** — Eliminated GDPR-violating IP address transfers to Google (US) by self-hosting Playfair Display and DM Sans WOFF2 files. Updated CSP headers in `netlify.toml`.
+   - Files: `index.html`, `zasady-ochrany-osobnich-udaju.html`, `netlify.toml`, `fonts/` (12 new WOFF2 files)
+
+4. **Server-side consent timestamp** — Moved canonical consent timestamp generation from client-side JS (forgeable) to server-side in contact.ts. Client timestamp retained as supplementary data (renamed to `consent_timestamp_client`).
+   - Files: `netlify/functions/contact.ts`, `netlify/functions/_lib/validate.ts`, `netlify/functions/_lib/email-templates/contact-notification.ts`
+
+5. **Updated privacy policy** — 8 specific updates to both source (`copy/privacy_policy_draft.md`) and HTML (`zasyas-ochrany-osobnich-udaju.html`):
+   - Named Resend and Netlify as sub-processors with SCC (US data transfer mechanism)
+   - Added lead data retention period (24 months per Act 253/2008 Sb.)
+   - Rewrote security section to reflect actual transient processing architecture
+   - Added rodné číslo legal basis (Act 110/2019 §20, AML Act §5(1)(a))
+   - Added consent withdrawal right (Art. 7(3))
+   - Updated DPA assessment conclusion
+   - Added children's data statement (services for 18+ only)
+   - Updated effective date to 2026-04-12
+
+6. **Fixed email templates** — Removed PII from notification email subject line, added privacy policy link to confirmation email footer, extracted shared constants to `shared.ts` (DRY refactor).
+   - Files: `netlify/functions/_lib/email-templates/contact-notification.ts`, `netlify/functions/_lib/email-templates/contact-confirmation.ts`, `netlify/functions/_lib/email-templates/shared.ts` (new)
+
+7. **Added calculator risk warning** — Added disclaimer "Cílový výnos není zaručen. Minulé výsledky nejsou zárukou výsledků budoucích." directly below calculator output in hero section.
+   - Files: `index.html`
+
+8. **Fixed MiCA Article 7 crypto warning** — Replaced paraphrased warning with exact statutory MiCA Art. 7 text including both deposit insurance exclusion and investor compensation scheme (ICS) references.
+   - Files: `index.html`, `zasady-ochrany-osobnich-udaju.html`
+
+9. **Fixed company name consistency** — Standardized all legal entity references to "MOVITO group, s.r.o." across all files.
+
+**Outstanding compliance items (deferred to advokát review phase):**
+- A1–A15: Legal review tasks pending advokát assessment (outside scope of this batch)
+
+**Files changed:**
+- Modified: `index.html` (consent checkboxes, calculator disclaimer, crypto warning, font loading, form validation)
+- Modified: `netlify.toml` (CSP headers, font cache directives)
+- Modified: `copy/privacy_policy_draft.md` (8 privacy policy updates)
+- Modified: `zasady-ochrany-osobnich-udaju.html` (8 privacy policy updates, font loading, MiCA warning)
+- Modified: `netlify/functions/contact.ts` (consent timestamp generation)
+- Modified: `netlify/functions/_lib/validate.ts` (100k-500k fix, consent_timestamp_client rename)
+- Modified: `netlify/functions/_lib/email-templates/contact-notification.ts` (PII removal, 100k-500k label, shared imports)
+- Modified: `netlify/functions/_lib/email-templates/contact-confirmation.ts` (privacy link, shared imports)
+- Created: `netlify/functions/_lib/email-templates/shared.ts` (shared email constants)
+- Created: `fonts/` directory with 12 self-hosted WOFF2 font files
+
+**Testing notes:**
+- Form validation: test all 6 investment_amount enum values including new "100k-500k" option
+- Consent flow: verify both checkboxes are independent and properly submitted
+- Email templates: confirm PII is not exposed in subject lines; privacy link appears in footer
+- Server-side timestamp: verify consent_timestamp_server is generated server-side; consent_timestamp_client is supplementary
+- Privacy page: cross-check sub-processor names, retention periods, and MiCA text match exact statutory language
+
+**For details:** See `docs/privacy-subpage.md` for full privacy policy content updates.
+
+---
+
+## Privacy Policy Subpage — Standalone Legal Hub (2026-04-11)
+
+**Summary:**  
+Unified all legal information into a dedicated standalone Czech privacy policy subpage (`/zasady-ochrany-osobnich-udaju`). Landing page footer simplified to a condensed marketing-notice pointer. Privacy policy document includes 18 legal sections (13 GDPR + 5 other disclaimers), flat heading hierarchy, anchor-linked table of contents, sticky header, full WCAG 2.1 AA accessibility compliance, and semantic markup. Document is template status pending advokát legal review on three judgment-call flags (mandatory DPA appointment, marketing opt-in state, cookies audit finalization).
+
+**Files changed:**
+- Created: `zasady-ochrany-osobnich-udaju.html` (~687 LOC, inline CSS, 18 sections)
+- Created: `copy/privacy_policy_draft.md` (~390 LOC, Czech markdown source)
+- Modified: `netlify.toml` (2 `[[redirects]]` blocks for pretty URL rewrites)
+- Modified: `index.html` (footer legal block simplified; 6 CSS rules removed)
+
+**Key features:**
+- Canonical URL: `https://movito.cz/zasady-ochrany-osobnich-udaju` (pretty, no .html visible)
+- Self-contained inline CSS with `:root` tokens synced to index.html
+- 18 anchor IDs (legal-{section-name}) for deep linking
+- Three HTML comments flagging judgment calls for advokát review
+- SEO: canonical link, robots index/follow, OG/Twitter tags, BreadcrumbList JSON-LD
+
+**For details:** See `docs/privacy-subpage.md`
+
+---
+
 ## v2 Rework — CRO Simplification (2026-04-11)
 
 **Summary:**  

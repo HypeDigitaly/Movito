@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zásady ochrany osobních údajů — Milionová Investice</title>
+  <meta name="description" content="Zásady ochrany osobních údajů a právní informace Milionové Investice (MOVITO group, s.r.o.) — jak zpracováváme osobní údaje dle GDPR, regulační status, AML zásady a práva subjektů údajů.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://milionovainvestice.cz/zasady-ochrany-osobnich-udaju">
+
+  <meta property="og:title" content="Zásady ochrany osobních údajů — Milionová Investice">
+  <meta property="og:description" content="Zásady ochrany osobních údajů a právní informace Milionové Investice (MOVITO group, s.r.o.)">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://milionovainvestice.cz/zasady-ochrany-osobnich-udaju">
+  <meta property="og:image" content="https://milionovainvestice.cz/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:site_name" content="Milionová Investice">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Zásady ochrany osobních údajů — Milionová Investice">
+  <meta name="twitter:description" content="Zásady ochrany osobních údajů a právní informace Milionové Investice (MOVITO group, s.r.o.)">
+  <meta name="twitter:image" content="https://milionovainvestice.cz/og-image.jpg">
+
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/dm-sans-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-display-latin.woff2" crossorigin>
+  <!-- Fonts (self-hosted — no Google CDN requests, GDPR compliant) -->
+  <style>
+    /* DM Sans — italic, latin-ext */
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/dm-sans-italic-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    /* DM Sans — italic, latin */
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/dm-sans-italic-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    /* DM Sans — normal 300–700, latin-ext */
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url('/fonts/dm-sans-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    /* DM Sans — normal 300–700, latin */
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+      src: url('/fonts/dm-sans-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    /* Playfair Display — normal 400–900, cyrillic */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400 900;
+      font-display: swap;
+      src: url('/fonts/playfair-display-cyrillic.woff2') format('woff2');
+      unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+    /* Playfair Display — normal 400–900, vietnamese */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400 900;
+      font-display: swap;
+      src: url('/fonts/playfair-display-vietnamese.woff2') format('woff2');
+      unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+    }
+    /* Playfair Display — normal 400–900, latin-ext */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400 900;
+      font-display: swap;
+      src: url('/fonts/playfair-display-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    /* Playfair Display — normal 400–900, latin */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400 900;
+      font-display: swap;
+      src: url('/fonts/playfair-display-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    /* Playfair Display — italic 400, cyrillic */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/playfair-display-italic-cyrillic.woff2') format('woff2');
+      unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+    /* Playfair Display — italic 400, vietnamese */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/playfair-display-italic-vietnamese.woff2') format('woff2');
+      unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+    }
+    /* Playfair Display — italic 400, latin-ext */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/playfair-display-italic-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    /* Playfair Display — italic 400, latin */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/playfair-display-italic-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+
+  <!-- JSON-LD BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Milionová Investice", "item": "https://milionovainvestice.cz/"},
+      {"@type": "ListItem", "position": 2, "name": "Zásady ochrany osobních údajů", "item": "https://milionovainvestice.cz/zasady-ochrany-osobnich-udaju"}
+    ]
+  }
+  </script>
+
+  <style>
+  /* Tokens must match index.html :root — keep in sync. Source: index.html:24–67 */
+  :root {
+      --bg-darkest: #FAFAF7;
+      --bg-dark: #F4F3EE;
+      --bg-medium: #ECEAE3;
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #FDFCF9;
+      --bg-elevated: #FFFFFF;
+      --gold-600: #7A5E0A;
+      --gold-500: #96730F;
+      --gold-400: #A98215;
+      --gold-300: #BF961F;
+      --gold-200: #7A5E0A;
+      --gold-100: #5C4708;
+      --gold-glow: rgba(150, 115, 15, 0.18);
+      --cream: #FAF5E8;
+      --cream-dark: #F0E8D0;
+      --white: #FFFFFF;
+      --text-white: #1C1B17;
+      --text-light: #3D3C36;
+      --text-muted: #58574F;
+      --text-dim: #9C9B92;
+      --green-accent: #16A34A;
+      --red-accent: #DC2626;
+
+      --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.03);
+      --shadow-card-hover: 0 4px 24px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.04);
+      --shadow-gold: 0 4px 24px rgba(150, 115, 15, 0.18);
+      --shadow-gold-lg: 0 8px 40px rgba(150, 115, 15, 0.25);
+      --shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.06);
+
+      --gold-interactive: #6B5009;
+      --strip-h: 40px;
+
+      --z-sticky: 998;
+      --z-nav: 1000;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-light);
+    background: var(--bg-darkest);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--gold-500); color: #000;
+    padding: 12px 20px; z-index: 1000;
+    text-decoration: none; font-weight: 600;
+  }
+  .skip-link:focus { left: 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .container--narrow { max-width: 740px; }
+
+  .legal-header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg-darkest);
+    border-bottom: 1px solid rgba(166, 124, 26, 0.10);
+    height: 64px;
+    display: flex; align-items: center;
+  }
+  .legal-header .container {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%;
+  }
+  .legal-header__logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+
+  /* Source: index.html:262–295 */
+  .nav__logo-mark {
+      width: 44px;
+      height: 44px;
+      background:
+          radial-gradient(circle at 32% 28%, #FBF4D9 0%, #E8D48B 30%, #C9A84C 62%, #7A5E0A 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: #3D2A04;
+      font-weight: 700;
+      box-shadow:
+          inset 0 0 0 1.4px rgba(251, 244, 217, 0.95),
+          inset 0 0 0 2.4px rgba(92, 71, 8, 0.38),
+          inset 0 -3px 8px rgba(92, 71, 8, 0.25),
+          inset 0 2px 6px rgba(251, 244, 217, 0.55),
+          0 4px 16px rgba(150, 115, 15, 0.35),
+          0 1px 3px rgba(92, 71, 8, 0.25);
+      position: relative;
+  }
+  .nav__logo-mark svg {
+      width: 44px;
+      height: 44px;
+  }
+
+  .nav__logo-text {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: var(--gold-600);
+  }
+
+  .legal-header__back {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .legal-header__back:hover { color: var(--gold-500); }
+  .legal-header__back-icon { display: none; }
+
+  .legal-hero {
+    background: var(--bg-dark);
+    padding: 72px 0 56px;
+  }
+  .legal-hero__kicker {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin: 0 0 16px;
+  }
+  .legal-hero h1 {
+    font-family: var(--font-display);
+    font-size: 44px;
+    line-height: 1.12;
+    font-weight: 500;
+    color: var(--text-white);
+    margin: 0 0 12px;
+  }
+  .legal-hero__meta {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin: 0;
+  }
+  .legal-hero__meta time { color: inherit; }
+  .legal-hero__rule {
+    width: 80px;
+    height: 2px;
+    background: var(--gold-400);
+    margin-top: 20px;
+  }
+
+  .legal-toc {
+    background: var(--bg-card);
+    border: 1px solid rgba(150, 115, 15, 0.12);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 56px 0;
+  }
+  .legal-toc__label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 0 0 16px;
+  }
+  .legal-toc__group {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--text-light);
+    margin: 20px 0 8px;
+    font-weight: 500;
+  }
+  .legal-toc__group:first-of-type { margin-top: 0; }
+  .legal-toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .legal-toc li {
+    padding: 8px 0 8px 12px;
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .legal-toc li:hover { border-left-color: var(--gold-400); }
+  .legal-toc a {
+    font-size: 15px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .legal-toc a:hover { color: var(--gold-500); }
+
+  .legal-marketing-notice {
+    background: var(--cream-dark);
+    border: 1px solid rgba(150, 115, 15, 0.18);
+    border-left: 3px solid var(--gold-400);
+    padding: 16px 20px;
+    margin: 40px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    border-radius: 4px;
+  }
+  .legal-marketing-notice strong { color: var(--text-light); }
+
+  .legal-body { padding: 24px 0 80px; }
+  .legal-body__part-label {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-white);
+    margin: 40px 0 32px;
+  }
+  .legal-body__part-label:first-child { margin-top: 0; }
+  .legal-body section {
+    scroll-margin-top: 96px;
+    margin-bottom: 48px;
+  }
+  .legal-body h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--text-white);
+    margin: 0 0 24px;
+  }
+  .legal-body p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    max-width: 68ch;
+    margin: 0 0 20px;
+  }
+  .legal-body ul, .legal-body ol {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    max-width: 68ch;
+    padding-left: 24px;
+    margin: 0 0 20px;
+  }
+  .legal-body li { margin-bottom: 8px; }
+  .legal-body a {
+    color: var(--gold-500);
+    text-decoration: underline;
+  }
+  .legal-body a:hover { color: var(--gold-400); }
+  .legal-body strong { color: var(--text-light); }
+
+  hr.legal-divider {
+    border: none;
+    border-top: 1px solid rgba(150, 115, 15, 0.18);
+    margin: 56px 0 48px;
+  }
+  hr.legal-divider--major {
+    border-top: 1px solid rgba(150, 115, 15, 0.28);
+    margin-top: 64px;
+  }
+
+  .legal-footer {
+    background: var(--bg-medium);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 24px 0;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .legal-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .legal-footer__links {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex; gap: 16px;
+  }
+  .legal-footer a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .legal-footer a:hover { color: var(--gold-500); }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--gold-400);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection { background: var(--gold-400); color: #1C1B17; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  @media print {
+    .legal-header, .legal-toc, .legal-footer, .skip-link { display: none; }
+    .legal-hero { padding: 0 0 24px; background: transparent; }
+    body { color: #000; background: #fff; }
+    .legal-body p, .legal-body li { max-width: none; color: #000; }
+    .legal-marketing-notice {
+      border: 1px solid #000;
+      background: transparent;
+      page-break-inside: avoid;
+    }
+    .legal-body section { page-break-inside: avoid; }
+  }
+
+  @media (max-width: 1024px) {
+    .legal-hero { padding: 56px 0 40px; }
+    .container { padding: 0 32px; }
+  }
+
+  @media (max-width: 768px) {
+    .legal-hero { padding: 48px 0 40px; }
+    .legal-hero h1 { font-size: 32px; }
+    .legal-body h2 { font-size: 22px; }
+    .legal-body__part-label { font-size: 24px; }
+    .container { padding: 0 20px; }
+    .legal-toc { padding: 20px; margin: 40px 0; }
+    hr.legal-divider { margin: 40px 0 36px; }
+    .legal-footer .container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .legal-footer__links { flex-wrap: wrap; }
+  }
+
+  @media (max-width: 480px) {
+    .legal-hero__rule { display: none; }
+    .legal-header__back span:not(.sr-only) { display: none; }
+    .legal-header__back-icon { display: inline; font-size: 20px; }
+    body { overflow-wrap: break-word; }
+  }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Přeskočit na obsah</a>
+
+  <!-- Hidden SVG sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <defs>
+      <!-- Logo mark — "M" medallion: Milionová / million shorthand, embossed on a gold seal -->
+      <symbol id="logo-mark" viewBox="0 0 40 40">
+          <!-- Outer bezel ring -->
+          <circle cx="20" cy="20" r="18.6" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+          <!-- Inner bezel ring -->
+          <circle cx="20" cy="20" r="16.2" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.3"/>
+          <!-- Decorative dots at 3 & 9 o'clock (coin seal detail) -->
+          <circle cx="3.2"  cy="20" r="0.9" fill="currentColor" opacity="0.45"/>
+          <circle cx="36.8" cy="20" r="0.9" fill="currentColor" opacity="0.45"/>
+          <!-- Serif "M" monogram -->
+          <text x="20" y="29" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="26" font-weight="800" fill="currentColor">M</text>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="legal-header">
+    <div class="container">
+      <a class="legal-header__logo" href="/" aria-label="Milionová Investice — zpět na hlavní stránku">
+        <span class="nav__logo-mark">
+          <svg><use href="#logo-mark"></use></svg>
+        </span>
+        <span class="nav__logo-text">Milionová Investice</span>
+      </a>
+      <a class="legal-header__back" href="/" aria-label="Zpět na hlavní stránku">
+        <span class="legal-header__back-icon" aria-hidden="true">←</span>
+        <span>← Zpět na hlavní stránku</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="legal-hero">
+      <div class="container container--narrow">
+        <p class="legal-hero__kicker">Právní dokumenty</p>
+        <h1>Zásady ochrany osobních údajů a právní informace</h1>
+        <p class="legal-hero__meta">Účinné od: <time datetime="2026-04-12">12. dubna 2026</time></p>
+        <div class="legal-hero__rule"></div>
+      </div>
+    </div>
+
+    <div class="container container--narrow">
+      <nav class="legal-toc" aria-label="Obsah dokumentu">
+        <p class="legal-toc__label">Obsah stránky</p>
+        <p class="legal-toc__group">Zásady ochrany osobních údajů</p>
+        <ol>
+          <li><a href="#legal-spravce">1. Správce osobních údajů</a></li>
+          <li><a href="#legal-kategorie">2. Kategorie zpracovávaných údajů</a></li>
+          <li><a href="#legal-ucely">3. Účely zpracování</a></li>
+          <li><a href="#legal-pravni-zaklad">4. Právní základ zpracování</a></li>
+          <li><a href="#legal-uchovavani">5. Doba uchovávání údajů</a></li>
+          <li><a href="#legal-prijemci">6. Příjemci údajů a zpracovatelé</a></li>
+          <li><a href="#legal-treti-zeme">7. Předávání do třetích zemí</a></li>
+          <li><a href="#legal-prava">8. Vaše práva</a></li>
+          <li><a href="#legal-cookies">9. Cookies a technologie sledování</a></li>
+          <li><a href="#legal-cl22">10. Automatizované rozhodování</a></li>
+          <li><a href="#legal-zabezpeceni">11. Zabezpečení osobních údajů</a></li>
+          <li><a href="#legal-aktualizace">12. Aktualizace těchto zásad</a></li>
+          <li><a href="#legal-kontakt">13. Kontakt pro GDPR dotazy</a></li>
+        </ol>
+        <p class="legal-toc__group">Další právní informace</p>
+        <ol>
+          <li><a href="#legal-regulace">14. Regulační status a dohled</a></li>
+          <li><a href="#legal-aml">15. AML/KYC</a></li>
+          <li><a href="#legal-pojisteni">16. Pojištění vkladů</a></li>
+          <li><a href="#legal-vynos">17. Cílový výnos</a></li>
+          <li><a href="#legal-spory">18. Mimosoudní řešení sporů</a></li>
+        </ol>
+      </nav>
+
+      <aside class="legal-marketing-notice">
+        <strong>Marketingové sdělení.</strong> Tato stránka má pouze informativní charakter a nepředstavuje investiční doporučení ani nabídku k uzavření smlouvy.
+      </aside>
+
+      <article class="legal-body">
+        <div class="legal-body__part-label">Zásady ochrany osobních údajů</div>
+
+        <section id="legal-spravce">
+          <h2>1. Správce osobních údajů</h2>
+          <p>Správcem osobních údajů ve smyslu čl.&nbsp;4 odst.&nbsp;7 Nařízení (EU) 2016/679 (GDPR) je:</p>
+          <p>
+            <strong>MOVITO group, s.r.o.</strong><br>
+            IČO: 06124186<br>
+            Sídlo: 5. května 1111/11, 140 00 Praha – Nusle<br>
+            Kanceláře: Enterprise Office Center, Pikrtova 1a, 140 00 Praha 4 – Nusle<br>
+            Telefon: +420 603 865 865<br>
+            E-mail: <a href="mailto:info@milionovainvestice.cz">info@milionovainvestice.cz</a>
+          </p>
+          <p>MOVITO group, s.r.o. posoudilo povinnost jmenování pověřence pro ochranu osobních údajů dle čl.&nbsp;37 GDPR. S ohledem na rozsah zpracování a počet subjektů údajů v současné době nepovažujeme jmenování pověřence za povinné. Toto posouzení je pravidelně přezkumáváno. V případě dotazů ohledně ochrany osobních údajů se obracejte na kontaktní údaje uvedené v sekci 13.</p>
+        </section>
+
+        <section id="legal-kategorie">
+          <h2>2. Kategorie zpracovávaných osobních údajů</h2>
+          <p>Naše služby jsou určeny výhradně osobám starším 18 let. Vědomě neshromažďujeme ani nezpracováváme osobní údaje osob mladších 18 let.</p>
+          <p>Zpracováváme následující kategorie osobních údajů:</p>
+          <ul>
+            <li><strong>Identifikační údaje:</strong> jméno, příjmení, datum narození, rodné číslo (zpracováváno na základě §20 zákona č.&nbsp;110/2019 Sb. a §5 odst.&nbsp;1 písm.&nbsp;a) zákona č.&nbsp;253/2008 Sb.), adresa trvalého pobytu, číslo průkazu totožnosti</li>
+            <li><strong>Kontaktní údaje:</strong> e-mailová adresa, telefonní číslo, korespondenční adresa</li>
+            <li><strong>Finanční a AML údaje:</strong> číslo bankovního účtu (IBAN), údaje o zdroji bohatství, PEP status (politicky exponovaná osoba), záznamy ze sankčních seznamů, majetkové poměry</li>
+            <li><strong>Technické údaje:</strong> IP adresa, informace o prohlížeči (user agent), cookie identifikátory, záznamy o návštěvách webových stránek</li>
+          </ul>
+          <p>Některé vaše údaje mohou být zpracovány také na základě informací z veřejných a třetích zdrojů, zejména ze sankčních seznamů EU dle nařízení č.&nbsp;833/2014 a z PEP databází od akreditovaných AML poskytovatelů. Zpracování těchto údajů je založeno na právní povinnosti dle čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;c) GDPR a nelze proti němu vznést námitku dle čl.&nbsp;21 GDPR.</p>
+        </section>
+
+        <section id="legal-ucely">
+          <h2>3. Účely zpracování</h2>
+          <p>Vaše osobní údaje zpracováváme pro následující účely:</p>
+          <ul>
+            <li>Uzavření a plnění smlouvy o investici</li>
+            <li>Splnění povinností dle zákona č.&nbsp;253/2008 Sb. (AML/KYC — identifikace a ověření původu majetku)</li>
+            <li>Plnění povinností vůči České národní bance a jiným dozorovým orgánům</li>
+            <li>Zajištění bezpečnosti a prevence podvodů</li>
+            <li>Zákonná archivace dokumentů a záznamů</li>
+            <li>Obrana právních nároků</li>
+          </ul>
+          <p>MOVITO group, s.r.o. v současné době nezpracovává osobní údaje pro marketingové účely. Pokud v budoucnu zahájíme marketingovou komunikaci, bude vyžadován samostatný opt-in souhlas dle čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;a) GDPR, oddělený od souhlasu s těmito zásadami.</p>
+          <!-- ⚠️ Judgment call: potvrdit aktuální stav marketingu; pokud existuje jakákoliv marketingová komunikace, upravit. -->
+        </section>
+
+        <section id="legal-pravni-zaklad">
+          <h2>4. Právní základ zpracování</h2>
+          <p>Zpracování vašich osobních údajů je založeno na následujících právních základech dle čl.&nbsp;6 GDPR:</p>
+          <ul>
+            <li><strong>Čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;b) GDPR</strong> — plnění smlouvy: zpracování nezbytné pro uzavření a plnění investiční smlouvy s námi</li>
+            <li><strong>Čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;c) GDPR</strong> — právní povinnost: zpracování nezbytné pro splnění našich povinností dle zákona č.&nbsp;253/2008 Sb. (AML/KYC), daňových a účetních povinností a povinností vůči České národní bance</li>
+            <li><strong>Čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;a) GDPR</strong> — souhlas: bude využit výhradně pro budoucí marketingovou komunikaci (samostatný opt-in souhlas)</li>
+            <li><strong>Čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;f) GDPR</strong> — oprávněný zájem: zpracování nezbytné pro zajištění bezpečnosti informačních systémů, prevenci podvodů a obranu právních nároků</li>
+          </ul>
+          <p>Při zpracování na základě oprávněného zájmu jsme provedli posouzení rovnováhy mezi našimi zájmy a vašimi právy a svobodami. Dospěli jsme k závěru, že náš oprávněný zájem převažuje nad dopadem na vaše práva, mj. z důvodu minimalizace zpracovávaných údajů a zavedených technických a organizačních opatření.</p>
+        </section>
+
+        <section id="legal-uchovavani">
+          <h2>5. Doba uchovávání osobních údajů</h2>
+          <p>Vaše osobní údaje uchováváme po dobu nezbytnou pro plnění jednotlivých účelů zpracování:</p>
+          <ul>
+            <li>Po dobu trvání obchodního vztahu plus 10 let od jeho ukončení (AML povinnost dle zákona č.&nbsp;253/2008 Sb. §&nbsp;16)</li>
+            <li>Po dobu trvání smlouvy plus 10 let pro daňové a účetní povinnosti</li>
+            <li>Technické logy: maximálně 90 dnů</li>
+            <li>Marketingové údaje: do doby odvolání souhlasu (pokud bude marketing zahájen)</li>
+            <li>Údaje z kontaktního formuláře (od osob, které se nestanou klienty): maximálně 24 měsíců od posledního kontaktu, poté bezpečná likvidace</li>
+          </ul>
+          <p>Po uplynutí zákonem stanovené doby jsou osobní údaje bezpečně smazány nebo nevratně anonymizovány. Výjimku tvoří údaje podléhající aktivnímu soudnímu řízení nebo dalším právním povinnostem, které vyžadují delší uchování.</p>
+        </section>
+
+        <section id="legal-prijemci">
+          <h2>6. Příjemci osobních údajů a zpracovatelé</h2>
+          <p>Vaše osobní údaje sdílíme pouze v rozsahu nezbytném pro dosažení stanovených účelů s následujícími kategoriemi příjemců:</p>
+          <ul>
+            <li><strong>Zaměstnanci a spolupracovníci MOVITO group, s.r.o.</strong> — v rozsahu nezbytném pro plnění jejich pracovních úkolů v compliance, IT a obchodních odděleních</li>
+            <li><strong>Externí zpracovatelé</strong> — poskytovatelé AML/KYC screening služeb, operátoři platebních bran, daňoví poradci, právní zástupci, poskytovatelé IT infrastruktury</li>
+            <li><strong>Orgány veřejné moci</strong> — Česká národní banka, Finanční analytický úřad (FAÚ) při AML hlášeních, Úřad pro ochranu osobních údajů, orgány činné v trestním řízení, soudy — vždy pouze na základě zákonné povinnosti</li>
+          </ul>
+          <p>Všichni externí zpracovatelé jsou smluvně vázáni Dohodou o zpracování osobních údajů (DPP) dle čl.&nbsp;28 GDPR a jsou povinni zachovat stejnou úroveň ochrany vašich údajů.</p>
+
+          <h3>Jmenovaní dílčí zpracovatelé (sub-procesory)</h3>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 1em;">
+            <thead>
+              <tr style="border-bottom: 2px solid #ddd;">
+                <th style="text-align: left; padding: 0.75em; font-weight: 600;">Zpracovatel</th>
+                <th style="text-align: left; padding: 0.75em; font-weight: 600;">Webová stránka</th>
+                <th style="text-align: left; padding: 0.75em; font-weight: 600;">Popis</th>
+                <th style="text-align: left; padding: 0.75em; font-weight: 600;">Sídlo</th>
+                <th style="text-align: left; padding: 0.75em; font-weight: 600;">Mechanismus přenosu údajů</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 0.75em;"><strong>Resend</strong></td>
+                <td style="padding: 0.75em;"><a href="https://resend.com" rel="noopener noreferrer">resend.com</a></td>
+                <td style="padding: 0.75em;">Poskytovatel e-mailových služeb, zpracovává jméno a e-mailovou adresu pro účely zasílání transakčních e-mailů</td>
+                <td style="padding: 0.75em;">USA</td>
+                <td style="padding: 0.75em;">Standardní smluvní doložky (SCC) dle čl.&nbsp;46(2)(c) GDPR</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.75em;"><strong>Netlify</strong></td>
+                <td style="padding: 0.75em;"><a href="https://netlify.com" rel="noopener noreferrer">netlify.com</a></td>
+                <td style="padding: 0.75em;">Poskytovatel hostingové infrastruktury a serverless funkcí, zpracovává údaje z kontaktního formuláře (jméno, e-mail, telefon, IP adresa)</td>
+                <td style="padding: 0.75em;">USA</td>
+                <td style="padding: 0.75em;">Standardní smluvní doložky (SCC) dle čl.&nbsp;46(2)(c) GDPR</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="legal-treti-zeme">
+          <h2>7. Předávání údajů do třetích zemí</h2>
+          <p>Vaše osobní údaje primárně zpracováváme v rámci Evropské unie a Evropského hospodářského prostoru (EU/EHP). Pokud dojde k předání údajů mimo tyto oblasti, zajišťujeme jejich ochranu prostřednictvím:</p>
+          <ul>
+            <li>Standardních smluvních doložek (SCC) schválených Evropskou komisí</li>
+            <li>Rozhodnutí Evropské komise o odpovídající úrovni ochrany osobních údajů v dané třetí zemi</li>
+            <li>Dalších vhodných záruk dle čl.&nbsp;46 GDPR</li>
+          </ul>
+          <p>Přenos údajů do třetích zemí se řídí ustanoveními kapitoly V (čl.&nbsp;44 až 50) GDPR.</p>
+        </section>
+
+        <section id="legal-prava">
+          <h2>8. Vaše práva</h2>
+          <p>V souladu s GDPR máte vůči zpracování vašich osobních údajů následující práva:</p>
+          <ul>
+            <li><strong>Právo na přístup (čl.&nbsp;15 GDPR)</strong> — máte právo získat potvrzení, zda zpracováváme vaše osobní údaje, a kopii těchto údajů</li>
+            <li><strong>Právo na opravu (čl.&nbsp;16 GDPR)</strong> — máte právo na opravu nepřesných a doplnění neúplných osobních údajů</li>
+            <li><strong>Právo na výmaz (čl.&nbsp;17 GDPR)</strong> — můžete požádat o výmaz vašich údajů; toto právo se však neuplatní na údaje, které jsme povinni uchovávat dle čl.&nbsp;17 odst.&nbsp;3 písm.&nbsp;b) GDPR, zejména na záznamy vyžadované zákonem č.&nbsp;253/2008 Sb. (AML) po dobu 10 let</li>
+            <li><strong>Právo na omezení zpracování (čl.&nbsp;18 GDPR)</strong> — můžete požádat o omezení zpracování v případech uvedených v GDPR</li>
+            <li><strong>Právo na přenositelnost údajů (čl.&nbsp;20 GDPR)</strong> — máte právo obdržet osobní údaje, které jste nám poskytli, ve strukturovaném, běžně používaném a strojově čitelném formátu</li>
+            <li><strong>Právo vznést námitku (čl.&nbsp;21 GDPR)</strong> — máte právo vznést námitku proti zpracování založenému na našem oprávněném zájmu; toto právo se však nevztahuje na zpracování nezbytné pro plnění smlouvy (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;b) GDPR) ani na zpracování na základě právní povinnosti (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;c) GDPR)</li>
+            <li><strong>Právo podat stížnost u dozorového úřadu</strong> — Úřad pro ochranu osobních údajů (ÚOOÚ), Pplk. Sochora 27, 170 00 Praha 7, <a href="https://www.uoou.cz" rel="noopener noreferrer">www.uoou.cz</a></li>
+            <li><strong>Právo odvolat souhlas (čl.&nbsp;7 odst.&nbsp;3 GDPR)</strong> — Pokud je zpracování založeno na souhlasu, máte právo souhlas kdykoliv odvolat, a to zasláním e-mailu na adresu <a href="mailto:info@milionovainvestice.cz">info@milionovainvestice.cz</a>. Odvolání souhlasu nemá vliv na zákonnost zpracování založeného na souhlasu uděleném před jeho odvoláním.</li>
+          </ul>
+          <p>Na vaše žádosti odpovíme bez zbytečného odkladu, nejpozději do jednoho měsíce od jejich obdržení dle čl.&nbsp;12 odst.&nbsp;3 GDPR. V případech zvlášť složitých žádostí nebo velkého počtu žádostí si vyhrazujeme právo tuto lhůtu prodloužit o další dva měsíce, o čemž vás předem informujeme.</p>
+        </section>
+
+        <section id="legal-cookies">
+          <h2>9. Cookies a technologie sledování</h2>
+          <p>Naše webové stránky mohou využívat následující typy cookies:</p>
+          <ul>
+            <li><strong>Technické (nezbytné) cookies</strong> — potřebné pro správné fungování webu, ukládání relace a bezpečnost. Tyto cookies nelze odmítnout.</li>
+            <li><strong>Analytické cookies</strong> — slouží pro měření návštěvnosti a zlepšování obsahu. Jejich použití vyžaduje váš předchozí souhlas.</li>
+            <li><strong>Marketingové cookies</strong> — slouží pro cílení reklamy a remarketing. Jejich použití vyžaduje váš předchozí souhlas.</li>
+          </ul>
+          <p>V současné době Milionová Investice používá na webových stránkách pouze technické cookies nezbytné pro správné fungování webu. Analytické a marketingové cookies neprovozujeme. Pokud v budoucnu tyto technologie nasadíme, vyžádáme si váš souhlas dle čl.&nbsp;7 GDPR a tyto zásady aktualizujeme.</p>
+          <!-- ⚠️ Judgment call: ověřit skutečný stav cookies. Pokud běží jakákoli analytika, doplnit. -->
+          <p>Nastavení cookies můžete spravovat v nastavení svého prohlížeče. Odmítnutí cookies může omezit funkčnost webu.</p>
+        </section>
+
+        <section id="legal-cl22">
+          <h2>10. Automatizované rozhodování a profilování</h2>
+          <p>V rámci AML/KYC screening procesů mohou být aplikovány automatizované kontroly vašich údajů proti sankčním seznamům, databázím politicky exponovaných osob (PEP) a dalším rizikovým ukazatelům. Konečné rozhodnutí o přijetí nebo zamítnutí obchodního vztahu z důvodů AML je však vždy učiněno lidskou osobou.</p>
+          <p>MOVITO group, s.r.o. neprovádí automatizované individuální rozhodování ve smyslu čl.&nbsp;22 odst.&nbsp;1 GDPR, které by mělo vůči vám právní účinky nebo se vás podobně významně dotýkalo bez lidského zásahu.</p>
+        </section>
+
+        <section id="legal-zabezpeceni">
+          <h2>11. Zabezpečení osobních údajů</h2>
+          <p>Data z kontaktního formuláře je zpracováno přechodně (transientně) — není ukládáno v databázi na našich serverech. Přijali jsme odpovídající technická a organizační opatření k zajištění ochrany vašich osobních údajů, zejména:</p>
+          <ul>
+            <li>Veškerá komunikace je šifrována pomocí SSL/TLS (HSTS s preload)</li>
+            <li>Zabezpečení na úrovni infrastruktury zajišťují zpracovatelé (Netlify, Resend) v souladu s jejich bezpečnostními standardy a smlouvami o zpracování údajů</li>
+            <li>Přístup k administračním rozhraním je chráněn vícefaktorovou autentizací (MFA)</li>
+            <li>Pravidelné bezpečnostní kontroly a testování</li>
+            <li>Školení zaměstnanců v oblasti ochrany osobních údajů</li>
+          </ul>
+          <p>V případě porušení zabezpečení osobních údajů postupujeme dle čl.&nbsp;33 a 34 GDPR — incident oznámíme Úřadu pro ochranu osobních údajů bez zbytečného odkladu, nejpozději do 72 hodin od zjištění. V případě vysokého rizika pro vaše práva vás budeme informovat přímo.</p>
+        </section>
+
+        <section id="legal-aktualizace">
+          <h2>12. Aktualizace těchto zásad</h2>
+          <p><strong>Poslední aktualizace:</strong> 12. dubna 2026</p>
+          <p>Tyto zásady mohou být průběžně aktualizovány z důvodu změn právních předpisů, našich interních procesů nebo technologií. Při podstatných změnách vás informujeme e-mailem nebo upozorněním na našich webových stránkách. Doporučujeme pravidelné přezkoumání této stránky.</p>
+        </section>
+
+        <section id="legal-kontakt">
+          <h2>13. Kontakt pro dotazy týkající se ochrany osobních údajů</h2>
+          <p>Máte-li jakékoli dotazy týkající se zpracování vašich osobních údajů, kontaktujte nás:</p>
+          <p>
+            <strong>MOVITO group, s.r.o.</strong><br>
+            5. května 1111/11<br>
+            140 00 Praha – Nusle<br>
+            Česká republika
+          </p>
+          <p><strong>E-mail:</strong> <a href="mailto:info@milionovainvestice.cz">info@milionovainvestice.cz</a><br>
+          <strong>Telefon:</strong> +420 603 865 865</p>
+          <p>Odpovíme vám nejpozději do jednoho měsíce od obdržení žádosti (s možností prodloužení o dva měsíce u složitých žádostí). V případě nespokojenosti s naším vyřízením máte právo podat stížnost u Úřadu pro ochranu osobních údajů: Pplk. Sochora 27, 170 00 Praha 7, <a href="https://www.uoou.cz" rel="noopener noreferrer">www.uoou.cz</a>.</p>
+        </section>
+
+        <hr class="legal-divider legal-divider--major">
+        <div class="legal-body__part-label">Další právní informace</div>
+
+        <section id="legal-regulace">
+          <h2>14. Regulační status a dohled</h2>
+          <p>MOVITO group, s.r.o., IČO 06124186, sídlem 5. května 1111/11, 140 00 Praha – Nusle. Společnost podléhá obecné regulaci České národní banky dle zákona č. 6/1993 Sb. o ČNB v rozsahu platných právních předpisů. Investice u Milionové Investice jsou nabízeny primárně kvalifikovaným investorům dle §272 zákona č. 240/2013 Sb. (ZISIF — Zákon o investičních společnostech a fondech).</p>
+        </section>
+
+        <section id="legal-aml">
+          <h2>15. AML/KYC (zákon 253/2008 Sb.)</h2>
+          <p>Všichni investoři projdou identifikací a KYC procesem dle zákona č. 253/2008 Sb. o některých opatřeních proti legalizaci výnosů z trestné činnosti a financování terorismu. Prověřujeme PEP status a sankční seznamy. Záznamy uchováváme po dobu 10 let od ukončení obchodního vztahu.</p>
+        </section>
+
+        <section id="legal-pojisteni">
+          <h2>16. Pojištění vkladů</h2>
+          <p><strong>Investice u Milionové Investice NEJSOU kryty systémem pojištění vkladů.</strong> Bankovní vklady jsou chráněny systémem pojištění vkladů do výše 100 000 EUR. Investování do alternativních aktiv nese vyšší riziko než bankovní vklad.</p>
+        </section>
+
+        <section id="legal-vynos">
+          <h2>17. Cílový výnos</h2>
+          <p>Jakékoli uváděné výnosy jsou cílové (orientační) a nejsou zaručeny. Minulé výsledky nejsou zárukou výsledků budoucích. Pro investice do kryptoaktiv navíc platí: kryptoaktiva mohou zcela nebo zčásti ztratit svou hodnotu, nejsou regulována jako tradiční finanční nástroje a nejsou kryta systémem pojištění vkladů ani systémem pro odškodnění investorů (MiCA čl. 7).</p>
+        </section>
+
+        <section id="legal-spory">
+          <h2>18. Mimosoudní řešení sporů</h2>
+          <p>Případné spory lze řešit prostřednictvím českých soudů nebo podáním podnětu k České národní bance jakožto orgánu dohledu dle §7 zákona č. 6/1993 Sb. V rozsahu, ve kterém se na nabídku vztahuje působnost Finančního arbitra (zákon č. 229/2002 Sb.), je možné využít i tohoto orgánu.</p>
+        </section>
+
+      </article>
+
+      <aside class="legal-marketing-notice">
+        <strong>Marketingové sdělení.</strong> Tato stránka má pouze informativní charakter a nepředstavuje investiční doporučení ani nabídku k uzavření smlouvy.
+      </aside>
+    </div>
+  </main>
+
+  <footer class="legal-footer">
+    <div class="container">
+      <span>© 2026 MOVITO group, s.r.o., IČO 06124186</span>
+      <ul class="legal-footer__links">
+        <li><a href="mailto:info@milionovainvestice.cz">info@milionovainvestice.cz</a></li>
+        <li><a href="tel:+420603865865">+420 603 865 865</a></li>
+        <li><a href="/">Zpět na hlavní stránku</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

@@ -20,4 +20,39 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+
+# Pretty URL rewrite for privacy policy subpage
+[[redirects]]
+  from = "/zasady-ochrany-osobnich-udaju"
+  to = "/zasady-ochrany-osobnich-udaju.html"
+  status = 200
+
+[[redirects]]
+  from = "/zasady-ochrany-osobnich-udaju/"
+  to = "/zasady-ochrany-osobnich-udaju.html"
+  status = 200
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Sitemap — short cache, revalidate on deploy
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+# Robots.txt — short cache
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# OG image — long cache with immutable (when created)
+[[headers]]
+  for = "/og-image.*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,7 @@
+# robots.txt — milionovainvestice.cz
+
+User-agent: *
+Disallow: /test.html
+Disallow: /netlify/
+
+Sitemap: https://milionovainvestice.cz/sitemap.xml

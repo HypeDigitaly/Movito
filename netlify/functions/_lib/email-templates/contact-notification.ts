@@ -4,84 +4,27 @@
 // ============================================================
 
 import { escapeHtml } from '../utils';
+import {
+  COLOR_BG,
+  COLOR_BG_CARD,
+  COLOR_BORDER,
+  COLOR_GOLD,
+  COLOR_MUTED,
+  COLOR_TEXT,
+  FONT_BODY,
+  FONT_DISPLAY,
+  wrapEmail,
+} from './shared';
 
 // ----------------------------------------------------------
-// Brand tokens — Milionová Investice light palette
+// Template-local brand token
 // ----------------------------------------------------------
 
-const COLOR_BG      = '#FAFAF7';
-const COLOR_BG_CARD = '#FFFFFF';
-const COLOR_CREAM   = '#FAF5E8';
-const COLOR_GOLD    = '#96730F';
 const COLOR_GOLD_DK = '#7A5E0A';
-const COLOR_TEXT    = '#1C1B17';
-const COLOR_MUTED   = '#6B6A62';
-const COLOR_BORDER  = '#ECEAE3';
-const FONT_DISPLAY  = "'Playfair Display', Georgia, 'Times New Roman', serif";
-const FONT_BODY     = "'DM Sans', Arial, sans-serif";
-const SITE_URL      = 'https://milionovainvestice.cz';
 
 // ----------------------------------------------------------
 // Layout helpers
 // ----------------------------------------------------------
-
-function wrapEmail(preheader: string, body: string): string {
-  return `<!DOCTYPE html>
-<html lang="cs" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Milionová Investice – Notifikace</title>
-  <!--[if mso]>
-  <noscript>
-    <xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
-  </noscript>
-  <![endif]-->
-</head>
-<body style="margin:0;padding:0;background-color:${COLOR_BG};font-family:${FONT_BODY};-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-  <!-- Preheader (hidden preview text) -->
-  <div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">${preheader}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
-
-  <!-- Outer wrapper -->
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${COLOR_BG};">
-    <tr>
-      <td align="center" style="padding:32px 16px;">
-        <!-- Container -->
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;">
-
-          <!-- Header band — cream background, Playfair Display wordmark -->
-          <tr>
-            <td align="center" style="background-color:${COLOR_CREAM};border-radius:16px 16px 0 0;padding:28px 40px;">
-              <a href="${SITE_URL}" style="text-decoration:none;">
-                <span style="font-family:${FONT_DISPLAY};font-size:22px;font-weight:700;color:${COLOR_GOLD};letter-spacing:0.04em;">MILIONOVÁ INVESTICE</span>
-              </a>
-            </td>
-          </tr>
-
-          <!-- Card -->
-          <tr>
-            <td style="background-color:${COLOR_BG_CARD};border-radius:0 0 16px 16px;padding:40px 40px 36px 40px;border:1px solid ${COLOR_BORDER};border-top:none;">
-              ${body}
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="padding:28px 0 0 0;text-align:center;">
-              <p style="margin:0;font-family:${FONT_BODY};font-size:12px;line-height:1.6;color:${COLOR_MUTED};">
-                &copy; ${new Date().getFullYear()} Milionová Investice &middot; <a href="${SITE_URL}" style="color:${COLOR_MUTED};text-decoration:none;">milionovainvestice.cz</a>
-              </p>
-            </td>
-          </tr>
-
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>`;
-}
 
 /** Renders one table row: left cell = label, right cell = value, separator row below. */
 function fieldRow(label: string, value: string, highlight = false): string {
@@ -105,6 +48,7 @@ function fieldRow(label: string, value: string, highlight = false): string {
 
 function investmentLabel(v: string): string {
   switch (v) {
+    case '100k-500k': return '100 000 \u2013 500 000 K\u010D';
     case '500k-1m': return '500 tis. \u2013 1 mil. K\u010D';
     case '1m-5m':   return '1 \u2013 5 mil. K\u010D';
     case '5m-20m':  return '5 \u2013 20 mil. K\u010D';
@@ -159,9 +103,12 @@ export function contactNotificationEmail(data: {
   name: string;
   email: string;
   phone: string;
-  investment_amount: '' | '500k-1m' | '1m-5m' | '5m-20m' | '20m+' | 'unknown';
+  investment_amount: '' | '100k-500k' | '500k-1m' | '1m-5m' | '5m-20m' | '20m+' | 'unknown';
   form_location: string;
+  /** Server-generated ISO timestamp — authoritative for GDPR records. */
   consent_timestamp: string;
+  /** Client-supplied ISO timestamp — supplementary; may differ from server value. */
+  consent_timestamp_client?: string;
   createdAt: string;
   category?: string;
   qualified_investor_ack?: boolean;
@@ -170,13 +117,16 @@ export function contactNotificationEmail(data: {
   const safeEmail = escapeHtml(data.email);
   const safePhone = escapeHtml(data.phone);
 
-  const subject   = `Nov\xfd kontakt: ${data.name} (${data.email})`;
+  const subject   = `Nový kontakt z webu Milionové Investice`;
   const preheader = `${safeName} vypln\xedl/a kontaktn\xed formul\xe1\u0159 \u2014 zkontroluj zpr\xe1vu.`;
 
   const formattedCreatedAt = formatPragueDate(data.createdAt);
 
-  const consentRendered = data.consent_timestamp
-    ? formatPragueDate(data.consent_timestamp)
+  // Server timestamp is always present (generated in contact.ts).
+  const consentRendered = formatPragueDate(data.consent_timestamp);
+  // Client timestamp is supplementary — shown for audit trail completeness.
+  const consentClientRendered = data.consent_timestamp_client
+    ? formatPragueDate(data.consent_timestamp_client)
     : '(nedod\xe1no)';
 
   const body = `
@@ -207,7 +157,8 @@ export function contactNotificationEmail(data: {
       ${fieldRow('Kategorie', categoryLabel(data.category ?? ''))}
       ${fieldRow('Kval. investor (potvrzeno)', data.qualified_investor_ack ? 'Ano' : 'Neuvedeno')}
       ${fieldRow('Datum odeslan\xed', formattedCreatedAt)}
-      ${fieldRow('\u010casov\xe9 raz\xedtko souhlasu', consentRendered)}
+      ${fieldRow('\u010casov\xe9 raz\xedtko souhlasu (server)', consentRendered)}
+      ${fieldRow('\u010casov\xe9 raz\xedtko souhlasu (klient)', consentClientRendered)}
     </table>
 
     <!-- Reply CTA button -->
@@ -229,6 +180,6 @@ export function contactNotificationEmail(data: {
 
   return {
     subject,
-    html: wrapEmail(preheader, body),
+    html: wrapEmail(preheader, body, 'Milionová Investice – Notifikace'),
   };
 }

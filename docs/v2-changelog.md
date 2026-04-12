@@ -1,5 +1,28 @@
 # Movito v2 Rework — Changelog
 
+## 2026-04-11 — Privacy Policy Subpage (Standalone Legal Hub)
+
+**Summary:**  
+New standalone privacy policy subpage unifying legal information previously duplicated across landing page footer and modals. Document includes 18 legal sections with flat heading hierarchy, anchor-linked table of contents, sticky navigation, and WCAG 2.1 AA accessibility. Document status: TEMPLATE pending advokát legal review on three judgment-call items.
+
+**Added:**
+- **Standalone privacy policy page** — `zasady-ochrany-osobnich-udaju.html` (~687 LOC) with inline self-contained CSS
+- **Content source file** — `copy/privacy_policy_draft.md` (~390 LOC, Czech Markdown for editing)
+- **Netlify URL rewrites** — `[[redirects]]` for pretty URL: `/zasady-ochrany-osobnich-udaju` → `.html` (status 200)
+- **18 legal sections** — Part A (13 GDPR sections), Part B (5 other legal disclaimers); 18 anchor IDs prefixed `legal-{section}`
+- **Table of contents** — Sticky, internally linked, scrolls to sections smoothly
+- **Three judgment-call comments** — HTML comments flagging items requiring advokát sign-off before go-live: (1) mandatory DPA under čl. 37(b), (2) marketing opt-in current state, (3) cookies audit completion
+- **CSS tokens sync strategy** — `:root` variables copied verbatim from index.html; sync comment added to both files
+
+**Modified:**
+- **index.html footer** — Legal block simplified: removed 6 sections, deleted 6 unused CSS rules (.footer__legal-heading, .footer__legal-section, related children), removed dangling `/podminky-uziti` links, fixed footer bottom link contrast (text-muted + underline), upgraded .footer__legal-marketing-notice CSS (cream-dark bg, border, radius, 16/20 padding)
+- **netlify.toml** — Added 2 `[[redirects]]` blocks for pretty URL handling (with/without trailing slash)
+
+**Documentation:**
+- **docs/privacy-subpage.md** — Comprehensive topic guide covering purpose, file structure, content source, URL routing, 18 anchor IDs, judgment-call flags, CSS sync strategy, date updates, design tokens, accessibility, and section management workflows
+
+---
+
 ## 2026-04-11 — Feature branch `rework/v2`
 
 ### Added

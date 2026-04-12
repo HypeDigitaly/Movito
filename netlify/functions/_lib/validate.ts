@@ -28,7 +28,7 @@ export interface ContactBody {
   phone: unknown;
   investment_amount: unknown;
   consent: unknown;
-  consent_timestamp: unknown;
+  consent_timestamp_client: unknown;
   form_location: unknown;
   /** Honeypot — must be checked and rejected by the handler BEFORE calling validateBody. */
   website: unknown;
@@ -42,7 +42,7 @@ export interface ContactBody {
  * Allowed values for the investment-amount selector.
  * The empty string `''` represents "not answered / prefer not to say".
  */
-export const INVESTMENT_AMOUNTS = ['500k-1m', '1m-5m', '5m-20m', '20m+', 'unknown', ''] as const;
+export const INVESTMENT_AMOUNTS = ['100k-500k', '500k-1m', '1m-5m', '5m-20m', '20m+', 'unknown', ''] as const;
 
 /**
  * Allowed values for the investment-category selector.
@@ -68,7 +68,7 @@ export interface ValidatedContact {
   phone: string;
   investment_amount: InvestmentAmount;
   consent: true;
-  consent_timestamp: string;
+  consent_timestamp_client: string;
   form_location: string;
   /** Investment category; empty string if absent or unrecognised. */
   category: string;
@@ -204,21 +204,23 @@ export function validateBody(
   }
 
   // ----------------------------------------------------------
-  // consent_timestamp (optional pass-through)
+  // consent_timestamp_client (optional pass-through)
+  // Client-supplied timestamp — supplementary data only; server generates the
+  // canonical consent_timestamp independently in contact.ts.
   // undefined / null → ''.
   // If present: must be string, ≤100 chars, no control chars.
   // We add an error on clearly bogus payloads to catch injection attempts,
   // but this field is otherwise non-blocking for legitimate users.
   // ----------------------------------------------------------
   let validatedConsentTimestamp = '';
-  if (raw.consent_timestamp === undefined || raw.consent_timestamp === null) {
+  if (raw.consent_timestamp_client === undefined || raw.consent_timestamp_client === null) {
     validatedConsentTimestamp = '';
-  } else if (typeof raw.consent_timestamp !== 'string') {
-    fields.consent_timestamp = 'Neplatné časové razítko.';
-  } else if (raw.consent_timestamp.length > 100 || hasControlChars(raw.consent_timestamp)) {
-    fields.consent_timestamp = 'Neplatné časové razítko.';
+  } else if (typeof raw.consent_timestamp_client !== 'string') {
+    fields.consent_timestamp_client = 'Neplatné časové razítko.';
+  } else if (raw.consent_timestamp_client.length > 100 || hasControlChars(raw.consent_timestamp_client)) {
+    fields.consent_timestamp_client = 'Neplatné časové razítko.';
   } else {
-    validatedConsentTimestamp = raw.consent_timestamp;
+    validatedConsentTimestamp = raw.consent_timestamp_client;
   }
 
   // ----------------------------------------------------------
@@ -271,7 +273,7 @@ export function validateBody(
       phone: validatedPhone,
       investment_amount: validatedAmount,
       consent: true,
-      consent_timestamp: validatedConsentTimestamp,
+      consent_timestamp_client: validatedConsentTimestamp,
       form_location: validatedFormLocation,
       category: validatedCategory,
       qualified_investor_ack: validatedQualifiedInvestorAck,
